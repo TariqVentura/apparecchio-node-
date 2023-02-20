@@ -1,0 +1,156 @@
+:root{
+    --dark: #584342;
+    --light: #fff8eb;
+    --back: #3b2f2e;
+}
+
+.bg-dark{
+    background-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+.bg-light{
+    background-color: var(--light) !important;
+}
+
+.btn-dark{
+    background-color: var(--dark) !important;
+    border-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+.rounded{
+    border-radius: 0% !important;
+    border-color: var(--dark) !important;
+    background-color: var(--light) !important;
+}
+
+button:hover{
+    background-color: var(--dark) !important;
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block !important;
+    background-color: var(--dark) !important;
+}
+
+a{
+    text-decoration: none;
+    color: var(--dark) !important;
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.card-title{
+    margin-bottom: 15vh !important;
+}
+
+.text-dark{
+    color: var(--dark) !important;
+}
+
+.btn-primary{
+    background-color: var(--dark) !important;
+    border-color: var(--light) !important;
+    color: var(--light) !important;
+}
+
+@media screen and (max-width: 900px){
+    #Nuevos-productos{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: 3% !important;
+    }
+    .card{
+        width: 25rem !important;
+        margin-bottom: 10% !important;
+        align-self: center !important;
+    }
+}
+
+@media screen and (max-width: 1900px){
+    .card{
+        width: 15rem !important;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .card{
+        width: 22rem !important;
+    }
+}
+
+.border-bottom{
+    border-color: var(--dark) !important;
+}
+
+.list-group-item.active{
+    background-color: var(--dark)!important;
+    color: var(--light) !important;
+}
+
+.tab-pane.active{
+    color: var(--light) !important;
+}
+
+.btn-outline-dark{
+    border-color: var(--dark) !important;
+}
+
+.border-dark{
+    border-color: var(--dark)!important;
+}
+
+nav.active{
+    position: fixed;
+    left: 0%;
+    top: 0%;
+    right: 0%;
+    z-index: 100;
+}
+
+.offcanvas{
+    background-color: var(--dark) !important;
+}
+
+.login-form{
+    padding: 30px;
+    width: 380px !important;
+    height: 600px;
+    background-color: var(--dark) !important;
+    color: var(--light) !important;
+}
+
+input[type="email"],
+input[type="password"]{
+    background: var(--back) !important;
+    border: 2px solid var(--light) !important;
+}
+
+.image-login{
+    width: 680px !important;
+    height: 600px;
+}
+
+.overlay
+{
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden; 
+    opacity: 0; 
+}
+.overlay.active
+{
+    visibility: visible;
+    opacity: 1;
+}
