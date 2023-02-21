@@ -1,0 +1,32 @@
+:root{
+    --dark: #584342;
+    --light: #fff8eb;
+    --other: #9e7676;
+}
+.bg-light{
+    background-color: var(--light) !important;
+}
+
+h3{
+    font-size: 2rem;
+}
+body{
+    background-color: #fff8eb;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.row{
+    display: flex;
+    flex-wrap: nowrap;
+    
+}
+h5{
+    text-align: center;
+}
+
+
+.popup-class{
+    background-color: #9e7676;
+}
