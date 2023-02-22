@@ -17,11 +17,11 @@ body{
     
 }
 
-.row{
+/* .row{
     display: flex;
     flex-wrap: nowrap;
     
-}
+} */
 h5{
     text-align: center;
 }
