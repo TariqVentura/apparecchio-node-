@@ -1,7 +1,7 @@
 var nav = document.getElementById('menu')
 var check = document.getElementById('invalidCheck')
 var loginbutton = document.getElementById('loginbutton')
-var overlay = document.querySelector('.overlay');
+var overlay = document.querySelector('overlay');
 
 window.onscroll = function () {
     var y = window.scrollY
@@ -17,7 +17,7 @@ function confirmacion() {
     Swal.fire({
         icon: 'success',
         text: 'Compra realizada exitosamente',
-        footer: '<a href="file:///D:/web/productos.html">Seguir comprando?</a>',
+        footer: '<a href="../../views/public/productos.html">Seguir comprando?</a>',
         background: '#fff8eb',
         color: '#584342',
         button: '#fff8eb'
@@ -28,7 +28,7 @@ function addcart() {
     Swal.fire({
         icon: 'success',
         text: 'Producto añadido exitosamente',
-        footer: '<a href="file:///D:/web/carrito.html">Ver mis pedidos</a>',
+        footer: '<a href="../../views/public/carrito.html">Ver mis pedidos</a>',
         background: '#fff8eb'
     })
 }
@@ -43,6 +43,6 @@ function login() {
             '<input type="password" class="form-control text-light" id="exampleInputPassword1">',
         confirmButtonText: 'Ingresar',
         confirmButtonColor: '#584342',
-        footer: '<a href="file:///D:/web/cuenta.html">crear una cuenta</a>'
+        footer: '<a href="../../views/public/cuenta.html">crear una cuenta</a>'
     })
 }

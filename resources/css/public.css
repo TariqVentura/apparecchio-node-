@@ -104,7 +104,7 @@ a{
     border-color: var(--dark)!important;
 }
 
-nav.active{
+.navbar.active{
     position: fixed;
     left: 0%;
     top: 0%;
