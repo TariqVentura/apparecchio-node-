@@ -1,0 +1,195 @@
+<!-- Barra de contactos superior -->
+<div class="navbar bg-dark py-2 px-0">
+    <div class="container-fluid bg-dark d-flex justify-content-around ">
+        <!-- desaparece en pantallas pequeñas -->
+        <ul class="list-inline mb-0 d-none d-lg-inline-block p-1">
+            <li class="list-inline-item opacity-75 mr-2">
+                <a class="text-light font-size-sm py-1 pl-0 pr-2" href="">+503 2345 4657 &nbsp;</a>
+            </li>
+            <li class="list-inline-item opacity-75 mr-2">
+                <a class="text-light font-size-sm py-1 pl-0 pr-2" href=""><img
+                        src="https://img.icons8.com/ios/24/FFFFFF/mail.png" />&nbsp; OnlineStore@aparrecchio.com</a>
+            </li>
+        </ul>
+        <div class="d-flex justify-content-around">
+            <div class="d-flex">
+                <ul class="list-inline mb-0 d-none d-lg-inline-block p-1">
+                    <li class="list-inline-item opacity-75 mr-2">
+                        <a class="text-light font-size-sm py-1 pl-0 pr-2" href="">Nosotros</a>
+                    </li>
+                    <li class="list-inline-item opacity-75 mr-2">
+                        <a class="text-light font-size-sm py-1 pl-0 pr-2" href="">Centro de ayuda&nbsp;</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="d-flex flex-nowrap">
+                <a href=""><img src="https://img.icons8.com/material-rounded/29/FFFFFF/facebook.png" />&nbsp;</a>
+                <a href=""><img src="https://img.icons8.com/windows/32/FFFFFF/instagram-new.png" />&nbsp;</a>
+                <a href=""><img src="https://img.icons8.com/ios/23/FFFFFF/whatsapp--v1.png" />&nbsp;</a>
+                <a href=""><img src="https://img.icons8.com/ios-filled/23/FFFFFF/twitter.png" />&nbsp;</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Barra de busqueda -->
+<div class="container py-3 border-bottom d-none d-lg-block d-print-block">
+    <div class="row">
+        <div class="col-2">
+            <img src="/images/apparecchio logo.jpg" alt="" class="img-fluid">
+        </div>
+        <div class="col-5 align-self-center">
+            <form class="d-flex">
+                <input class="form-control rounded " type="search" placeholder="Search...." aria-label="Search">
+                <span class="input-group-text rounded" id="basic-addon1"><img
+                        src="https://img.icons8.com/material-outlined/20/000000/search--v1.png" /></span>
+            </form>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-3 d-flex justify-content-center align-self-center">
+            <button type="button" class="btn btn-outline-light"
+                onclick="location.href='../public/carrito.html'"><img
+                    src="https://img.icons8.com/external-kiranshastry-solid-kiranshastry/40/null/external-shopping-cart-miscellaneous-kiranshastry-solid-kiranshastry.png" /></button>
+            <button type="button" class="btn btn-outline-light" id="loginbutton">
+                <img src="https://img.icons8.com/ios-filled/30/null/logout-rounded.png" />
+            </button>
+        </div>
+        <div class="overlay py-3">
+            <div class="popup">
+                <div class="global-container d-flex flex-row">
+                    <div class="row">
+                        <div class="col-6">
+                            <img src="/images/LogoLogin.png" alt="img-fluid" id="login-logo">
+                        </div>
+                        <div class="col-6 d-flex flex-row">
+                            <div class="card login-form rounded" id="card-login">
+                                <div class="card-body">
+                                    <h1 class="text-center">L O G I N</h1>
+                                </div>
+                                <div class="card-text">
+                                    <form>
+                                        <div class="mb-5">
+                                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                            <input type="email" class="form-control text-light" id="exampleInputEmail1"
+                                                aria-describedby="emailHelp">
+                                        </div>
+                                        <div class="mb-5">
+                                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                                            <input type="password" class="form-control text-light"
+                                                id="exampleInputPassword1">
+                                        </div>
+                                        <div class="mb-5 form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                        </div>
+                                           <div class="d-grid gap-2 col-10 mx-auto">
+                                            <button class="btn btn-primary" type="button">Ingresar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-close btn-close-white" aria-label="Close" id="close-login"></button>
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Barra de navegacion -->
+<div class="container py-3 fs-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
+        <div class="container-fluid ">
+            <a class="navbar-brand fw-light fS-5 d-flex align-self-center" href="../public/index.html"> <img
+                    src="https://img.icons8.com/ios-glyphs/30/584342/home-page--v1.png" /> &nbsp; Home &nbsp; </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-self-center" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img
+                                src="https://img.icons8.com/external-anggara-glyph-anggara-putra/29/584342/external-menu-user-interface-anggara-glyph-anggara-putra-2.png" />
+                            &nbsp; Categorias &nbsp;
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="container d-flex flex-nowrap">
+                                <div class="row">
+                                    <div class="col">
+                                        <li><a class="dropdown-item text-light" href="#">Refrigeradoras</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Cocinas</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Freidores de Alimentos</a>
+                                        </li>
+                                        <li><a class="dropdown-item text-light" href="#">Campanas de Pared</a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <li><a class="dropdown-item text-light" href="#">Lavavajillas</a></li>
+                                        <li><a class="dropdown-item text-light"
+                                                href="../public/productos.html">Secadoras</a></li>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-self-center" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img
+                                src="https://img.icons8.com/external-glyph-geotatah/30/584342/external-brand-customer-engagement-glyph-glyph-geotatah-4.png" />
+                            &nbsp; Marcas &nbsp;
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="contaier d-flex flex-nowrap">
+                                <div class="row">
+                                    <div class="col">
+                                        <li><a class="dropdown-item text-light"
+                                                href="../public/productos.html">Samsung</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">General Eletrics</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Whirlpool</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">AEG</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Fagor</a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <li><a class="dropdown-item text-light" href="#">LG</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Sony</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Mabe</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Frigidaire</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Oster</a></li>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <li><a class="dropdown-item text-light" href="#">Philips</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Balay</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Bosch</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Beko</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Panasonic</a></li>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-self-center" href="#ofertas"><img
+                                src="https://img.icons8.com/ios-glyphs/30/584342/discount--v1.png" /> &nbsp; Ofertas
+                            &nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-self-center" href="#nuevo"><img
+                                src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/30/584342/external-new-sales-vitaliy-gorbachev-fill-vitaly-gorbachev.png" />
+                            &nbsp; Nuevos Productos &nbsp;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

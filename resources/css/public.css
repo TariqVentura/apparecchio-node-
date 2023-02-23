@@ -165,3 +165,6 @@ input[type="password"]{
     height: 91vh !important;
 }
 
+.btn-close-white:hover{
+    background-color: transparent !important;
+}
