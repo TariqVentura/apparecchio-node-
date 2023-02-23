@@ -1,0 +1,184 @@
+<%- include('nav.ejs') -%>
+    <!-- registro de compras -->
+    <div class="container my-3">
+        <p class="fs-3">Carrito de Compras</p>
+        <div class="row mb-4">
+            <div class="col-10">
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <img src="../../resources/images/not found.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <p class="fs-5">Centro de lavado MCL2040EPDG0 | 44 lb (lavado), 44 lb (secado)</p>
+                        <p class="fs-6">Mayor capacidad, diseño fácil de usar y panel Touch amigable.</p>
+                        <div class="d-flex flex-row justify-content-between">
+                            <p class="fs-6">$199.99</p>
+                            <p class="fs-6">cantidad: 1</p>
+                            <p class="fs-6">Garantía: 12 meses</p>
+                            <p class="fs-6">Total: $199.99</p>
+                            <a href="">eliminar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <img src="../../resources/images/not found.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <p class="fs-5">Centro de lavado MCL2040EPDG0 | 44 lb (lavado), 44 lb (secado)</p>
+                        <p class="fs-6">Mayor capacidad, diseño fácil de usar y panel Touch amigable.</p>
+                        <div class="d-flex flex-row justify-content-between">
+                            <p class="fs-6">$199.99</p>
+                            <p class="fs-6">cantidad: 1</p>
+                            <p class="fs-6">Garantía: 12 meses</p>
+                            <p class="fs-6">Total: $199.99</p>
+                            <a href="">eliminar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-3">
+                        <img src="../../resources/images/not found.jpg" alt="" class="img-fluid">
+                    </div>
+                    <div class="col-9">
+                        <p class="fs-5">Centro de lavado MCL2040EPDG0 | 44 lb (lavado), 44 lb (secado)</p>
+                        <p class="fs-6">Mayor capacidad, diseño fácil de usar y panel Touch amigable.</p>
+                        <div class="d-flex flex-row justify-content-between">
+                            <p class="fs-6">$199.99</p>
+                            <p class="fs-6">cantidad: 1</p>
+                            <p class="fs-6">Garantía: 12 meses</p>
+                            <p class="fs-6">Total: $199.99</p>
+                            <a href="">eliminar</a>
+                        </div>
+                    </div>
+                    <div class="col-2 mt-3">
+                        <a class="btn btn-primary text-light" data-bs-toggle="offcanvas" href="#offcanvasExample"
+                            role="button" aria-controls="offcanvasExample">
+                            Confirmar
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 mx-auto">
+                <div class="offcanvas offcanvas-end text-light" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Resumen de compra</h5>
+                        <button type="button" class="btn-close-white text-reset" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div>
+                            <p class="fs-4">Subtotal: $599.97</p>
+                            <p class="fs-4">Cantidad de productos: 3</p>
+                        </div>
+                        <div class="d-grid gap-2 col-10 mx-auto my-3">
+                            <button class="btn btn-primary" type="submit" onclick="confirmacion()">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="container-fluid bg-dark">
+        <div class="row py-5">
+            <div class="col-3 d-sm-none d-md-block">
+                <p class="fs-6 text-center text-light">Categorias mas populares</p>
+                <ol class="list-group list-group-numbered ms-5 bg-dark">
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light"
+                                    href="../public/productos.html">Lavadoras</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">54</span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light" href="">Lavavajillas</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">44</span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light" href="">Cocinas</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">34</span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light" href="">Refrigeradoras</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">24</span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light" href="">Secadoras</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">14</span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-3 d-sm-none d-md-block">
+                <p class="fs-6 text-light">Marcas mas reconocidas</p>
+                <ol class="list-group list-group-numbered bg-dark">
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light"
+                                    href="../public/productos.html">Samsung</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">64</span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light" href="">LG</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">34</span>
+                    </li>
+                    <li
+                        class="list-group-item d-flex justify-content-between align-items-start bg-dark text-light border-0">
+                        <div class="ms-2 me-auto">
+                            <div class="fs-6 fw-lighter"><a class="text-light" href="">Panasonic</a></div>
+                        </div>
+                        <span class="badge bg-light text-dark rounded-pill">14</span>
+                    </li>
+                </ol>
+            </div>
+            <div class="col-3 d-sm-none d-md-block">
+                <p class="fs-6 text-light border-bottom">Contacta con nosotros</p>
+                <div class="mb-3 text-light">
+                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                    <input type="email" class="form-control bg-light" id="exampleFormControlInput1"
+                        placeholder="name@example.com">
+                </div>
+                <div class="mb-3 text-light">
+                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                    <textarea class="form-control bg-light" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-light btn-outline-light text-dark">Submit</button>
+            </div>
+            <div class="col-3">
+                <div class="d-flex flex-column mx-4">
+                    <a href="" class="text-light"><img
+                            src="https://img.icons8.com/material-rounded/29/FFFFFF/facebook.png" />&nbsp; facebook</a>
+                    <br>
+                    <a href="" class="text-light"><img
+                            src="https://img.icons8.com/windows/32/FFFFFF/instagram-new.png" />&nbsp; instagram</a>
+                    <br>
+                    <a href="" class="text-light"><img
+                            src="https://img.icons8.com/ios/23/FFFFFF/whatsapp--v1.png" />&nbsp; whatsapp</a>
+                    <br>
+                    <a href="" class="text-light"><img
+                            src="https://img.icons8.com/ios-filled/23/FFFFFF/twitter.png" />&nbsp; twitter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('footer.ejs') -%>

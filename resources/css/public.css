@@ -75,11 +75,26 @@ a{
     .card{
         width: 15rem !important;
     }
+    #login-logo{
+        height: 61vh !important;
+    }
+    
+    #card-login{
+        height: 61vh !important;
+    }
 }
 
 @media screen and (max-width: 1000px){
     .card{
         width: 22rem !important;
+    }   
+    #login-logo{
+        width: auto !important;
+        height: 91vh !important;
+    }
+    
+    #card-login{
+        height: 91vh !important;
     }
 }
 
@@ -154,15 +169,6 @@ input[type="password"]{
     visibility: visible;
     opacity: 1;
     z-index: 1;
-}
-
-#login-logo{
-    width: auto !important;
-    height: 91vh !important;
-}
-
-#card-login{
-    height: 91vh !important;
 }
 
 .btn-close-white:hover{
