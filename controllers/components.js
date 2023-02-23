@@ -26,7 +26,7 @@ function confirmacion() {
     Swal.fire({
         icon: 'success',
         text: 'Compra realizada exitosamente',
-        footer: '<a href="../../views/public/productos.html">Seguir comprando?</a>',
+        footer: '<a href="/productos">Seguir comprando?</a>',
         background: '#fff8eb',
         color: '#584342',
         button: '#fff8eb'
@@ -37,7 +37,7 @@ function addcart() {
     Swal.fire({
         icon: 'success',
         text: 'Producto añadido exitosamente',
-        footer: '<a href="../../views/public/carrito.html">Ver mis pedidos</a>',
+        footer: '<a href="/carrito">Ver mis pedidos</a>',
         background: '#fff8eb'
     })
 }
