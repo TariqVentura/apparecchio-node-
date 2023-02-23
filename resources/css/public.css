@@ -153,4 +153,18 @@ input[type="password"]{
 {
     visibility: visible;
     opacity: 1;
+    z-index: 1;
+}
+
+#login-logo{
+    width: auto !important;
+    height: 91vh !important;
+}
+
+#card-login{
+    height: 91vh !important;
+}
+
+.btn-close-white{
+    background: var(--dark) !important;
 }

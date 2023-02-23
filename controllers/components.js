@@ -1,7 +1,7 @@
 var nav = document.getElementById('menu')
 var check = document.getElementById('invalidCheck')
 var loginbutton = document.getElementById('loginbutton')
-var overlay = document.querySelector('overlay');
+var overlay = document.querySelector('.overlay');
 
 window.onscroll = function () {
     var y = window.scrollY
@@ -12,6 +12,11 @@ window.onscroll = function () {
         nav.classList.remove('active')
     }
 }
+
+loginbutton.addEventListener('click', function () {
+    console.log(loginbutton)
+    overlay.classList.add('active')
+})
 
 function confirmacion() {
     Swal.fire({
@@ -30,19 +35,5 @@ function addcart() {
         text: 'Producto añadido exitosamente',
         footer: '<a href="../../views/public/carrito.html">Ver mis pedidos</a>',
         background: '#fff8eb'
-    })
-}
-
-function login() {
-    Swal.fire({
-        title: 'L O G I N',
-        html:
-            '<label for="exampleInputEmail1" class="form-label">Email address</label>' +
-            '<input type="email" class="form-control text-light my-3" id="exampleInputEmail1" aria-describedby="emailHelp">' +
-            '<label for="exampleInputPassword1" class="form-label">Password</label>' +
-            '<input type="password" class="form-control text-light" id="exampleInputPassword1">',
-        confirmButtonText: 'Ingresar',
-        confirmButtonColor: '#584342',
-        footer: '<a href="../../views/public/cuenta.html">crear una cuenta</a>'
     })
 }
