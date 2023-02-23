@@ -1,7 +1,8 @@
 var nav = document.getElementById('menu')
 var check = document.getElementById('invalidCheck')
 var loginbutton = document.getElementById('loginbutton')
-var overlay = document.querySelector('.overlay');
+var overlay = document.querySelector('.overlay')
+var closelogin = document.getElementById('close-login')
 
 window.onscroll = function () {
     var y = window.scrollY
@@ -14,8 +15,11 @@ window.onscroll = function () {
 }
 
 loginbutton.addEventListener('click', function () {
-    console.log(loginbutton)
     overlay.classList.add('active')
+})
+
+closelogin.addEventListener('click', function () {
+    overlay.classList.remove('active')
 })
 
 function confirmacion() {
