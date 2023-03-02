@@ -1,10 +1,15 @@
 //llamando las dependencias
+require('dotenv').config()
 const express = require('express')
+const cors = require('cors')
+const connection = require('./config/mongo')
 const layouts = require('express-ejs-layouts')
 const path = require('path')
 const http = require('http')
 
 const app = express()
+app.use(cors())
+
 const server = http.createServer(app)
 
 //se define el motor de plantillas en este caso ejs
@@ -48,5 +53,7 @@ app.get('/productos', (req, res) => {
 })
 
 server.listen(app.get('port'), ()=>{
-    console.log('funciona')
+    console.log(process.env.PORT)
 })
+
+connection()
