@@ -1,21 +1,21 @@
-var categories = require('../models/categories')
+var brands = require('../models/brands')
 
-exports.createCategorie = (req, res) => {
+exports.craeteBrand = (req, res) => {
     //validar campos vacios
     if (!req.body) {
         res.status(400).send({ message: "El contenido no puede estar vacio" })
         return
     }
 
-    //crear categoria
-    const newCategorie = new categories({
-        categorie: req.body.categorie,
+    //crear marca
+    const newBrand = new brands({
+        brand: req.body.brand,
         status: req.body.status
     })
 
     //guardar los datos en la base
-    newCategorie
-        .save(newCategorie)
+    newBrand
+        .save(newBrand)
         .then(data => {
             res.send(data)
         })
@@ -26,14 +26,14 @@ exports.createCategorie = (req, res) => {
         })
 }
 
-exports.findCategorie = (req, res) => {
+exports.findBrand = (req, res) => {
     //obtener un solo registro por medio del id
     if (req.query.id) {
         const id = req.query.id
-        categories.findById(id)
+        brands.findById(id)
             .then(data => {
                 if (!data) {
-                    res.status(404).send({ message: "No se pudo encontrar a esa categoria" })
+                    res.status(404).send({ message: "No se pudo encontrar a esta marca" })
                 } else {
                     res.send(data)
                 }
@@ -43,18 +43,17 @@ exports.findCategorie = (req, res) => {
             })
     } else {
         //obetener todos los registros
-        categories.find()
-            .then(categorie => {
-                res.send(categorie)
+        brands.find()
+            .then(brand => {
+                res.send(brand)
             })
             .catch(err => {
                 res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
             })
     }
-
 }
 
-exports.updateCategorie = (req, res) => {
+exports.updateBrand = (req, res) => {
     //validar campos vacios
     if(!req.body){
         return res
@@ -63,10 +62,10 @@ exports.updateCategorie = (req, res) => {
     }
 
     const id = req.params.id;
-    categories.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+    brands.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
-                res.status(404).send({ message : `Categoria no encontrada`})
+                res.status(404).send({ message : `Marca no encontrada`})
             }else{
                 res.send(data)
             }
@@ -76,12 +75,12 @@ exports.updateCategorie = (req, res) => {
         })
 }
 
-exports.deleteCategorie = (req, res) => {
+exports.deleteBrand = (req, res) => {
     const id = req.params.id
-    categories.findByIdAndDelete(id, req.body, { useFindAndModify: false })
+    brands.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {
-                res.status(404).send({ message: `No se puede eliminar esta categoria, es posible que no exista` })
+                res.status(404).send({ message: `No se puede eliminar esta marca, es posible que no exista` })
             } else {
                 res.send({ message: "Se elimino a la categoria exitosamente" })
             }

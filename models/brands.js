@@ -1,8 +1,8 @@
 const mongoose  = require('mongoose')
 
-var categoriesSchema = new mongoose.Schema(
+var brandsSchema = new mongoose.Schema(
     {
-        categorie: {
+        brand: {
             type: String,
             require: true
         },
@@ -17,6 +17,6 @@ var categoriesSchema = new mongoose.Schema(
     }
 )
 
-const categories = mongoose.model('categories', categoriesSchema)
+const brands = mongoose.model('brands', brandsSchema)
 
-module.exports = categories
+module.exports = brands

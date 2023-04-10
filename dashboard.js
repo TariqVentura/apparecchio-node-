@@ -3,6 +3,8 @@ const express = require('express')
 const cors = require('cors')
 const connection = require('./config/mongo')
 const layouts = require('express-ejs-layouts')
+const morgan = require('morgan')
+const bodyparser = require('body-parser')
 const path = require('path')
 const http = require('http')
 
@@ -18,6 +20,15 @@ dashboard.set('views', __dirname + '/views/dashboard')
 
 //se define que se use el puerto de las variables de entorno y de no encontrarlo usar el puerto 3001
 dashboard.set('port', process.env.DASHBOARD_PORT || 81)
+
+//log request
+dashboard.use(morgan('tiny'))
+
+//conexion mongoDB
+connection()
+
+//parse request to body parser
+dashboard.use(bodyparser.urlencoded({extended:true}))
 
 //se crea la ruta para usar los archivos del css, js e imagenes para la pagina
 dashboard.use(express.static(__dirname + '/resources'))
@@ -47,4 +58,3 @@ server.listen(dashboard.get('port'), ()=>{
     console.log(process.env.DASHBOARD_PORT)
 })
 
-connection()
