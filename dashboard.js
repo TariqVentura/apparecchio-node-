@@ -34,7 +34,7 @@ dashboard.use(bodyparser.urlencoded({extended:true}))
 dashboard.use(express.static(__dirname + '/resources'))
 dashboard.use(express.static(__dirname + '/controllers'))
 
-dashboard.use(express.urlencoded({extended: false}))
+dashboard.use(express.urlencoded({extended: true}))
 dashboard.use(express(JSON))
 dashboard.use(layouts)
 
@@ -42,18 +42,7 @@ dashboard.use(layouts)
 dashboard.use('/', require('./router'))
 dashboard.use(express.static(path.join(__dirname, 'dashboard')))
 
-dashboard.get('/', (req, res) => {
-    res.render('index')
-})
-
-dashboard.get('/marcas', (req, res) => {
-    res.render('marcas')
-})
-
-dashboard.get('/productos', (req, res) => {
-    res.render('productos')
-})
-
+//inicia el servidor
 server.listen(dashboard.get('port'), ()=>{
     console.log(process.env.DASHBOARD_PORT)
 })

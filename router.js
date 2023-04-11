@@ -1,11 +1,15 @@
 const express = require('express')
 const router = express.Router()
+const services = require('./services/dashboard/render')
 const controllerCategories = require('./controllers/categories')
 const controllerBrands = require('./controllers/brands')
 
-router.get('/', (req, res) => {
-    res.render('index')
-})
+router.get('/', services.categorias)
+
+router.get('/marcas', services.marcas)
+
+router.get('/productos', services.productos)
+
 
 //API categorias
 router.post('/api/categories', controllerCategories.createCategorie)

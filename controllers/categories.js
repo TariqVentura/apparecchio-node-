@@ -10,6 +10,7 @@ exports.createCategorie = (req, res) => {
     //crear categoria
     const newCategorie = new categories({
         categorie: req.body.categorie,
+        image: req.body.image,
         status: req.body.status
     })
 
