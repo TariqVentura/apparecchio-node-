@@ -3,6 +3,7 @@ const router = express.Router()
 const services = require('./services/dashboard/render')
 const controllerCategories = require('./controllers/categories')
 const controllerBrands = require('./controllers/brands')
+const controllerUsers = require('./controllers/users')
 
 router.get('/', services.categorias)
 
@@ -28,5 +29,14 @@ router.delete('/api/categories/:id', controllerCategories.deleteCategorie)
  router.put('/api/brands/:id', controllerBrands.updateBrand)
 
  router.delete('/api/brands/:id', controllerBrands.deleteBrand)
+
+ //API usuarios
+ router.post('/api/users', controllerUsers.createUser)
+ 
+ router.get('/api/users/:user', controllerUsers.findOneUser)
+
+//  router.put('/api/users/:id', controllerBrands.updateBrand)
+
+//  router.delete('/api/users/:id', controllerBrands.deleteBrand)
 
 module.exports = router;

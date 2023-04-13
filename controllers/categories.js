@@ -91,4 +91,3 @@ exports.deleteCategorie = (req, res) => {
             res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
         })
 }
-
