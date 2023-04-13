@@ -11,6 +11,8 @@ router.get('/marcas', services.marcas)
 
 router.get('/productos', services.productos)
 
+router.get('/login', services.login)
+
 
 //API categorias
 router.post('/api/categories', controllerCategories.createCategorie)
@@ -33,7 +35,7 @@ router.delete('/api/categories/:id', controllerCategories.deleteCategorie)
  //API usuarios
  router.post('/api/users', controllerUsers.createUser)
  
- router.get('/api/users/:user', controllerUsers.findOneUser)
+ router.post('/login/api/users/', controllerUsers.findOneUser)
 
 //  router.put('/api/users/:id', controllerBrands.updateBrand)
 

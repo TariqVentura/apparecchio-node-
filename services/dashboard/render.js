@@ -17,3 +17,7 @@ exports.marcas = (req, res) => {
 exports.productos = (req, res) => {
     res.render('productos')
 }
+
+exports.login = (req,res) => {
+    res.render('login')
+}

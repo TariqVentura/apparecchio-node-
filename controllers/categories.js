@@ -63,7 +63,7 @@ exports.updateCategorie = (req, res) => {
             .send({ message : "No se puede actualizar si todos los campos estan vacios"})
     }
 
-    const id = req.params.id;
+    const id = req.params.id
     categories.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
