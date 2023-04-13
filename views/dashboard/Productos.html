@@ -10,110 +10,195 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../../resources/css/dashboard.css">
+    <link rel="stylesheet" href="../../resources/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../../controllers/dashboard/producto.js"></script>
 </head>
 
 <body>
     <main class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <img src="../../resources/images/logo.jpeg" width="180" height="70" alt="logo">
-                <a class="navbar-brand" href="#">Productos</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="../dashboard/Productos.html">Productos</a>
+        <!-- codigo de el dashbard -->
+        <nav class="sidebar close">
+            <header>
+                <div class="image-text">
+                    <span class="image">
+                        <!--<img src="logo.png" alt="">-->
+                    </span>
+
+                    <div class="text logo-text">
+                        <span class="name">SubliSivarte</span>
+                    </div>
+                </div>
+
+                <i class='bx bx-chevron-right toggle'></i>
+            </header>
+            <!-- Menu de opciones de administracion -->
+            <div class="menu-bar">
+                <div class="menu">
+
+                    <ul class="menu-links">
+                        <li class="nav-link">
+                            <a href="#">
+                                <i><img src="https://img.icons8.com/sf-black-filled/48/null/home.png" /></i>
+                                <span class="text nav-text">Dashboard</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="../dashboard/Categorias.html">Categorias</a>
+
+                        <li class="nav-link">
+                            <a href="../dashboard/pedidos.html">
+                                <i><img src="https://img.icons8.com/ios-glyphs/40/null/shopping-cart--v1.png" /></i>
+                                <span class="text nav-text">Pedidos</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="../dashboard/Marcas.html">Marcas</a>
+
+                        <li class="nav-link">
+                            <a href="../dashboard/clientes.html">
+                                <i><img src="https://img.icons8.com/sf-black-filled/48/null/conference-call.png" /></i>
+                                <span class="text nav-text">Clientes</span>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">Clientes</a>
+
+                        <li class="nav-link">
+                            <a href="../dashboard/productos.html">
+                                <i><img src="https://img.icons8.com/material-sharp/42/null/package.png" /></i>
+                                <span class="text nav-text">Productos</span>
+                            </a>
                         </li>
+
+                        <li class="nav-link">
+                            <a href="../dashboard/usuarios.html">
+                                <i><img src="https://img.icons8.com/fluency-systems-filled/48/null/user.png" /></i>
+                                <span class="text nav-text">Usuarios</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-link">
+                            <a href="../dashboard/categorias.html">
+                                <i><img
+                                        src="https://img.icons8.com/external-others-inmotus-design/40/null/external-Check-List-check-others-inmotus-design.png" /></i>
+                                <span class="text nav-text">Categorias</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="../dashboard/Marcas.html">
+                                <i><img
+                                        src="https://img.icons8.com/external-sbts2018-outline-sbts2018/40/null/external-brand-basic-ui-elements-2.2-sbts2018-outline-sbts2018.png" /></i>
+                                <span class="text nav-text">Marcas</span>
+                            </a>
+                        </li>
+
                     </ul>
+                </div>
+
+                <div class="bottom-content">
+                    <li class="">
+                        <a href="index.html">
+                            <i><img
+                                    src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/null/external-exit-essentials-tanah-basah-glyph-tanah-basah.png" /></i>
+                            <span class="text nav-text">Logout</span>
+                        </a>
+                    </li>
+
+                    <li class="mode">
+                        <div class="sun-moon">
+                            <i class='bx bx-moon icon moon'></i>
+                            <i class='bx bx-sun icon sun'></i>
+                        </div>
+                        <span class="mode-text text">Dark mode</span>
+
+                        <div class="toggle-switch">
+                            <span class="switch"></span>
+                        </div>
+                    </li>
+
                 </div>
             </div>
         </nav>
-        <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block">
-        </div>
-        <h3 class="center-align">Productos</h3>
-        <div class="row">
-            <div class="col-6 d-flex flex-nowrap">
-                <form method="post" id="search-form">
-                    <div class="input-field  flex-nowrap col-12">
-                        <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
-                        <input id="search" type="text" name="Buscar " required>
-                        <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
-                            <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-2">
-                <div class="input-field center-align col-2">
-                    <button class="border-0 bg-light" onclick="openCreate()"><img src="https://img.icons8.com/ios-glyphs/40/null/add--v1.png" /></button>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-4">
-                                <img src="../../resources/images/refrigerador.png" width="200" class="img-fluid rounded-start"
-                                    alt="Refrigerador">
+        <section class="home">
+            <div class="container">
+                <h3 class="center-align">Productos</h3>
+                <div class="row">
+                    <div class="col-6 d-flex flex-nowrap">
+                        <form method="post" id="search-form">
+                            <div class="input-field  flex-nowrap col-12">
+                                <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
+                                <input id="search" type="text" name="Buscar " required>
+                                <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
+                                    <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
+                                </button>
                             </div>
-                            <div class="col-5">
-                                <div class="card-body">
-                                    <h5 class="card-title">Refrigeradora INVERTER GT57BPSX | 21'</h5>
-                                    <p class="card-text">Gran capacidad en un tamaño compacto,  con enfriamiento uniforme de arriba hasta abajo.
-                                        Con el sistema “Total No Frost”, la comida se mantiene más fresca, por más tiempo. Ahorra energía y evita que se forme escarcha.</p>
+                        </form>
+                    </div>
+                    <div class="col-2">
+                        <div class="input-field center-align col-2">
+                            <button class="border-0 bg-light" onclick="openCreate()"><img
+                                    src="https://img.icons8.com/ios-glyphs/40/null/add--v1.png" /></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-4">
+                                        <img src="../../resources/images/refrigerador.png" width="200"
+                                            class="img-fluid rounded-start" alt="Refrigerador">
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Refrigeradora INVERTER GT57BPSX | 21'</h5>
+                                            <p class="card-text">Gran capacidad en un tamaño compacto, con enfriamiento
+                                                uniforme
+                                                de arriba hasta abajo.
+                                                Con el sistema “Total No Frost”, la comida se mantiene más fresca, por
+                                                más
+                                                tiempo. Ahorra energía y evita que se forme escarcha.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="border-0 bg-light" onclick="openUpdate()"><img
+                                                src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
+                                        <button class="border-0 bg-light" onclick="openDelete()"><img
+                                                src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-3">
-                                <button class="border-0 bg-light" onclick="openUpdate()"><img
-                                        src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
-                                <button class="border-0 bg-light" onclick="openDelete()"><img
-                                        src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-4">
+                                        <img src="../../resources/images/cocina2.png" width="135" height="135"
+                                            class="img-fluid rounded-start" alt="Cocina">
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Cocina MGS30FIBDAWG-CA|Gas|30</h5>
+                                            <p class="cardt-ext">Con freidora de aire incorporada, para una verdadera
+                                                convección.
+                                                Toca Dos Veces Para Ver Qué Se Está Cocinando. Ve el interior de la
+                                                ventanilla
+                                                InstaView® sin tener que abrir la puerta o alcanzar la placa de cocción
+                                                para
+                                                buscar un interruptor.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <button class="border-0 bg-light" onclick="openUpdate()"><img
+                                                src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
+                                        <button class="border-0 bg-light" onclick="openDelete()"><img
+                                                src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-4">
-                                <img src="../../resources/images/cocina2.png" width="135" height="135" class="img-fluid rounded-start"
-                                    alt="Cocina">
-                            </div>
-                            <div class="col-5">
-                                <div class="card-body">
-                                    <h5 class="card-title">Cocina MGS30FIBDAWG-CA|Gas|30</h5>
-                                    <p class="cardt-ext">Con freidora de aire incorporada,  para una verdadera convección.
-                                        Toca Dos Veces Para Ver Qué Se Está Cocinando. Ve el interior de la ventanilla InstaView® sin tener que abrir la puerta o alcanzar la placa de cocción para buscar un interruptor.</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <button class="border-0 bg-light" onclick="openUpdate()"><img
-                                        src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
-                                <button class="border-0 bg-light" onclick="openDelete()"><img
-                                        src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>        
+        </section>
+
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -121,8 +206,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
 
+
+        toggle.addEventListener("click", () => {
+            sidebar.classList.toggle("close");
+        })
+
+        modeSwitch.addEventListener("click", () => {
+            body.classList.toggle("dark");
+
+            if (body.classList.contains("dark")) {
+                modeText.innerText = "Light mode";
+            } else {
+                modeText.innerText = "Dark mode";
+
+            }
+        });
+    </script>
 </body>
 
 </html>
