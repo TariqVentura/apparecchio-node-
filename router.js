@@ -5,13 +5,21 @@ const controllerCategories = require('./controllers/categories')
 const controllerBrands = require('./controllers/brands')
 const controllerUsers = require('./controllers/users')
 
-router.get('/', services.categorias)
+router.get('/', services.login)
+
+router.get('/categorias', services.categorias)
 
 router.get('/marcas', services.marcas)
 
 router.get('/productos', services.productos)
 
 router.get('/login', services.login)
+
+router.get('/usuarios', services.usuarios)
+
+router.get('/clientes', services.clientes)
+
+router.get('/pedidos', services.pedidos)
 
 
 //API categorias
@@ -36,6 +44,8 @@ router.delete('/api/categories/:id', controllerCategories.deleteCategorie)
  router.post('/api/users', controllerUsers.createUser)
  
  router.post('/login/api/users/', controllerUsers.findOneUser)
+
+ 
 
 //  router.put('/api/users/:id', controllerBrands.updateBrand)
 

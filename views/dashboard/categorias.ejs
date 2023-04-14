@@ -95,8 +95,10 @@
 
 </nav>
 <section class="home">
-    <div class="text">Marcas</div>
+    <div class="text">Categorias</div>
     <main class="container">
+        <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block">
+        </div>
         <div class="row">
             <div class="col-6 d-flex flex-nowrap">
                 <form method="post" id="search-form">
@@ -117,29 +119,34 @@
             </div>
         </div>
         <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block"></div>
-        <div class="row">
-            <% branches.forEach((data)=> { %>
-            <div class="col-sm-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="/images/<%= data.image %>" width="200" class="img-fluid rounded-start" alt="">
-                        </div>
-                        <div class="col-md-5">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= data.brand %></h5>
+        <div class="container">
+            <div class="row">
+                <% categories.forEach((data)=> { %>
+                    <div class="col-6">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="/images/<%= data.image %>" width="200" class="img-fluid rounded-start"
+                                        alt="Refrigerador">
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= data.categorie %>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="border-0 bg-light" onclick="openUpdate()"><img
+                                            src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
+                                    <button class="border-0 bg-light" onclick="openDelete()"><img
+                                            src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
-                            <button class="border-0 bg-light" onclick="openUpdate()"><img
-                                    src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
-                            <button class="border-0 bg-light" onclick="openDelete()"><img
-                                    src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
-                        </div>
                     </div>
-                </div>
+                    <% }) %>
             </div>
-            <% }) %>
         </div>
     </main>
 </section>
@@ -181,4 +188,4 @@
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="/dashboard/marca.js"></script>
+<script src="/dashboard/categoria.js"></script>

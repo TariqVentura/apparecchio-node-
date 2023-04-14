@@ -6,6 +6,10 @@ var brandsSchema = new mongoose.Schema(
             type: String,
             require: true
         },
+        image: {
+            type: String,
+            require: true
+        },
         status: {
             type: Boolean,
             require: true

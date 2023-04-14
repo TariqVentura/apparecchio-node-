@@ -10,6 +10,7 @@ exports.craeteBrand = (req, res) => {
     //crear marca
     const newBrand = new brands({
         brand: req.body.brand,
+        image: req.body.image,
         status: req.body.status
     })
 

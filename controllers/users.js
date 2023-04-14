@@ -1,4 +1,3 @@
-const md5 = require('md5')
 const bcrypt = require('bcrypt')
 const services = require('../services/dashboard/render')
 var users = require('../models/users')
@@ -54,7 +53,7 @@ exports.findOneUser = (req, res) => {
             } else {
                 bcrypt.compare(req.body.password, user.password, function(err, result) {
                     if (result) {
-                        res.redirect('/')
+                        res.redirect('/categorias')
                     } else {
                         res.status(500).send({ message: "Contraseña incorrecta" })
                     }
