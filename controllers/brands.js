@@ -62,7 +62,7 @@ exports.updateBrand = (req, res) => {
             .send({ message : "No se puede actualizar si todos los campos estan vacios"})
     }
 
-    const id = req.params.id;
+    const id = req.body.id;
     brands.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
@@ -77,7 +77,7 @@ exports.updateBrand = (req, res) => {
 }
 
 exports.deleteBrand = (req, res) => {
-    const id = req.params.id
+    const id = req.body.id
     brands.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {

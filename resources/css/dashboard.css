@@ -30,3 +30,7 @@ h5{
 .popup-class{
     background-color: #9e7676;
 }
+
+#id_mongo{
+    visibility: hidden;
+}

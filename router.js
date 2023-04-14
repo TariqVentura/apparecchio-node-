@@ -36,9 +36,9 @@ router.delete('/api/categories/:id', controllerCategories.deleteCategorie)
 
  router.get('/api/brands', controllerBrands.findBrand)
 
- router.put('/api/brands/:id', controllerBrands.updateBrand)
+ router.post('/api/brands/update', controllerBrands.updateBrand)
 
- router.delete('/api/brands/:id', controllerBrands.deleteBrand)
+ router.post('/api/brands/delete', controllerBrands.deleteBrand)
 
  //API usuarios
  router.post('/api/users', controllerUsers.createUser)
