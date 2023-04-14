@@ -64,3 +64,14 @@ exports.findOneUser = (req, res) => {
             res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
         })
 }
+
+exports.findUsers = (req, res) => {
+    users.find()
+    .then(user => {
+        res.send(user)
+        console.log(user)
+    })
+    .catch(err => {
+        res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
+    })
+}

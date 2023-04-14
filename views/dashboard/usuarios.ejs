@@ -122,7 +122,6 @@
             <table class="table table-stripped table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Correo</th>
@@ -132,19 +131,20 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <% users.forEach((data) => { %>
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Jared</td>
-                        <td>Diaz</td>
-                        <td>ejemplo@gmail.com</td>
-                        <td>JaredDiaz</td>
-                        <td>Activo</td>
+                        <td><%= data.name %></td>
+                        <td><%= data.lastname %></td>
+                        <td><%= data.email %>></td>
+                        <td><%= data.user %></td>
+                        <td><%= data.status %></td>
                         <td>
                             <img src="https://img.icons8.com/ios-filled/40/null/minus.png"
                                 onclick="openCreate3()" />
                             <img src="https://img.icons8.com/ios-glyphs/30/null/refresh--v1.png" onclick="editarUsuario()">
                         </td>
                     </tr>
+                    <%})%>
                 </tbody>
             </table>
         </div>

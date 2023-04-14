@@ -45,7 +45,7 @@ router.delete('/api/categories/:id', controllerCategories.deleteCategorie)
  
  router.post('/login/api/users/', controllerUsers.findOneUser)
 
- 
+ router.get('/api/users', controllerUsers.findUsers)
 
 //  router.put('/api/users/:id', controllerBrands.updateBrand)
 

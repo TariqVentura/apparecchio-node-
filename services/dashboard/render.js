@@ -14,7 +14,6 @@ exports.marcas = (req, res) => {
     axios.get('http://localhost:80/api/brands')
     .then(function(response){
         res.render('marcas', { branches : response.data } )
-        console.log(response.data)
     })    
     .catch(err => {
         res.send(err)
@@ -30,7 +29,13 @@ exports.login = (req,res) => {
 }
 
 exports.usuarios = (req, res) => {
-    res.render('usuarios')
+    axios.get('http://localhost:80/api/users')
+    .then(function(response){
+        res.render('usuarios', { users : response.data })
+    })
+    .catch(err => {
+        res.send(err)
+    })
 }
 
 exports.clientes = (req, res) => {
