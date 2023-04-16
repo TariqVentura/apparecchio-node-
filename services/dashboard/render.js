@@ -63,3 +63,13 @@ exports.clientes = (req, res) => {
 exports.pedidos = (req, res) => {
     res.render('pedidos')
 }
+
+exports.updateBrands = ( req, res) => {
+    axios.get('http://localhost:80/api/brands', { params : { id : req.query.id }})
+        .then(function (branchData) {
+            res.render('_update', { branches: branchData.data, variable: 'marca'})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}

@@ -22,6 +22,8 @@ router.get('/clientes', services.clientes)
 
 router.get('/pedidos', services.pedidos)
 
+router.get('/_update', services.updateBrands)
+
 
 //API categorias
 router.post('/api/categories', controllerCategories.createCategorie)
