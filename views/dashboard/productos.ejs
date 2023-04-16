@@ -119,60 +119,48 @@
         <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block"></div>
         <div class="container">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-4">
-                                <img src="/images/refrigerador.png" width="200" class="img-fluid rounded-start"
-                                    alt="Refrigerador">
-                            </div>
-                            <div class="col-5">
-                                <div class="card-body">
-                                    <h5 class="card-title">Refrigeradora INVERTER GT57BPSX | 21'</h5>
-                                    <p class="card-text">Gran capacidad en un tamaño compacto, con enfriamiento uniforme
-                                        de
-                                        arriba hasta abajo.
-                                        Con el sistema “Total No Frost”, la comida se mantiene más fresca, por más
-                                        tiempo.
-                                        Ahorra energía y evita que se forme escarcha.</p>
+                <% products.forEach((data)=> { %>
+                    <div class="col-sm-6">
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                                <div class="col-4">
+                                    <img src="/images/<%= data.image %>" width="200" class="img-fluid rounded-start"
+                                        alt="Refrigerador">
                                 </div>
-                            </div>
-                            <div class="col-3">
-                                <button class="border-0 bg-light" onclick="openUpdate()"><img
-                                        src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
-                                <button class="border-0 bg-light" onclick="openDelete()"><img
-                                        src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
+                                <div class="col-5">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= data.product %>
+                                        </h5>
+                                        <p class="card-text">
+                                            <%= data.description %>
+                                        </p>
+                                        <h5>$<%= data.price %>
+                                        </h5>
+                                        <h5>
+                                            <%= data.categorie %>
+                                        </h5>
+                                        <h5>
+                                            <%= data.brand %>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <button class="border-0 bg-light" onclick="openUpdate()"><img
+                                            src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
+                                    <button class="border-0 bg-light" onclick="openDelete()"><img
+                                            src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-4">
-                                <img src="/images/cocina2.png" width="135" height="135" class="img-fluid rounded-start"
-                                    alt="Cocina">
-                            </div>
-                            <div class="col-5">
-                                <div class="card-body">
-                                    <h5 class="card-title">Cocina MGS30FIBDAWG-CA|Gas|30</h5>
-                                    <p class="cardt-ext">Con freidora de aire incorporada, para una verdadera
-                                        convección.
-                                        Toca Dos Veces Para Ver Qué Se Está Cocinando. Ve el interior de la ventanilla
-                                        InstaView® sin tener que abrir la puerta o alcanzar la placa de cocción para
-                                        buscar
-                                        un interruptor.</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <button class="border-0 bg-light" onclick="openUpdate()"><img
-                                        src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
-                                <button class="border-0 bg-light" onclick="openDelete()"><img
-                                        src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    <% }) %>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <% categories.forEach((data)=> { %>
+                                <option value="<%= data.categorie %>"><%= data.categorie %></option>
+                                <% }) %>
+                        </select>
             </div>
         </div>
     </main>

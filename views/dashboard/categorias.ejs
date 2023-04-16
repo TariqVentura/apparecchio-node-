@@ -112,9 +112,34 @@
                 </form>
             </div>
             <div class="col-2">
-                <div class="input-field center-align col-2">
-                    <button class="border-0 bg-light" onclick="openCreate()"><img
-                            src="https://img.icons8.com/ios-glyphs/40/null/add--v1.png" /></button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Insertar Datos
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear categoria</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/api/categories" method="post">
+                                    <input type="text" name="categorie">
+                                    <input type="file" name="image">
+                                    <button type="submit">Enviar</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Understood</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -139,8 +164,10 @@
                                 <div class="col-md-3">
                                     <button class="border-0 bg-light" onclick="openUpdate()"><img
                                             src="https://img.icons8.com/ios-glyphs/32/null/refresh--v1.png" /></button><br><br>
-                                    <button class="border-0 bg-light" onclick="openDelete()"><img
-                                            src="https://img.icons8.com/ios-filled/30/null/waste.png" /></button>
+                                            <form action="/api/categories/delete" method="post">
+                                                <input type="text" value="<%= data._id %>" name="id" hidden>
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
                                 </div>
                             </div>
                         </div>

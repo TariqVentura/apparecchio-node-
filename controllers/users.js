@@ -23,7 +23,7 @@ exports.createUser = (req, res) => {
                 identity_card: req.body.identity_card,
                 user: req.body.user,
                 password: hash,
-                status: req.body.status
+                status: true
             })
 
             //guardar datos en la base
@@ -51,7 +51,7 @@ exports.findOneUser = (req, res) => {
             if (!user) {
                 res.status(500).send({ message: "Usuario inexistente" })
             } else {
-                bcrypt.compare(req.body.password, user.password, function(err, result) {
+                bcrypt.compare(req.body.password, user.password, function (err, result) {
                     if (result) {
                         res.redirect('/categorias')
                     } else {
@@ -67,11 +67,26 @@ exports.findOneUser = (req, res) => {
 
 exports.findUsers = (req, res) => {
     users.find()
-    .then(user => {
-        res.send(user)
-        console.log(user)
-    })
-    .catch(err => {
-        res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
-    })
+        .then(user => {
+            res.send(user)
+            console.log(user)
+        })
+        .catch(err => {
+            res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
+        })
+}
+
+exports.deleteUser = (req, res) => {
+    const id = req.body.id
+    users.findByIdAndDelete(id, req.body, { useFindAndModify: false })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `No se puede eliminar este usuario, es posible que no exista` })
+            } else {
+                res.send({ message: "Se elimino al usuario exitosamente" })
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
+        })
 }
