@@ -22,7 +22,10 @@ router.get('/clientes', services.clientes)
 
 router.get('/pedidos', services.pedidos)
 
-router.get('/_update', services.updateBrands)
+router.get('/_update/brands', services.updateBrands)
+
+router.get('/_updateCategories/categories', services.updateCategories)
+
 
 
 //API categorias
@@ -30,7 +33,7 @@ router.post('/api/categories', controllerCategories.createCategorie)
 
 router.get('/api/categories', controllerCategories.findCategorie)
 
-router.put('/api/categories/:id', controllerCategories.updateCategorie)
+router.post('/api/categories/update', controllerCategories.updateCategorie)
 
 router.post('/api/categories/delete', controllerCategories.deleteCategorie)
 

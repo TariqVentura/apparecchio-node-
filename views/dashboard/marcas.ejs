@@ -158,7 +158,8 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <a href="/_update?id=<%= data._id %>">Actualizar</a>
+                                <button class="btn btn-info mt-3"><a href="/_update/brands?id=<%= data._id %>"
+                                        class="text-light text-decoration-none">Actualizar</a></button>
                                 <br><br>
                                 <form action="/api/brands/delete" method="post">
                                     <input type="text" value="<%= data._id %>" name="id" id="id_mongo">

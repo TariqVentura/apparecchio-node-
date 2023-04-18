@@ -67,7 +67,17 @@ exports.pedidos = (req, res) => {
 exports.updateBrands = ( req, res) => {
     axios.get('http://localhost:80/api/brands', { params : { id : req.query.id }})
         .then(function (branchData) {
-            res.render('_update', { branches: branchData.data, variable: 'marca'})
+            res.render('_update', { information: branchData.data, variable: 'marca', route: 'brands', input: "brand"})
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+exports.updateCategories = (req, res) => {
+    axios.get('http://localhost:80/api/categories', { params : { id : req.query.id }})
+        .then(function (categorieData) {
+            res.render('_updateCategories', { information: categorieData.data, variable: 'categoria', route: 'categories', input: "categorie"})
         })
         .catch(err => {
             res.send(err)

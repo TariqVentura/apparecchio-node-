@@ -18,7 +18,11 @@ exports.craeteBrand = (req, res) => {
     newBrand
         .save(newBrand)
         .then(data => {
-            res.send(data)
+            if (!data) {
+                res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
+            } else {
+                res.redirect('/marcas')
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -68,7 +72,6 @@ exports.updateBrand = (req, res) => {
             if(!data){
                 res.status(404).send({ message : `Marca no encontrada`})
             }else{
-                res.send(data)
                 res.redirect('/marcas')
             }
         })
@@ -84,7 +87,7 @@ exports.deleteBrand = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar esta marca, es posible que no exista` })
             } else {
-                res.send({ message: "Se elimino a la categoria exitosamente" })
+                res.redirect('/marcas')
             }
         })
         .catch(err => {

@@ -18,7 +18,11 @@ exports.createCategorie = (req, res) => {
     newCategorie
         .save(newCategorie)
         .then(data => {
-            res.send(data)
+            if(!data){
+                res.status(404).send({ message : `Error al insertar los datos`})
+            }else{
+                res.redirect('/categorias')
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -63,13 +67,13 @@ exports.updateCategorie = (req, res) => {
             .send({ message : "No se puede actualizar si todos los campos estan vacios"})
     }
 
-    const id = req.params.id
+    const id = req.body.id
     categories.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){
                 res.status(404).send({ message : `Categoria no encontrada`})
             }else{
-                res.send(data)
+                res.redirect('/categorias')
             }
         })
         .catch(err =>{
@@ -84,7 +88,7 @@ exports.deleteCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar esta categoria, es posible que no exista` })
             } else {
-                res.send({ message: "Se elimino a la categoria exitosamente" })
+                res.redirect('/categorias')
             }
         })
         .catch(err => {

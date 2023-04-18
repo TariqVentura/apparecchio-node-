@@ -1,13 +1,12 @@
-<form>
-    <% if (branches) { %>
-        <form action="/api/brands/update" method="post">
+    <% if (information) { %>
+        <form action="/api/<%= variable%>/update" method="post">
             <div class="mb-3">
-                <input type="text" value="<%= branches._id %>" name="id">
+                <input type="text" value="<%= information._id %>" name="id">
                 <label for="exampleInputEmail1" class="form-label">
                     <%= variable%>:
                 </label>
                 <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    value="<%= branches.brand %>" name="brand">
+                    value="<%= information.brand %>" name="brand">
                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
@@ -18,4 +17,3 @@
         </form>
         <% } %>
 
-</form>
