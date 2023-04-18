@@ -30,7 +30,11 @@ exports.createUser = (req, res) => {
             newUser
                 .save(newUser)
                 .then(data => {
-                    res.send(data)
+                    if (!data) {
+                        res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
+                    } else {
+                        res.redirect('/usuarios')
+                    }
                 })
                 .catch(err => {
                     res.status(500).send({
@@ -83,7 +87,7 @@ exports.deleteUser = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar este usuario, es posible que no exista` })
             } else {
-                res.send({ message: "Se elimino al usuario exitosamente" })
+                res.redirect('/usuarios')
             }
         })
         .catch(err => {
