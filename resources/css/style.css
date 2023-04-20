@@ -365,13 +365,11 @@ img:hover {
 
 #fondo{
     background-color: #9f7777;
-    
     padding: 500px;
 }
 #formu{
     background-color: #825b5b;
-    border-radius: 10px;
-    
+    border-radius: 10px;       
 }
 h4{
     text-align: center;
