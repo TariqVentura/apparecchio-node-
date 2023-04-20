@@ -54,7 +54,8 @@
                 </li>
                 <li class="nav-link">
                     <a href="/marcas">
-                        <i><img src="https://img.icons8.com/external-sbts2018-outline-sbts2018/40/null/external-brand-basic-ui-elements-2.2-sbts2018-outline-sbts2018.png"/></i>
+                        <i><img
+                                src="https://img.icons8.com/external-sbts2018-outline-sbts2018/40/null/external-brand-basic-ui-elements-2.2-sbts2018-outline-sbts2018.png" /></i>
                         <span class="text nav-text">Marcas</span>
                     </a>
                 </li>
@@ -100,10 +101,51 @@
                 </form>
             </div>
             <div class="col-md-3">
-                <!-- el evento openCreate es para que la alerta salga y de la opcion de crear Cliente -->
-                <button class="border-0 " onclick="openCreate()"><img
-                        src="https://img.icons8.com/ios-glyphs/40/null/add--v1.png" /></button>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop">
+                    Insertar Datos
+                </button>
 
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Usuario</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <form action="/api/clients" method="post">
+                                            <div class="row">
+                                                Nombre: <input type="text" name="name">
+                                                Apellido: <input type="text" name="lastname">
+                                            </div>
+                                            <div class="row">
+                                                Correo: <input type="email" name="email">
+                                                Carnet: <input type="text" name="identity_card">
+                                            </div>
+                                            <div class="row">
+                                                Usuario: <input type="text" name="user">
+                                                Contraseña: <input type="text" name="password">
+                                            </div>
+                                            <button type="submit">Enviar</button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Understood</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-4">
                 Reportes
@@ -113,32 +155,41 @@
         </div><br>
         <!-- tabla donde se mostraran los datos -->
         <div>
-            <table class="table table-stripped table-bordered">
+            <table class="table table-stripped table-bordered table-hover text-light">
                 <thead>
                     <tr>
-                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Apellido</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Usuario</th>
-                        <th scope="col">Contraseña</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Jared</td>
-                        <td>Diaz</td>
-                        <td>ejemplo@gmail.com</td>
-                        <td>JaredDiaz</td>
-                        <td>******</td>
-                        <td>Activo</td>
-                        <td><img src="https://img.icons8.com/ios-filled/40/null/minus.png" onclick="openDelete()" />
-                            <img src="https://img.icons8.com/ios-glyphs/30/null/refresh--v1.png" onclick="openUpdate()">
-                        </td>
-                    </tr>
+                    <% clients.forEach((data)=> { %>
+                        <tr>
+                            <td>
+                                <%= data.name %>
+                            </td>
+                            <td>
+                                <%= data.lastname %>
+                            </td>
+                            <td>
+                                <%= data.email %>
+                            </td>
+                            <td>
+                                <%= data.user %>
+                            </td>
+                            <td>
+                                <%= data.status %>
+                            </td>
+                            <td><img src="https://img.icons8.com/ios-filled/40/null/minus.png" onclick="openDelete()" />
+                                <img src="https://img.icons8.com/ios-glyphs/30/null/refresh--v1.png"
+                                    onclick="openUpdate()">
+                            </td>
+                        </tr>
+                        <% }) %>
                 </tbody>
             </table>
         </div>

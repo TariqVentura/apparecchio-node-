@@ -1,6 +1,5 @@
 const bcrypt = require('bcrypt')
 var users = require('../models/users')
-const categories = require('../models/categories')
 
 exports.createUser = (req, res) => {
     //validar campos vacios

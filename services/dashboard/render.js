@@ -57,7 +57,14 @@ exports.usuarios = (req, res) => {
 }
 
 exports.clientes = (req, res) => {
-    res.render('clientes')
+    axios.get('http://localhost/api/clients')
+    .then(function(response){
+        console.log(response.data)
+        res.render('clientes', { clients: response.data })
+    })
+    .catch(err => {
+        res.send(err)
+    })
 }
 
 exports.pedidos = (req, res) => {

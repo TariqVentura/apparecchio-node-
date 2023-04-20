@@ -31,6 +31,8 @@ router.get('/_updateUsers/users', services.updateUsers)
 
 router.get('/_updatePorducts/products', services.updateProducts)
 
+router.get('/clientes', services.clientes)
+
 
 
 //API categorias
