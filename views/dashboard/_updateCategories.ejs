@@ -1,9 +1,8 @@
 <% if (information) { %>
-    <div class="dark" id="fondo">
-        <form action="/api/<%= route%>/update" method="post"
-            id="formu">
+    <div id="fondo">
+        <form action="/api/<%= route%>/update" method="post" id="formu">
             <div class="mb-3">
-                <input type="hidden" value="<%= information._id %>" name="id" >
+                <input type="hidden" value="<%= information._id %>" name="id">
                 <h4>Actualizar Categoria</h4>
                 <label for="exampleInputEmail1" class="form-label">
                     Categoria:
@@ -16,7 +15,7 @@
                 <input type="file" class="form-control" id="exampleInputPassword1" value="" name="image">
                 <div class="col-md-4">
                     <img src="" class="img-fluid rounded-start" alt="Imagen">
-                  </div>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
