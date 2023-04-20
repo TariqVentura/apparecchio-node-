@@ -133,7 +133,7 @@
                                                 Apellido: <input type="text" name="lastname">
                                             </div>
                                             <div class="row">
-                                                Correo: <input type="text" name="email">
+                                                Correo: <input type="email" name="email">
                                                 Carnet: <input type="text" name="identity_card">
                                             </div>
                                             <div class="row">
@@ -194,8 +194,9 @@
                                 <%= data.status %>
                             </td>
                             <td>
-                                <img src="https://img.icons8.com/ios-filled/40/null/minus.png"
-                                    onclick="openCreate3()" />
+                                <button class="btn btn-info mt-3"><a
+                                        href="/_updateUsers/users?id=<%= data._id %>"
+                                        class="text-light text-decoration-none">Actualizar</a></button>
                             </td>
                             <td>
                                 <form action="/api/users/delete" method="post">

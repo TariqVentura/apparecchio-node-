@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt')
-const services = require('../services/dashboard/render')
 var users = require('../models/users')
+const categories = require('../models/categories')
 
 exports.createUser = (req, res) => {
     //validar campos vacios
@@ -70,13 +70,50 @@ exports.findOneUser = (req, res) => {
 }
 
 exports.findUsers = (req, res) => {
-    users.find()
+    if (req.query.id) {
+        const id = req.query.id
+        users.findById(id)
         .then(user => {
-            res.send(user)
-            console.log(user)
+            if (!user) {
+                res.status(404).send({ message: "No se pudo encontrar a este usuario" })
+            }else{
+                res.send(user)
+            }
         })
         .catch(err => {
-            res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
+            res.status(500).send({ message: "Ocurrio un error al intentar ejecutar el proceso" })
+        })
+    } else {
+        users.find()
+            .then(user => {
+                res.send(user)
+                console.log(user)
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
+            })
+    }
+}
+
+exports.updateUsers = (req, res) => {
+    //validar campos vacios
+    if (!req.body) {
+        return res
+            .status(400)
+            .send({ message: "No se puede actualizar si todos los campos estan vacios" })
+    }
+
+    const id = req.body.id
+    users.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `usuario no encontrado` })
+            } else {
+                res.redirect('/usuarios')
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar actualizar la informacion" })
         })
 }
 
