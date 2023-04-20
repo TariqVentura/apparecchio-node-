@@ -65,12 +65,27 @@ exports.findProduct = (req, res) => {
     }
 }
 
+exports.updateProduct = (req, res) => {
+    const id = req.body.id
+    products.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: "No se encontro el producto" })
+            } else {
+                res.redirect('/productos')
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar actualizar" })
+        })
+}
+
 exports.deleteProduct = (req, res) => {
     const id = req.body.id
     products.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {
-                res.status(404).send( { message: 'Producto no encontrado' } )
+                res.status(404).send({ message: 'Producto no encontrado' })
             } else {
                 res.redirect('/productos')
             }

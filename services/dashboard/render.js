@@ -64,10 +64,10 @@ exports.pedidos = (req, res) => {
     res.render('pedidos')
 }
 
-exports.updateBrands = ( req, res) => {
-    axios.get('http://localhost:80/api/brands', { params : { id : req.query.id }})
+exports.updateBrands = (req, res) => {
+    axios.get('http://localhost:80/api/brands', { params: { id: req.query.id } })
         .then(function (branchData) {
-            res.render('_update', { information: branchData.data, variable: 'marca', route: 'brands', input: "brand"})
+            res.render('_update', { information: branchData.data, variable: 'marca', route: 'brands', input: "brand" })
         })
         .catch(err => {
             res.send(err)
@@ -75,9 +75,9 @@ exports.updateBrands = ( req, res) => {
 }
 
 exports.updateCategories = (req, res) => {
-    axios.get('http://localhost:80/api/categories', { params : { id : req.query.id }})
+    axios.get('http://localhost:80/api/categories', { params: { id: req.query.id } })
         .then(function (categorieData) {
-            res.render('_updateCategories', { information: categorieData.data, variable: 'categoria', route: 'categories', input: "categorie"})
+            res.render('_updateCategories', { information: categorieData.data, variable: 'categoria', route: 'categories', input: "categorie" })
         })
         .catch(err => {
             res.send(err)
@@ -85,12 +85,34 @@ exports.updateCategories = (req, res) => {
 }
 
 exports.updateUsers = (req, res) => {
-    axios.get('http://localhost:80/api/users', { params : { id : req.query.id } } )
-    .then(function(userData) {
-        console.log(userData.data)
-        res.render('_updateUsers', { information: userData.data, route: 'users'})
-    })
-    .catch(err => {
-        res.send(err)
-    })
+    axios.get('http://localhost:80/api/users', { params: { id: req.query.id } })
+        .then(function (userData) {
+            console.log(userData.data)
+            res.render('_updateUsers', { information: userData.data, route: 'users' })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+exports.updateProducts = (req, res) => {
+    axios.get('http://localhost:80/api/products', { params: { id: req.query.id } })
+        .then(function (productData) {
+            axios.get('http://localhost:80/api/categories')
+                .then(function (categorie) {
+                    axios.get('http://localhost:80/api/brands')
+                        .then(function (brand) {
+                            res.render('_updateProducts', { information: productData.data, categories: categorie.data, brands: brand.data })
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }

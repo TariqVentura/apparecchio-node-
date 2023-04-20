@@ -28,6 +28,8 @@ router.get('/_updateCategories/categories', services.updateCategories)
 
 router.get('/_updateUsers/users', services.updateUsers)
 
+router.get('/_updatePorducts/products', services.updateProducts)
+
 
 
 //API categorias
@@ -68,8 +70,8 @@ router.post('/api/products', controllerProducts.createProduct)
 
 router.get('/api/products', controllerProducts.findProduct)
 
+router.post('/api/products/update', controllerProducts.updateProduct)
+
 router.post('/api/products/delete', controllerProducts.deleteProduct)
-
-
 
 module.exports = router;
