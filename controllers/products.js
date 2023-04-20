@@ -23,7 +23,13 @@ exports.createProduct = (req, res) => {
     newPorduct
         .save(newPorduct)
         .then(data => {
-            res.send(data)
+            if (data) {
+                res.redirect('/productos')
+            } else {
+                res.status(500).semd({
+                    message: "Error al guardar los datos"
+                })
+            }
         })
         .catch(err => {
             res.status(500).send({
@@ -57,4 +63,20 @@ exports.findProduct = (req, res) => {
                 res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
             })
     }
+}
+
+exports.deleteProduct = (req, res) => {
+    const id = req.body.id
+    products.findByIdAndDelete(id, req.body, { useFindAndModify: false })
+        .then(data => {
+            if (!data) {
+                res.status(404).send( { message: 'Producto no encontrado' } )
+            } else {
+                res.redirect('/productos')
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
+        })
+
 }

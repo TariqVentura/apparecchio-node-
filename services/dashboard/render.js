@@ -83,3 +83,14 @@ exports.updateCategories = (req, res) => {
             res.send(err)
         })
 }
+
+exports.updateUsers = (req, res) => {
+    axios.get('http://localhost:80/api/users', { params : { id : req.query.id } } )
+    .then(function(userData) {
+        console.log(userData.data)
+        res.render('_updateUsers', { information: userData.data, route: 'users'})
+    })
+    .catch(err => {
+        res.send(err)
+    })
+}

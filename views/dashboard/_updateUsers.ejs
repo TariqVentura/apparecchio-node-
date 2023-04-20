@@ -1,17 +1,17 @@
 <% if (information) { %>
-    <form action="/api/<%= route%>/update" method="post">
-        <div class="mb-3">
-            <input type="text" value="<%= information._id %>" name="id">
-            <label for="exampleInputEmail1" class="form-label">
-                <%= variable%>:
-            </label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                value="<%= information.categorie %>" name="categorie">
+    <form action="/api/users/update" method="post">
+        <input type="text" value="<%= information._id %>" name="id" hidden>
+        <div class="row">
+            Nombre: <input type="text" name="name" value="<%= information.name%>" required>
+            Apellido: <input type="text" name="lastname" value="<%= information.lastname %>" required>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">imagen: </label>
-            <input type="file" class="form-control" id="exampleInputPassword1" value="" name="image">
+        <div class="row">
+            Correo: <input type="email" name="email" value="<%= information.email %>" required>
+            Carnet: <input type="text" name="identity_card" value="<%= information.identity_card %>" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="row">
+            Usuario: <input type="text" name="user" value="<%= information.user %>" required>
+        </div>
+        <button type="submit">Enviar</button>
     </form>
     <% } %>
