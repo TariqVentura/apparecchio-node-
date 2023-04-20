@@ -5,6 +5,7 @@ const controllerCategories = require('./controllers/categories')
 const controllerBrands = require('./controllers/brands')
 const controllerUsers = require('./controllers/users')
 const controllerProducts = require('./controllers/products')
+const controllerClients = require('./controllers/clients')
 
 router.get('/', services.login)
 
@@ -61,10 +62,6 @@ router.post('/api/users/update', controllerUsers.updateUsers)
 
  router.post('/api/users/delete', controllerUsers.deleteUser)
 
-//  router.put('/api/users/:id', controllerBrands.updateBrand)
-
-//  router.delete('/api/users/:id', controllerBrands.deleteBrand)
-
 //API productos
 router.post('/api/products', controllerProducts.createProduct)
 
@@ -73,5 +70,14 @@ router.get('/api/products', controllerProducts.findProduct)
 router.post('/api/products/update', controllerProducts.updateProduct)
 
 router.post('/api/products/delete', controllerProducts.deleteProduct)
+
+//API clientes
+router.post('/api/clients', controllerClients.createClient)
+
+router.get('/api/clients', controllerClients.findClient)
+
+router.post('/api/clients/update', controllerClients.updateClient)
+
+router.post('/api/clients/delete', controllerClients.deleteClient)
 
 module.exports = router;
