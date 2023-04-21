@@ -30,6 +30,16 @@ exports.marcas = (req, res) => {
         })
 }
 
+exports.searchBrand = (req, res) => {
+    axios.get('http://localhost:80/api/brands' + '/' + req.params.key)
+        .then(function (response) {
+            res.render('marcas', { branches: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
 exports.productos = (req, res) => {
     axios.get('http://localhost:80/api/products')
         .then(function (response) {
@@ -58,6 +68,16 @@ exports.login = (req, res) => {
 
 exports.usuarios = (req, res) => {
     axios.get('http://localhost:80/api/users')
+        .then(function (response) {
+            res.render('usuarios', { users: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+exports.searchUsers = (req, res) => {
+    axios.get('http://localhost:80/api/users'  + '/' + req.params.key)
         .then(function (response) {
             res.render('usuarios', { users: response.data })
         })

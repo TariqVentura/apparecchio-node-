@@ -94,3 +94,25 @@ exports.deleteBrand = (req, res) => {
             res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
         })
 }
+
+exports.searchBrands = async (req, res) => {
+    const key = req.params.key
+    brands.find(
+        {
+            "$or": [
+                { brand: { $regex: key } }
+            ]
+        }
+    )
+    .then(data => {
+        if (!data) {
+            res.status(404).send({ message: `Sin datos` })
+        } else {
+            res.send(data)
+        }
+    })
+    .catch(err => {
+        res.send(err)
+    })
+
+}

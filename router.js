@@ -15,11 +15,15 @@ router.get('/categorias/:key', services.searchCategory)
 
 router.get('/marcas', services.marcas)
 
+router.get('/marcas/:key', services.searchBrand)
+
 router.get('/productos', services.productos)
 
 router.get('/login', services.login)
 
 router.get('/usuarios', services.usuarios)
+
+router.get('/usuarios/:key', services.searchUsers)
 
 router.get('/clientes', services.clientes)
 
@@ -51,24 +55,28 @@ router.get('/api/categories/delete', controllerCategories.deleteCategorie)
 router.get('/api/categories/:key', controllerCategories.searchCategories)
 
 //API marcas
- router.post('/api/brands', controllerBrands.craeteBrand)
+router.post('/api/brands', controllerBrands.craeteBrand)
 
- router.get('/api/brands', controllerBrands.findBrand)
+router.get('/api/brands', controllerBrands.findBrand)
 
- router.post('/api/brands/update', controllerBrands.updateBrand)
+router.post('/api/brands/update', controllerBrands.updateBrand)
 
- router.get('/api/brands/delete', controllerBrands.deleteBrand)
+router.get('/api/brands/delete', controllerBrands.deleteBrand)
 
- //API usuarios
- router.post('/api/users', controllerUsers.createUser)
- 
- router.post('/login/api/users/', controllerUsers.findOneUser)
+router.get('/api/brands/:key', controllerBrands.searchBrands)
 
- router.get('/api/users', controllerUsers.findUsers)
+//API usuarios
+router.post('/api/users', controllerUsers.createUser)
+
+router.post('/login/api/users/', controllerUsers.findOneUser)
+
+router.get('/api/users', controllerUsers.findUsers)
 
 router.post('/api/users/update', controllerUsers.updateUsers)
 
- router.get('/api/users/delete', controllerUsers.deleteUser)
+router.get('/api/users/delete', controllerUsers.deleteUser)
+
+router.get('/api/users/:key', controllerUsers.searchUsers)
 
 //API productos
 router.post('/api/products', controllerProducts.createProduct)
