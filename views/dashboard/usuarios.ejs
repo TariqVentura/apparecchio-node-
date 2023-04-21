@@ -162,50 +162,52 @@
             </div>
         </div><br>
         <!--tabla de contenido-->
-        <div>
-            <table class="table table-stripped table-bordered text-light table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Correo</th>
-                        <th scope="col">Usuario</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Actualizar</th>
-                        <th scope="col">Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% users.forEach((data)=> { %>
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-stripped table-bordered text-light table-hover">
+                    <thead>
                         <tr>
-                            <td>
-                                <%= data.name %>
-                            </td>
-                            <td>
-                                <%= data.lastname %>
-                            </td>
-                            <td>
-                                <%= data.email %>
-                            </td>
-                            <td>
-                                <%= data.user %>
-                            </td>
-                            <td>
-                                <%= data.status %>
-                            </td>
-                            <td>
-                                <button class="btn btn-info mt-3"><a
-                                        href="/_updateUsers/users?id=<%= data._id %>"
-                                        class="text-light text-decoration-none">Actualizar</a></button>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger mt-3"><a href="/api/users/delete?id=<%= data._id %>"
-                                    class="text-light text-decoration-none">Eliminar</a></button>
-                            </td>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Correo</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Actualizar</th>
+                            <th scope="col">Eliminar</th>
                         </tr>
-                        <%})%>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((data)=> { %>
+                            <tr>
+                                <td>
+                                    <%= data.name %>
+                                </td>
+                                <td>
+                                    <%= data.lastname %>
+                                </td>
+                                <td>
+                                    <%= data.email %>
+                                </td>
+                                <td>
+                                    <%= data.user %>
+                                </td>
+                                <td>
+                                    <%= data.status %>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info mt-3"><a href="/_updateUsers/users?id=<%= data._id %>"
+                                            class="text-light text-decoration-none">Actualizar</a></button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger mt-3"><a href="/api/users/delete?id=<%= data._id %>"
+                                            class="text-light text-decoration-none">Eliminar</a></button>
+                                </td>
+                            </tr>
+                            <%})%>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </section>
