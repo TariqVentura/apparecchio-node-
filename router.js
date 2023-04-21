@@ -33,6 +33,8 @@ router.get('/_updatePorducts/products', services.updateProducts)
 
 router.get('/clientes', services.clientes)
 
+router.get('/_updateClients/clients', services.updateClients)
+
 
 
 //API categorias
@@ -71,7 +73,7 @@ router.get('/api/products', controllerProducts.findProduct)
 
 router.post('/api/products/update', controllerProducts.updateProduct)
 
-router.post('/api/products/delete', controllerProducts.deleteProduct)
+router.get('/api/products/delete', controllerProducts.deleteProduct)
 
 //API clientes
 router.post('/api/clients', controllerClients.createClient)
@@ -80,6 +82,6 @@ router.get('/api/clients', controllerClients.findClient)
 
 router.post('/api/clients/update', controllerClients.updateClient)
 
-router.post('/api/clients/delete', controllerClients.deleteClient)
+router.get('/api/clients/delete', controllerClients.deleteClient)
 
 module.exports = router;
