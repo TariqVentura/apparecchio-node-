@@ -1,4 +1,5 @@
 var categories = require('../models/categories')
+const swal = require('sweetalert2')
 
 exports.createCategorie = (req, res) => {
     //validar campos vacios

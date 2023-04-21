@@ -130,3 +130,28 @@ exports.deleteUser = (req, res) => {
             res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
         })
 }
+
+exports.searchUsers = async (req, res) => {
+    const key = req.params.key
+    users.find(
+        {
+            "$or": [
+                { name: { $regex: key } },
+                { lastname: { $regex: key } },
+                { email: { $regex: key } },
+                { user: { $regex: key } }
+            ]
+        }
+    )
+    .then(data => {
+        if (!data) {
+            res.status(404).send({ message: `Sin datos` })
+        } else {
+            res.send(data)
+        }
+    })
+    .catch(err => {
+        res.send(err)
+    })
+
+}
