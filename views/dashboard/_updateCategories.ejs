@@ -1,5 +1,5 @@
 <% if (information) { %>
-    <div id="fondo">
+    <div class="col-12" id="fondo">
         <form action="/api/<%= route%>/update" method="post" id="formu">
             <div class="mb-3">
                 <input type="hidden" value="<%= information._id %>" name="id">

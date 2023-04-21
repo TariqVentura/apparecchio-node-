@@ -366,6 +366,8 @@ img:hover {
 #fondo{
     background-color: #9f7777;
     padding: 500px;
+    position: fixed;
+    
 }
 #formu{
     background-color: #825b5b;
@@ -373,4 +375,10 @@ img:hover {
 }
 h4{
     text-align: center;
+}
+
+.btn-btn-primary{
+    background-color: #ccc;
+    border-radius: 10px;
+    
 }
