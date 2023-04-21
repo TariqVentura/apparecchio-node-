@@ -82,7 +82,7 @@ exports.updateCategorie = (req, res) => {
 }
 
 exports.deleteCategorie = (req, res) => {
-    const id = req.body.id
+    const id = req.query.id
     categories.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {

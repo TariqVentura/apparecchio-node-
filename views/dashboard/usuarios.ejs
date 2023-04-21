@@ -199,10 +199,8 @@
                                         class="text-light text-decoration-none">Actualizar</a></button>
                             </td>
                             <td>
-                                <form action="/api/users/delete" method="post">
-                                    <input type="text" value="<%= data._id %>" name="id" id="id_mongo">
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
+                                <button class="btn btn-danger mt-3"><a href="/api/users/delete?id=<%= data._id %>"
+                                    class="text-light text-decoration-none">Eliminar</a></button>
                             </td>
                         </tr>
                         <%})%>

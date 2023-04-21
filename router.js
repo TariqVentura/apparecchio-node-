@@ -44,7 +44,7 @@ router.get('/api/categories', controllerCategories.findCategorie)
 
 router.post('/api/categories/update', controllerCategories.updateCategorie)
 
-router.post('/api/categories/delete', controllerCategories.deleteCategorie)
+router.get('/api/categories/delete', controllerCategories.deleteCategorie)
 
 //API marcas
  router.post('/api/brands', controllerBrands.craeteBrand)
@@ -53,7 +53,7 @@ router.post('/api/categories/delete', controllerCategories.deleteCategorie)
 
  router.post('/api/brands/update', controllerBrands.updateBrand)
 
- router.post('/api/brands/delete', controllerBrands.deleteBrand)
+ router.get('/api/brands/delete', controllerBrands.deleteBrand)
 
  //API usuarios
  router.post('/api/users', controllerUsers.createUser)
@@ -64,7 +64,7 @@ router.post('/api/categories/delete', controllerCategories.deleteCategorie)
 
 router.post('/api/users/update', controllerUsers.updateUsers)
 
- router.post('/api/users/delete', controllerUsers.deleteUser)
+ router.get('/api/users/delete', controllerUsers.deleteUser)
 
 //API productos
 router.post('/api/products', controllerProducts.createProduct)
