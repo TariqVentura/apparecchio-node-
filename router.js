@@ -46,7 +46,7 @@ router.post('/api/categories/update', controllerCategories.updateCategorie)
 
 router.get('/api/categories/delete', controllerCategories.deleteCategorie)
 
-router.get('/api/categories/search/:key', controllerCategories.searchCategories)
+router.get('/api/categories/:key', controllerCategories.searchCategories)
 
 //API marcas
  router.post('/api/brands', controllerBrands.craeteBrand)

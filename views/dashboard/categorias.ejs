@@ -104,10 +104,12 @@
                 <form method="post" id="search-form">
                     <div class="input-field  flex-nowrap col-12">
                         <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
-                        <input id="search" type="text" name="Buscar " required>
-                        <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
-                            <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
-                        </button>
+                        <form action="" method="get">
+                            <input id="search" type="text" name="Buscar " required>
+                            <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
+                                <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
+                            </button>
+                        </form>
                     </div>
                 </form>
             </div>
@@ -152,7 +154,8 @@
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img src="/images/<%= data.image %>" width="200" class="img-fluid rounded-start" alt="">
+                                    <img src="/images/<%= data.image %>" width="200" class="img-fluid rounded-start"
+                                        alt="">
                                 </div>
                                 <div class="col-md-5">
                                     <div class="card-body">
@@ -162,11 +165,13 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <button class="btn btn-info mt-3"><a href="/_updateCategories/categories?id=<%= data._id %>"
+                                    <button class="btn btn-info mt-3"><a
+                                            href="/_updateCategories/categories?id=<%= data._id %>"
                                             class="text-light text-decoration-none">Actualizar</a></button>
                                     <br><br>
-                                    <button class="btn btn-danger mt-3"><a href="/api/categories    /delete?id=<%= data._id %>"
-                                        class="text-light text-decoration-none">Eliminar</a></button>
+                                    <button class="btn btn-danger mt-3"><a
+                                            href="/api/categories    /delete?id=<%= data._id %>"
+                                            class="text-light text-decoration-none">Eliminar</a></button>
                                 </div>
                             </div>
                         </div>
