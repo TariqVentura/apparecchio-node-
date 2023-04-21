@@ -46,6 +46,8 @@ router.post('/api/categories/update', controllerCategories.updateCategorie)
 
 router.get('/api/categories/delete', controllerCategories.deleteCategorie)
 
+router.get('/api/categories/search/:key', controllerCategories.searchCategories)
+
 //API marcas
  router.post('/api/brands', controllerBrands.craeteBrand)
 
@@ -83,5 +85,6 @@ router.get('/api/clients', controllerClients.findClient)
 router.post('/api/clients/update', controllerClients.updateClient)
 
 router.get('/api/clients/delete', controllerClients.deleteClient)
+
 
 module.exports = router;
