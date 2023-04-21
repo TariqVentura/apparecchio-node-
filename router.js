@@ -11,6 +11,8 @@ router.get('/', services.login)
 
 router.get('/categorias', services.categorias)
 
+router.get('/categorias/:key', services.searchCategory)
+
 router.get('/marcas', services.marcas)
 
 router.get('/productos', services.productos)
