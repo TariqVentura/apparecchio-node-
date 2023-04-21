@@ -58,13 +58,13 @@ exports.usuarios = (req, res) => {
 
 exports.clientes = (req, res) => {
     axios.get('http://localhost/api/clients')
-    .then(function(response){
-        console.log(response.data)
-        res.render('clientes', { clients: response.data })
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        .then(function (response) {
+            console.log(response.data)
+            res.render('clientes', { clients: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }
 
 exports.pedidos = (req, res) => {
@@ -118,6 +118,17 @@ exports.updateProducts = (req, res) => {
                 .catch(err => {
                     res.send(err)
                 })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+exports.updateClients = (req, res) => {
+    axios.get('http://localhost/api/clients', { params: { id: req.query.id } })
+        .then(function (response) {
+            console.log(response.data)
+            res.render('_updateClients', { clients: response.data })
         })
         .catch(err => {
             res.send(err)

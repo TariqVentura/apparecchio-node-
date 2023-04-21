@@ -117,7 +117,7 @@ exports.updateUsers = (req, res) => {
 }
 
 exports.deleteUser = (req, res) => {
-    const id = req.body.id
+    const id = req.query.id
     users.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {

@@ -18,9 +18,9 @@ exports.createCategorie = (req, res) => {
     newCategorie
         .save(newCategorie)
         .then(data => {
-            if(!data){
-                res.status(404).send({ message : `Error al insertar los datos`})
-            }else{
+            if (!data) {
+                res.status(404).send({ message: `Error al insertar los datos` })
+            } else {
                 res.redirect('/categorias')
             }
         })
@@ -61,28 +61,28 @@ exports.findCategorie = (req, res) => {
 
 exports.updateCategorie = (req, res) => {
     //validar campos vacios
-    if(!req.body){
+    if (!req.body) {
         return res
             .status(400)
-            .send({ message : "No se puede actualizar si todos los campos estan vacios"})
+            .send({ message: "No se puede actualizar si todos los campos estan vacios" })
     }
 
     const id = req.body.id
-    categories.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+    categories.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
-            if(!data){
-                res.status(404).send({ message : `Categoria no encontrada`})
-            }else{
+            if (!data) {
+                res.status(404).send({ message: `Categoria no encontrada` })
+            } else {
                 res.redirect('/categorias')
             }
         })
-        .catch(err =>{
-            res.status(500).send({ message : "Ocurrio un error al intentar actualizar la informacion"})
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar actualizar la informacion" })
         })
 }
 
 exports.deleteCategorie = (req, res) => {
-    const id = req.body.id
+    const id = req.query.id
     categories.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {
@@ -94,4 +94,26 @@ exports.deleteCategorie = (req, res) => {
         .catch(err => {
             res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
         })
+}
+
+exports.searchCategories = async (req, res) => {
+    const key = req.params.key
+    categories.find(
+        {
+            "$or": [
+                { categorie: { $regex: key } }
+            ]
+        }
+    )
+    .then(data => {
+        if (!data) {
+            res.status(404).send({ message: `Sin datos` })
+        } else {
+            res.send(data)
+        }
+    })
+    .catch(err => {
+        res.send(err)
+    })
+
 }

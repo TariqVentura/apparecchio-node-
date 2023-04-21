@@ -31,7 +31,8 @@ exports.createClient = (req, res) => {
                     if (!data) {
                         res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
                     } else {
-                        res.redirect('/clients')
+                        res.redirect('/clientes')
+                        console.log(req.body.name)
                     }
                 })
                 .catch(err => {
@@ -93,7 +94,7 @@ exports.updateClient = (req, res) => {
 }
 
 exports.deleteClient = (req, res) => {
-    const id = req.body.id
+    const id = req.query.id
     clients.findByIdAndDelete(id, req.body, { useFindAndModify: false})
         .then(data => {
             if(!data){

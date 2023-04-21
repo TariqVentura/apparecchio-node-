@@ -33,6 +33,8 @@ router.get('/_updatePorducts/products', services.updateProducts)
 
 router.get('/clientes', services.clientes)
 
+router.get('/_updateClients/clients', services.updateClients)
+
 
 
 //API categorias
@@ -42,7 +44,9 @@ router.get('/api/categories', controllerCategories.findCategorie)
 
 router.post('/api/categories/update', controllerCategories.updateCategorie)
 
-router.post('/api/categories/delete', controllerCategories.deleteCategorie)
+router.get('/api/categories/delete', controllerCategories.deleteCategorie)
+
+router.get('/api/categories/:key', controllerCategories.searchCategories)
 
 //API marcas
  router.post('/api/brands', controllerBrands.craeteBrand)
@@ -51,7 +55,7 @@ router.post('/api/categories/delete', controllerCategories.deleteCategorie)
 
  router.post('/api/brands/update', controllerBrands.updateBrand)
 
- router.post('/api/brands/delete', controllerBrands.deleteBrand)
+ router.get('/api/brands/delete', controllerBrands.deleteBrand)
 
  //API usuarios
  router.post('/api/users', controllerUsers.createUser)
@@ -62,7 +66,7 @@ router.post('/api/categories/delete', controllerCategories.deleteCategorie)
 
 router.post('/api/users/update', controllerUsers.updateUsers)
 
- router.post('/api/users/delete', controllerUsers.deleteUser)
+ router.get('/api/users/delete', controllerUsers.deleteUser)
 
 //API productos
 router.post('/api/products', controllerProducts.createProduct)
@@ -71,7 +75,7 @@ router.get('/api/products', controllerProducts.findProduct)
 
 router.post('/api/products/update', controllerProducts.updateProduct)
 
-router.post('/api/products/delete', controllerProducts.deleteProduct)
+router.get('/api/products/delete', controllerProducts.deleteProduct)
 
 //API clientes
 router.post('/api/clients', controllerClients.createClient)
@@ -80,6 +84,7 @@ router.get('/api/clients', controllerClients.findClient)
 
 router.post('/api/clients/update', controllerClients.updateClient)
 
-router.post('/api/clients/delete', controllerClients.deleteClient)
+router.get('/api/clients/delete', controllerClients.deleteClient)
+
 
 module.exports = router;

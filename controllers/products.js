@@ -81,7 +81,7 @@ exports.updateProduct = (req, res) => {
 }
 
 exports.deleteProduct = (req, res) => {
-    const id = req.body.id
+    const id = req.query.id
     products.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {

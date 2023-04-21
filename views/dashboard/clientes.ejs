@@ -163,7 +163,8 @@
                         <th scope="col">Correo</th>
                         <th scope="col">Usuario</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Actualizar</th>
+                        <th scope="col">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -184,9 +185,13 @@
                             <td>
                                 <%= data.status %>
                             </td>
-                            <td><img src="https://img.icons8.com/ios-filled/40/null/minus.png" onclick="openDelete()" />
-                                <img src="https://img.icons8.com/ios-glyphs/30/null/refresh--v1.png"
-                                    onclick="openUpdate()">
+                            <td>
+                                <button class="btn btn-info mt-3"><a href="/_updateClients/clients?id=<%= data._id %>"
+                                        class="text-light text-decoration-none">Actualizar</a></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger mt-3"><a href="/api/clients/delete?id=<%= data._id %>"
+                                    class="text-light text-decoration-none">Eliminar</a></button>
                             </td>
                         </tr>
                         <% }) %>

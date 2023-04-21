@@ -81,7 +81,7 @@ exports.updateBrand = (req, res) => {
 }
 
 exports.deleteBrand = (req, res) => {
-    const id = req.body.id
+    const id = req.query.id
     brands.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
             if (!data) {

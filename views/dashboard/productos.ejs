@@ -206,13 +206,11 @@
                                     </div>
                                 </div>
                                 <div class="col-3">
-                                    <button class="btn btn-info mt-3"><a href="/_update/products?id=<%= data._id %>"
+                                    <button class="btn btn-info mt-3"><a href="/_updatePorducts/products?id=<%= data._id %>"
                                             class="text-light text-decoration-none">Actualizar</a></button>
                                     <br><br>
-                                    <form action="/api/products/delete" method="post">
-                                        <input type="text" value="<%= data._id %>" name="id" id="id_mongo">
-                                        <button type="submit" class="btn btn-danger">Eliminar</button>
-                                    </form>
+                                    <button class="btn btn-danger mt-3"><a href="/api/products/delete?id=<%= data._id %>"
+                                        class="text-light text-decoration-none">Eliminar</a></button>
                                 </div>
                             </div>
                         </div>
