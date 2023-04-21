@@ -1,23 +1,27 @@
 <% if (information) { %>
-    <div id="fondo">
-        <form action="/api/brands/update" method="post" id="formu">
-            <div class="mb-3">
-                <input type="hidden" value="<%= information._id %>" name="id">
-                <label for="exampleInputEmail1" class="form-label">
-                    Nombre Marca:
-                </label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    value="<%= information.brand %>" name="brand">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">imagen: </label>
-                <input type="file" class="form-control" id="exampleInputPassword1" value="" name="image">
-                <div class="col-md-4">
-                    <img src="" class="img-fluid rounded-start" alt="Imagen">
+    <div class="row">
+        <div class="col-12" id="fondo">
+            <form action="/api/brands/update" method="post" id="formu">
+                <div class="mb-3">
+                    <input type="hidden" value="<%= information._id %>" name="id">
+                    <h4>Actualizar Marca</h4>
+                    <label for="exampleInputEmail1" class="form-label">
+                        Nombre Marca:
+                    </label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        value="<%= information.brand %>" name="brand">
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Actualizar</button>
-        </form>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">imagen: </label>
+                    <input type="file" class="form-control" id="exampleInputPassword1" value="" name="image">
+                    <div class="col-md-4">
+                        <img src="" class="img-fluid rounded-start" alt="Imagen">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </form>
+        </div>
     </div>
+
 
     <% } %>

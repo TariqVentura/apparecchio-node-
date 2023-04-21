@@ -3,7 +3,6 @@
 
 * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
@@ -365,10 +364,9 @@ img:hover {
 
 #fondo{
     background-color: #9f7777;
-    padding: 500px;
-    position: fixed;
-    
+    padding: auto;
 }
+
 #formu{
     background-color: #825b5b;
     border-radius: 10px;       
@@ -382,3 +380,4 @@ h4{
     border-radius: 10px;
     
 }
+
