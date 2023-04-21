@@ -10,6 +10,16 @@ exports.categorias = (req, res) => {
         })
 }
 
+exports.searchCategory = (req, res) => {
+    axios.get('http://localhost:80/api/categories' + '/' + req.params.key)
+        .then(function (response) {
+            res.render('categorias', { categories: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
 exports.marcas = (req, res) => {
     axios.get('http://localhost:80/api/brands')
         .then(function (response) {
