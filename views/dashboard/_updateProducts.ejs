@@ -6,12 +6,12 @@
             Precio: <input type="text" name="price" value="<%= information.price %>">
         </div>
         <div class="row">
-            descripcion: <textarea name="description" id="" cols="30"
-                rows="5"><%= information.description %></textarea>
+            descripcion: <textarea name="description" id="" cols="30" rows="5"><%= information.description %></textarea>
             categoria:
-            <select class="form-select" aria-label="Default select example"
-                name="categorie">
-                <option selected><%= information.categorie %></option>
+            <select class="form-select" aria-label="Default select example" name="categorie">
+                <option selected>
+                    <%= information.categorie %>
+                </option>
                 <% categories.forEach((data)=> { %>
                     <option value="<%= data.categorie %>">
                         <%= data.categorie %>
@@ -21,18 +21,22 @@
         </div>
         <div class="row">
             Marca:
-            <select class="form-select" aria-label="Default select example"
-                name="brand">
-                <option selected><%= information.brand %></option>
+            <select class="form-select" aria-label="Default select example" name="brand">
+                <option selected>
+                    <%= information.brand %>
+                </option>
                 <% brands.forEach((data)=> { %>
                     <option value="<%= data.brand %>">
                         <%= data.brand %>
                     </option>
                     <% }) %>
             </select>
+            <input type="number" name="stock" id="stock" value="<%= information.stock %>" onKeyDown="return false">
             imagen: <input type="file" name="image">
         </div>
         <button type="submit">Enviar</button>
     </form>
-    
+
     <% } %>
+
+        <script src="/dashboard/producto.js"></script>

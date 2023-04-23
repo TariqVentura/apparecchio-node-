@@ -15,6 +15,7 @@ exports.createProduct = (req, res) => {
         categorie: req.body.categorie,
         brand: req.body.brand,
         user: req.body.user,
+        stock: req.body.stock,
         image: req.body.image,
         status: true
     })

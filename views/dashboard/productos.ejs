@@ -160,6 +160,7 @@
                                                         </option>
                                                         <% }) %>
                                                 </select>
+                                                Cantidad: <input type="number" name="stock">
                                                 imagen: <input type="file" name="image">
                                             </div>
                                             <button type="submit">Enviar</button>
@@ -196,13 +197,17 @@
                                         <p class="card-text">
                                             <%= data.description %>
                                         </p>
-                                        <h5>$<%= data.price %>
+                                        <h5>
+                                            Precio: $<%= data.price %>
                                         </h5>
                                         <h5>
-                                            <%= data.categorie %>
+                                            Categoria: <%= data.categorie %>
                                         </h5>
                                         <h5>
-                                            <%= data.brand %>
+                                            Marca: <%= data.brand %>
+                                        </h5>
+                                        <h5>
+                                            Cantidad: <%= data.stock %>
                                         </h5>
                                     </div>
                                 </div>
