@@ -100,7 +100,8 @@
                     <div class="input-field  flex-nowrap col-12">
                         <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
                         <input id="search" type="text" name="Buscar " placeholder="Buscar" required>
-                        <button type="button" id="btn-search" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
+                        <button type="button" id="btn-search" class="btn waves-effect green tooltipped"
+                            data-tooltip="Buscar">
                             <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
                         </button>
                     </div>
@@ -157,7 +158,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <table class="table">
+                <table class="table table-bordered table-hover text-light">
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
@@ -192,8 +193,38 @@
                                             class="text-light text-decoration-none">Actualizar</a></button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger mt-3"><a href="/api/users/delete?id=<%= data._id %>"
-                                            class="text-light text-decoration-none">Eliminar</a></button>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop<%= data._id %>delete">
+                                        Eliminar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop<%= data._id %>delete"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar
+                                                        Categoria
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro que desea eliminar al cliente <%= data.user %>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button class="btn btn-danger"><a
+                                                            href="/api/users/delete?id=<%= data._id %>"
+                                                            class="text-light text-decoration-none">Eliminar</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                             <%})%>
@@ -202,9 +233,9 @@
             </div>
         </div>
     </div><br>
-    
+
     <!--tabla de contenido-->
-        
+
 </section>
 
 <script>

@@ -1,6 +1,12 @@
 const btn_search = document.getElementById('btn-search')
 
-btn_search.addEventListener('click', function(){
+if (alertTrigger) {
+    alertTrigger.addEventListener('click', () => {
+        alert('Nice, you triggered this alert message!', 'success')
+    })
+}
+
+btn_search.addEventListener('click', function () {
     let value = document.getElementById('search').value
     location.href = 'http://localhost:80/categorias/' + value
 })
@@ -26,7 +32,7 @@ function openUpdate() {
 }
 
 
-function openDelete() {
+function openDelete(id) {
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -45,6 +51,7 @@ function openDelete() {
         reverseButtons: true
     }).then((result) => {
         if (result.isConfirmed) {
+            location.href = "/api/categories/delete?id=<%= data._id %>"
             swalWithBootstrapButtons.fire(
                 'Elimnado!',
                 'La categoria a sido eliminada',
@@ -62,5 +69,3 @@ function openDelete() {
         }
     })
 }
-
-

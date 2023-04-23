@@ -98,55 +98,55 @@
     <div class="text">Categorias</div>
     <main class="container">
         <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block">
-        </div>
-        <div class="row">
-            <div class="col-6 d-flex flex-nowrap">
-                <form method="post" id="search-form">
-                    <div class="input-field  flex-nowrap col-12">
-                        <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
-                        <input id="search" type="text" name="Buscar" required>
-                        <button type="button" class="btn waves-effect green tooltipped" data-tooltip="Buscar"
-                            id="btn-search">
-                            <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
-                        </button>
-                    </div>
-                </form>
-            </div>
-            <div class="col-2">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                    data-bs-target="#staticBackdrop">
-                    Insertar Datos
-                </button>
+            <div class="row">
+                <div class="col-6 d-flex flex-nowrap">
+                    <form method="post" id="search-form">
+                        <div class="input-field  flex-nowrap col-12">
+                            <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
+                            <input id="search" type="text" name="Buscar" required>
+                            <button type="button" class="btn waves-effect green tooltipped" data-tooltip="Buscar"
+                                id="btn-search">
+                                <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-2">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop">
+                        Insertar Datos
+                    </button>
 
-                <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear categoria</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/api/categories" method="post">
-                                    <input type="text" name="categorie">
-                                    <input type="file" name="image">
-                                    <button type="submit">Enviar</button>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear categoria</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/api/categories" method="post">
+                                        <input type="text" name="categorie">
+                                        <input type="file" name="image">
+                                        <button type="submit">Enviar</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Understood</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="container-fluid py-3 border-bottom d-none d-lg-block d-print-block"></div>
-        <div class="container">
+        <div class="container-fluid py-3 d-none d-lg-block d-print-block">
             <div class="row">
                 <% categories.forEach((data)=> { %>
                     <div class="col-sm-6">
@@ -168,16 +168,44 @@
                                             href="/_updateCategories/categories?id=<%= data._id %>"
                                             class="text-light text-decoration-none">Actualizar</a></button>
                                     <br><br>
-                                    <button class="btn btn-danger mt-3"><a
-                                            href="/api/categories/delete?id=<%= data._id %>"
-                                            class="text-light text-decoration-none">Eliminar</a></button>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop<%= data._id %>delete">
+                                        Eliminar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop<%= data._id %>delete"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar
+                                                        Categoria
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro que desea eliminar la categoria <%= data.categorie %>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button class="btn btn-danger"><a
+                                                            href="/api/categories/delete?id=<%= data._id %>"
+                                                            class="text-light text-decoration-none">Eliminar</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <% }) %>
             </div>
-        </div>
         </div>
     </main>
 </section>
@@ -220,3 +248,4 @@
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/dashboard/categoria.js"></script>
+<script src="/categories.js"></script>

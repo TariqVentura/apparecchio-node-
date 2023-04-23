@@ -1,5 +1,4 @@
 var categories = require('../models/categories')
-const swal = require('sweetalert2')
 
 exports.createCategorie = (req, res) => {
     //validar campos vacios
@@ -89,7 +88,7 @@ exports.deleteCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar esta categoria, es posible que no exista` })
             } else {
-                res.redirect('/categorias')
+                
             }
         })
         .catch(err => {
