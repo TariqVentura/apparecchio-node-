@@ -1,11 +1,5 @@
 const btn_search = document.getElementById('btn-search')
 
-if (alertTrigger) {
-    alertTrigger.addEventListener('click', () => {
-        alert('Nice, you triggered this alert message!', 'success')
-    })
-}
-
 btn_search.addEventListener('click', function () {
     let value = document.getElementById('search').value
     location.href = 'http://localhost:80/categorias/' + value

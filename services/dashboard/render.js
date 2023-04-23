@@ -62,6 +62,28 @@ exports.productos = (req, res) => {
         })
 }
 
+exports.searchProducts = (req, res) => {
+    axios.get('http://localhost:80/api/products' + '/' + req.params.key)
+        .then(function (response) {
+            axios.get('http://localhost:80/api/categories')
+                .then(function (categorie) {
+                    axios.get('http://localhost:80/api/brands')
+                        .then(function (brand) {
+                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data })
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
 exports.login = (req, res) => {
     res.render('login')
 }
@@ -88,6 +110,17 @@ exports.searchUsers = (req, res) => {
 
 exports.clientes = (req, res) => {
     axios.get('http://localhost/api/clients')
+        .then(function (response) {
+            console.log(response.data)
+            res.render('clientes', { clients: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+exports.searchClientes = (req, res) => {
+    axios.get('http://localhost/api/clients' + '/' + req.params.key)
         .then(function (response) {
             console.log(response.data)
             res.render('clientes', { clients: response.data })

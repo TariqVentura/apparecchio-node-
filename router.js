@@ -19,6 +19,8 @@ router.get('/marcas/:key', services.searchBrand)
 
 router.get('/productos', services.productos)
 
+router.get('/productos/:key', services.searchProducts)
+
 router.get('/login', services.login)
 
 router.get('/usuarios', services.usuarios)
@@ -26,6 +28,8 @@ router.get('/usuarios', services.usuarios)
 router.get('/usuarios/:key', services.searchUsers)
 
 router.get('/clientes', services.clientes)
+
+router.get('/clientes/:key', services.searchClientes)
 
 router.get('/pedidos', services.pedidos)
 
@@ -87,6 +91,8 @@ router.post('/api/products/update', controllerProducts.updateProduct)
 
 router.get('/api/products/delete', controllerProducts.deleteProduct)
 
+router.get('/api/products/:key', controllerProducts.searchProducts)
+
 //API clientes
 router.post('/api/clients', controllerClients.createClient)
 
@@ -96,5 +102,6 @@ router.post('/api/clients/update', controllerClients.updateClient)
 
 router.get('/api/clients/delete', controllerClients.deleteClient)
 
+router.get('/api/clients/:key', controllerClients.searchClients)
 
 module.exports = router;
