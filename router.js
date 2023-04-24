@@ -6,6 +6,7 @@ const controllerBrands = require('./controllers/brands')
 const controllerUsers = require('./controllers/users')
 const controllerProducts = require('./controllers/products')
 const controllerClients = require('./controllers/clients')
+const controllerRecords = require('./controllers/record')
 
 router.get('/', services.login)
 
@@ -103,5 +104,10 @@ router.post('/api/clients/update', controllerClients.updateClient)
 router.get('/api/clients/delete', controllerClients.deleteClient)
 
 router.get('/api/clients/:key', controllerClients.searchClients)
+
+//API records
+router.post('/api/records/', controllerRecords.createRecord)
+
+router.get('/api/records/:key', controllerRecords.findRecord)
 
 module.exports = router;

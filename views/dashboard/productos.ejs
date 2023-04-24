@@ -206,12 +206,9 @@
                                         <h5>
                                             Marca: <%= data.brand %>
                                         </h5>
-                                        <h5>
-                                            Cantidad: <%= data.stock %>
-                                        </h5>
                                     </div>
                                 </div>
-                                <div class="col-3">
+                                <div class="d-grid gap-2 col-2">
                                     <button class="btn btn-info mt-3"><a
                                             href="/_updatePorducts/products?id=<%= data._id %>"
                                             class="text-light text-decoration-none">Actualizar</a></button>
@@ -244,6 +241,92 @@
                                                     <button class="btn btn-danger"><a
                                                             href="/api/products/delete?id=<%= data._id %>"
                                                             class="text-light text-decoration-none">Eliminar</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop<%= data._id %>stock">
+                                        Stock
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop<%= data._id %>stock"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Stock: <%= data.stock %>
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row mb-2">
+                                                        <form action="/api/records/" method="post">
+                                                            <div class="col-6">
+                                                                <div
+                                                                    class="row d-flex flex-nowrap justify-content-start">
+                                                                    <div class="col">
+                                                                        <h5>Cantidad: </h5>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <input type="number" name="stock" id=""
+                                                                            onKeyDown="return false">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-6">
+                                                                <input type="text" name="id" value="<%= data._id %>"
+                                                                    hidden>
+                                                                <input type="text" name="product"
+                                                                    value="<%= data.product %>" hidden>
+                                                                <input type="number" name="prevStock"
+                                                                    value="<%= data.stock %>" hidden>
+                                                                <button type="submit"
+                                                                    class="btn btn-success">Añadir</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="row">
+                                                        <table class="table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">First</th>
+                                                                    <th scope="col">Last</th>
+                                                                    <th scope="col">Handle</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row">1</th>
+                                                                    <td>Mark</td>
+                                                                    <td>Otto</td>
+                                                                    <td>@mdo</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">2</th>
+                                                                    <td>Jacob</td>
+                                                                    <td>Thornton</td>
+                                                                    <td>@fat</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row">3</th>
+                                                                    <td colspan="2">Larry the Bird</td>
+                                                                    <td>@twitter</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Understood</button>
                                                 </div>
                                             </div>
                                         </div>
