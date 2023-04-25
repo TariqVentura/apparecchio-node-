@@ -33,6 +33,9 @@ var productsSchema = new mongoose.Schema(
         stock:{
             type: Number
         },
+        review:{
+            type: Number
+        },
         status: {
             type: Boolean,
             require: true

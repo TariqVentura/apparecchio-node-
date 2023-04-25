@@ -259,17 +259,17 @@
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Stock: <%= data.stock %>
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Stock: <%=
+                                                            data.stock %>
                                                     </h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="row mb-2">
-                                                        <form action="/api/records/" method="post">
-                                                            <div class="col-6">
-                                                                <div
-                                                                    class="row d-flex flex-nowrap justify-content-start">
+                                                    <form action="/api/records/" method="post">
+                                                        <div class="row mb-2 d-flex align-items-center">
+                                                            <div class="col-9">
+                                                                <div class="row d-flex flex-nowrap">
                                                                     <div class="col">
                                                                         <h5>Cantidad: </h5>
                                                                     </div>
@@ -279,7 +279,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-6">
+                                                            <div class="col-1">
                                                                 <input type="text" name="id" value="<%= data._id %>"
                                                                     hidden>
                                                                 <input type="text" name="product"
@@ -289,44 +289,14 @@
                                                                 <button type="submit"
                                                                     class="btn btn-success">Añadir</button>
                                                             </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="row">
-                                                        <table class="table">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">#</th>
-                                                                    <th scope="col">First</th>
-                                                                    <th scope="col">Last</th>
-                                                                    <th scope="col">Handle</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Mark</td>
-                                                                    <td>Otto</td>
-                                                                    <td>@mdo</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">2</th>
-                                                                    <td>Jacob</td>
-                                                                    <td>Thornton</td>
-                                                                    <td>@fat</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">3</th>
-                                                                    <td colspan="2">Larry the Bird</td>
-                                                                    <td>@twitter</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Understood</button>
+                                                    <button type="button" class="btn btn-primary"><a
+                                                            href="/historial/<%= data.product %>"
+                                                            class="text-light text-decoration-none">Ver historial de
+                                                            cambios</a> </button>
                                                 </div>
                                             </div>
                                         </div>
