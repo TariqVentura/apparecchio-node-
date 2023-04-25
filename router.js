@@ -46,6 +46,8 @@ router.get('/clientes', services.clientes)
 
 router.get('/_updateClients/clients', services.updateClients)
 
+router.get('/historial/:key', services.historial)
+
 
 
 //API categorias

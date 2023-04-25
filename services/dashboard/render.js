@@ -99,7 +99,7 @@ exports.usuarios = (req, res) => {
 }
 
 exports.searchUsers = (req, res) => {
-    axios.get('http://localhost:80/api/users'  + '/' + req.params.key)
+    axios.get('http://localhost:80/api/users' + '/' + req.params.key)
         .then(function (response) {
             res.render('usuarios', { users: response.data })
         })
@@ -192,6 +192,16 @@ exports.updateClients = (req, res) => {
         .then(function (response) {
             console.log(response.data)
             res.render('_updateClients', { clients: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+exports.historial = (req, res) => {
+    axios.get('http://localhost/api/records' + '/' + req.params.key)
+        .then(function (response) {
+            res.render('historial', { historial: response.data, producto: req.params.key })
         })
         .catch(err => {
             res.send(err)
