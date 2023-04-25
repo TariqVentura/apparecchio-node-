@@ -7,6 +7,7 @@ const controllerUsers = require('./controllers/users')
 const controllerProducts = require('./controllers/products')
 const controllerClients = require('./controllers/clients')
 const controllerRecords = require('./controllers/record')
+const controllerOrders = require('./controllers/orders')
 
 router.get('/', services.login)
 
@@ -111,5 +112,8 @@ router.get('/api/clients/:key', controllerClients.searchClients)
 router.post('/api/records/', controllerRecords.createRecord)
 
 router.get('/api/records/:key', controllerRecords.findRecord)
+
+//API orders
+router.post('/api/orders', controllerOrders.createOrder)
 
 module.exports = router;

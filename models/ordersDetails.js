@@ -28,3 +28,7 @@ let orderDetailsSchema = new mongoose.Schema(
         versionKey: false
     }
 )
+
+const orderDetails = mongoose.model('orderDetails', orderDetailsSchema)
+
+module.exports = orderDetails
