@@ -218,6 +218,16 @@ exports.pedidos = (req, res) => {
         })
 }
 
+exports.searchOrders = (req, res) => {
+    axios.get('http://localhost/api/orders' + '/' + req.params.key)
+        .then(function (response) {
+            res.render('pedidos', { pedidos: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
 exports.detallesPedidos = (req, res) => {
     axios.get('http://localhost/api/details' + '/' + req.params.key)
         .then(function (response) {
