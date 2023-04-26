@@ -1,47 +1,45 @@
 <% if (information) { %>
-    <div class="contenedor">
+    <div class="contenedor" id="fondo">
         <div class="row">
-            <div class="col-12" id="fondo">
-                <form action="/api/products/update" method="post" id="formu">   
-                    <input type="text" value="<%= information._id %>" name="id" hidden>
-                    <div class="row">
-                        Producto: <input type="text" name="product" value="<%= information.product %>">
-                        Precio: <input type="text" name="price" value="<%= information.price %>">
-                    </div>
-                    <div class="row">
-                        descripcion: <textarea name="description" id="" cols="30"
-                            rows="5"><%= information.description %></textarea>
-                        categoria:
-                        <select class="form-select" aria-label="Default select example" name="categorie">
-                            <option selected>
-                                <%= information.categorie %>
+            <form action="/api/products/update" method="post" id="formu">
+                <input type="text" value="<%= information._id %>" name="id" hidden>
+                <h4>Actualizar Productos</h4>
+                <div class="row">
+                    Producto: <input type="text" name="product" value="<%= information.product %>">
+                    Precio: <input type="text" name="price" value="<%= information.price %>">
+                </div>
+                <div class="row">
+                    descripcion: <textarea name="description" id="" cols="30"
+                        rows="5"><%= information.description %></textarea>
+                    categoria:
+                    <select class="form-select" aria-label="Default select example" name="categorie">
+                        <option selected>
+                            <%= information.categorie %>
+                        </option>
+                        <% categories.forEach((data)=> { %>
+                            <option value="<%= data.categorie %>">
+                                <%= data.categorie %>
                             </option>
-                            <% categories.forEach((data)=> { %>
-                                <option value="<%= data.categorie %>">
-                                    <%= data.categorie %>
-                                </option>
-                                <% }) %>
-                        </select>
-                    </div>
-                    <div class="row">
-                        Marca:
-                        <select class="form-select" aria-label="Default select example" name="brand">
-                            <option selected>
-                                <%= information.brand %>
+                            <% }) %>
+                    </select>
+                </div>
+                <div class="row">
+                    Marca:
+                    <select class="form-select" aria-label="Default select example" name="brand">
+                        <option selected>
+                            <%= information.brand %>
+                        </option>
+                        <% brands.forEach((data)=> { %>
+                            <option value="<%= data.brand %>">
+                                <%= data.brand %>
                             </option>
-                            <% brands.forEach((data)=> { %>
-                                <option value="<%= data.brand %>">
-                                    <%= data.brand %>
-                                </option>
-                                <% }) %>
-                        </select>
-                        imagen: <input type="file" name="image">
-                    </div>
-                    <button type="submit">Enviar</button>
-                </form>
-            </div>
+                            <% }) %>
+                    </select>
+                    imagen: <input type="file" name="image">
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
         </div>
-
     </div>
 
 
