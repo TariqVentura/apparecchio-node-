@@ -130,26 +130,23 @@
                                     <div class="col">
                                         <form action="/api/users" method="post">
                                             <div class="row">
-                                                Nombre: <input type="text" name="name">
-                                                Apellido: <input type="text" name="lastname">
+                                                Nombre: <input type="text" name="name" required>
+                                                Apellido: <input type="text" name="lastname" required>
                                             </div>
                                             <div class="row">
-                                                Correo: <input type="email" name="email">
-                                                Carnet: <input type="text" name="identity_card">
+                                                Correo: <input type="email" name="email" required>
+                                                Carnet: <input type="text" name="identity_card" required>
                                             </div>
                                             <div class="row">
-                                                Usuario: <input type="text" name="user">
-                                                Contraseña: <input type="text" name="password">
+                                                Usuario: <input type="text" name="user" required>
+                                                Contraseña: <input type="password" name="password" required>
                                             </div>
-                                            <button type="submit">Enviar</button>
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
                                         </form>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>
