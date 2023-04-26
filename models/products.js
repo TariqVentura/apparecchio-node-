@@ -30,6 +30,12 @@ var productsSchema = new mongoose.Schema(
             type: String,
             require: true
         },
+        stock:{
+            type: Number
+        },
+        review:{
+            type: Number
+        },
         status: {
             type: Boolean,
             require: true

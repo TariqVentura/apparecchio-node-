@@ -88,7 +88,7 @@ exports.deleteCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar esta categoria, es posible que no exista` })
             } else {
-                res.redirect('/categorias')
+                
             }
         })
         .catch(err => {

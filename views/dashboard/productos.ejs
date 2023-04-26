@@ -102,8 +102,9 @@
                 <form method="post" id="search-form">
                     <div class="input-field  flex-nowrap col-12">
                         <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
-                        <input id="search" type="text" name="Buscar " required>
-                        <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
+                        <input id="search" type="text" name="Buscar " placeholder="Buscar" required>
+                        <button type="button" id="btn-search" class="btn waves-effect green tooltipped"
+                            data-tooltip="Buscar">
                             <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
                         </button>
                     </div>
@@ -113,7 +114,7 @@
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">
-                    Insertar Datos
+                    Crear Producto
                 </button>
 
                 <!-- Modal -->
@@ -122,7 +123,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Usuario</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Crear Producto</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -159,17 +160,16 @@
                                                         </option>
                                                         <% }) %>
                                                 </select>
+                                                Cantidad: <input type="number" name="stock">
                                                 imagen: <input type="file" name="image">
                                             </div>
-                                            <button type="submit">Enviar</button>
+                                            <br>
+                                            <button type="submit" class="btn btn-primary">Enviar</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
                                         </form>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>
@@ -195,22 +195,110 @@
                                         <p class="card-text">
                                             <%= data.description %>
                                         </p>
-                                        <h5>$<%= data.price %>
+                                        <h5>
+                                            Precio: $<%= data.price %>
                                         </h5>
                                         <h5>
-                                            <%= data.categorie %>
+                                            Categoria: <%= data.categorie %>
                                         </h5>
                                         <h5>
-                                            <%= data.brand %>
+                                            Marca: <%= data.brand %>
                                         </h5>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <button class="btn btn-info mt-3"><a href="/_updatePorducts/products?id=<%= data._id %>"
+                                <div class="d-grid gap-2 col-2">
+                                    <button class="btn btn-info mt-3"><a
+                                            href="/_updatePorducts/products?id=<%= data._id %>"
                                             class="text-light text-decoration-none">Actualizar</a></button>
                                     <br><br>
-                                    <button class="btn btn-danger mt-3"><a href="/api/products/delete?id=<%= data._id %>"
-                                        class="text-light text-decoration-none">Eliminar</a></button>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop<%= data._id %>delete">
+                                        Eliminar
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop<%= data._id %>delete"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar
+                                                        Producto
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Esta seguro que desea eliminar el producto <%= data.product %>?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancelar</button>
+                                                    <button class="btn btn-danger"><a
+                                                            href="/api/products/delete?id=<%= data._id %>"
+                                                            class="text-light text-decoration-none">Eliminar</a></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop<%= data._id %>stock">
+                                        Stock
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="staticBackdrop<%= data._id %>stock"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Stock: <%=
+                                                            data.stock %>
+                                                    </h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/api/records/" method="post">
+                                                        <div class="row mb-2 d-flex align-items-center">
+                                                            <div class="col-9">
+                                                                <div class="row d-flex flex-nowrap">
+                                                                    <div class="col">
+                                                                        <h5>Cantidad: </h5>
+                                                                    </div>
+                                                                    <div class="col">
+                                                                        <input type="number" name="stock" id=""
+                                                                            onKeyDown="return false">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-1">
+                                                                <input type="text" name="id" value="<%= data._id %>"
+                                                                    hidden>
+                                                                <input type="text" name="product"
+                                                                    value="<%= data.product %>" hidden>
+                                                                <input type="number" name="prevStock"
+                                                                    value="<%= data.stock %>" hidden>
+                                                                <button type="submit"
+                                                                    class="btn btn-success">Añadir</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary"><a
+                                                            href="/historial/<%= data.product %>"
+                                                            class="text-light text-decoration-none">Ver historial de
+                                                            cambios</a> </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

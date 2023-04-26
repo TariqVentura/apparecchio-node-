@@ -1,17 +1,27 @@
 <% if (clients) { %>
-    <form action="/api/clients/update" method="post">
-        <input type="text" name="id" value="<%= clients._id %>" hidden>
+    <div class="contenedor">
         <div class="row">
-            Nombre: <input type="text" name="name" value="<%= clients.name %>">
-            Apellido: <input type="text" name="lastname" value="<%= clients.lastname %>">
+            <div class="col-12" id="fondo">
+                <form action="/api/clients/update" method="post" id="formu">
+                    <input type="text" name="id" value="<%= clients._id %>" hidden>
+                    <h4>Actualizar Clientes</h4>
+                    <div class="row">
+                        Nombre: <input type="text" name="name" value="<%= clients.name %>">
+                        Apellido: <input type="text" name="lastname" value="<%= clients.lastname %>">
+                    </div>
+                    <div class="row">
+                        Correo: <input type="email" name="email" value="<%= clients.email %>">
+                        Carnet: <input type="text" name="identity_card" value="<%= clients.identity_card %>">
+                    </div>
+                    <div class="row">
+                        Usuario: <input type="text" name="user" value="<%= clients.user %>">
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+
         </div>
-        <div class="row">
-            Correo: <input type="email" name="email" value="<%= clients.email %>">
-            Carnet: <input type="text" name="identity_card" value="<%= clients.identity_card %>">
-        </div>
-        <div class="row">
-            Usuario: <input type="text" name="user" value="<%= clients.user %>">
-        </div>
-        <button type="submit">Enviar</button>
-    </form>
+
+    </div>
+
     <% } %>

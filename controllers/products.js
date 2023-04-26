@@ -15,6 +15,7 @@ exports.createProduct = (req, res) => {
         categorie: req.body.categorie,
         brand: req.body.brand,
         user: req.body.user,
+        stock: req.body.stock,
         image: req.body.image,
         status: true
     })
@@ -92,6 +93,30 @@ exports.deleteProduct = (req, res) => {
         })
         .catch(err => {
             res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
+        })
+
+}
+
+exports.searchProducts = async (req, res) => {
+    const key = req.params.key
+    products.find(
+        {
+            "$or": [
+                { product: { $regex: key } },
+                { categorie: { $regex: key } },
+                { brand: { $regex: key } }
+            ]
+        }
+    )
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Sin datos` })
+            } else {
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.send(err)
         })
 
 }
