@@ -51,6 +51,8 @@ router.get('/historial/:key', services.historial)
 
 router.get('/pedidos', services.pedidos)
 
+router.get('/pedidos/:key', services.searchOrders)
+
 router.get('/detallesPedidos/:key', services.detallesPedidos)
 
 
