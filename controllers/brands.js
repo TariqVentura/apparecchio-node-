@@ -21,7 +21,7 @@ exports.craeteBrand = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
             } else {
-                res.redirect('/marcas')
+                res.redirect('/confirmacion')
             }
         })
         .catch(err => {

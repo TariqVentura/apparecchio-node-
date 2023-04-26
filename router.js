@@ -55,6 +55,10 @@ router.get('/pedidos/:key', services.searchOrders)
 
 router.get('/detallesPedidos/:key', services.detallesPedidos)
 
+router.get('/confirmacion', services.confirmacion)
+
+router.get('/principal', services.principal)
+
 
 //API categorias
 router.post('/api/categories', controllerCategories.createCategorie)

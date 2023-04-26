@@ -387,3 +387,13 @@ h4{
     
 }
 
+#imagen-confirmacion{
+    width: 200px;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+h1{
+    text-align: center;
+}
+

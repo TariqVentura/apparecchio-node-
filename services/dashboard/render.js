@@ -237,3 +237,11 @@ exports.detallesPedidos = (req, res) => {
             res.send(err)
         })
 }
+
+exports.confirmacion = (req,res)=> {
+    res.render('confirmacion')
+}
+
+exports.principal = (req , res) => {
+    res.render('principal')
+}
