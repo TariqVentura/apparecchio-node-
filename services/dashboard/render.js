@@ -217,3 +217,13 @@ exports.pedidos = (req, res) => {
             res.send(err)
         })
 }
+
+exports.detallesPedidos = (req, res) => {
+    axios.get('http://localhost/api/details' + '/' + req.params.key)
+        .then(function (response) {
+            res.render('detallesPedidos', { detalles: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}

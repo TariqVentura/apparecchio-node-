@@ -120,8 +120,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <% pedidos.forEach((data)=> { %>
+                    <% pedidos.forEach((data)=> { %>
+                        <tr>
                             <td>
                                 <%= data.createdAt %>
                             </td>
@@ -132,7 +132,7 @@
                                 <%= data.status %>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-warning"><a href=""
+                                <button type="button" class="btn btn-warning"><a href="/detallesPedidos/<%= data._id %>"
                                         class="text-decoration-none text-light">Ver detalles</a></button>
                             </td>
                             <td>
@@ -168,9 +168,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                            <% }) %>
-                    </tr>
+                            </td>   
+                        </tr>
+                        <% }) %>
                 </tbody>
             </table>
         </div>

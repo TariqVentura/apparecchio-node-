@@ -51,6 +51,7 @@ router.get('/historial/:key', services.historial)
 
 router.get('/pedidos', services.pedidos)
 
+router.get('/detallesPedidos/:key', services.detallesPedidos)
 
 
 //API categorias
@@ -125,5 +126,7 @@ router.get('/api/orders/:key', controllerOrders.getOrders)
 router.get('/api/details/:key', controllerOrders.getDetails)
 
 router.get('/api/ordersUpdate/update', controllerOrders.finishOrder)
+
+router.post('/api/details', controllerOrders.createDetail)
 
 module.exports = router;
