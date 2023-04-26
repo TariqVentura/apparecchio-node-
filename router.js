@@ -49,6 +49,8 @@ router.get('/_updateClients/clients', services.updateClients)
 
 router.get('/historial/:key', services.historial)
 
+router.get('/pedidos', services.pedidos)
+
 
 
 //API categorias
@@ -114,6 +116,14 @@ router.post('/api/records/', controllerRecords.createRecord)
 router.get('/api/records/:key', controllerRecords.findRecord)
 
 //API orders
-router.post('/api/orders', controllerOrders.createOrder)
+router.post('/api/orders/', controllerOrders.createOrder)
+
+router.get('/api/orders/', controllerOrders.getOrders)
+
+router.get('/api/orders/:key', controllerOrders.getOrders)
+
+router.get('/api/details/:key', controllerOrders.getDetails)
+
+router.get('/api/ordersUpdate/update', controllerOrders.finishOrder)
 
 module.exports = router;

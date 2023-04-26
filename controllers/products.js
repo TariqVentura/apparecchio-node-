@@ -108,15 +108,15 @@ exports.searchProducts = async (req, res) => {
             ]
         }
     )
-    .then(data => {
-        if (!data) {
-            res.status(404).send({ message: `Sin datos` })
-        } else {
-            res.send(data)
-        }
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Sin datos` })
+            } else {
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
 
 }
