@@ -84,7 +84,7 @@ exports.deleteBrand = (req, res) => {
     const id = req.query.id
     brands.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
-            res.redirect('/marcas')
+            res.redirect('/eliminacion')
         })
         .catch(err => {
             res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })

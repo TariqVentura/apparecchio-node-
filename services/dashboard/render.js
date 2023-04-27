@@ -242,6 +242,14 @@ exports.confirmacion = (req,res)=> {
     res.render('confirmacion')
 }
 
+exports.eliminacion = (req,res) => {
+    res.render('eliminacion')
+}
+
 exports.principal = (req , res) => {
     res.render('principal')
+}
+
+exports.actualizacion = (req , res) => {
+    res.render('actualizacion')
 }
