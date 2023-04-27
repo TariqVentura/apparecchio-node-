@@ -91,44 +91,63 @@
     </div>
 </nav>
 
-<!-- es esta parte sale todo el contenido de los clientes (osea sus datos) -->
-<section class="home">
-    <div class="container">
-        <div class="text">
-            <h2>Clientes</h2>
-        </div>
-        <div class="row justify-content-md-center">
-            <div class="col-md-5">
-                <form method="post" id="search-form">
-                    <div class="input-field  flex-nowrap col-12">
-                        <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
-                        <input id="search" type="text" name="Buscar " required>
-                        <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
-                            <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
-                        </button>
+<div class="container">
+    <div class="row">
+        <% comments.forEach((data)=> { %>
+            <div class="col-sm-6">
+                <div class="card mb-3">
+                    <div class="row g-0 d-flex justify-content-center">
+                        <div class="col-12">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= data.client %>
+                                </h5>
+                                <p class="card-text">
+                                    <%= data.comment %>
+                                </p>
+                                <h5>
+                                    valoracion: <%= data.review %>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 col-2">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop<%= data._id %>delete">
+                                Eliminar
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="staticBackdrop<%= data._id %>delete" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar
+                                                Producto
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Esta seguro que desea eliminar el comentario del usuario <%= data.client %>?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button class="btn btn-danger"><a
+                                                    href="/api/delete/comments?id=<%= data._id %>"
+                                                    class="text-light text-decoration-none">Eliminar</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                </div>
             </div>
-            <div class="col-md-3">
+            <% }) %>
 
-                <div class="container">
-                    <div class="row">
-                      <div class="col">
-                        Column
-                      </div>
-                      <div class="col">
-                        <div class="col">
-                            Column
-                          </div>
-                      </div>
-                      <div class="col">
-                        <div class="col">
-                            Column
-                          </div>
-                      </div>
-                      <div class="col">
-                        Column
-                      </div>
-                    </div>
-                  </div>
-
+    </div>
+</div>

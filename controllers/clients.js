@@ -31,7 +31,7 @@ exports.createClient = (req, res) => {
                     if (!data) {
                         res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
                     } else {
-                        res.redirect('/confirmacion')
+                        res.redirect('/clientes')
                         console.log(req.body.name)
                     }
                 })
@@ -85,7 +85,7 @@ exports.updateClient = (req, res) => {
             if(!data){
                 res.status(404).send({ message : `cliente no encontrado`})
             }else{
-                res.redirect('/actualizacion')
+                res.redirect('/clientes')
             }
         })
         .catch(err =>{
@@ -100,7 +100,7 @@ exports.deleteClient = (req, res) => {
             if(!data){
                 res.status(404).send({ message : `cliente no encontrado`})
             }else{
-                res.redirect('/eliminacion')
+                res.redirect('/clientes')
             }
         })
         .catch(err =>{

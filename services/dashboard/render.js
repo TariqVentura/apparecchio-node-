@@ -242,14 +242,16 @@ exports.confirmacion = (req,res)=> {
     res.render('confirmacion')
 }
 
-exports.eliminacion = (req,res) => {
-    res.render('eliminacion')
-}
-
 exports.principal = (req , res) => {
     res.render('principal')
 }
 
-exports.actualizacion = (req , res) => {
-    res.render('actualizacion')
+exports.comentarios = (req, res) => {
+    axios.get('http://localhost/api/comments' + '/' + req.params.key)
+    .then(function (response) {
+        res.render('comentarios', { comments: response.data })
+    })
+    .catch(err => {
+        res.send(err)
+    })
 }

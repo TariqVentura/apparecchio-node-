@@ -8,6 +8,7 @@ const controllerProducts = require('./controllers/products')
 const controllerClients = require('./controllers/clients')
 const controllerRecords = require('./controllers/record')
 const controllerOrders = require('./controllers/orders')
+const controllerComments = require('./controllers/comments')
 
 router.get('/', services.login)
 
@@ -57,11 +58,9 @@ router.get('/detallesPedidos/:key', services.detallesPedidos)
 
 router.get('/confirmacion', services.confirmacion)
 
-router.get('/actualizacion', services.actualizacion)
-
-router.get('/eliminacion', services.eliminacion)
-
 router.get('/principal', services.principal)
+
+router.get('/comentarios/:key', services.comentarios)
 
 
 //API categorias
@@ -138,5 +137,12 @@ router.get('/api/details/:key', controllerOrders.getDetails)
 router.get('/api/ordersUpdate/update', controllerOrders.finishOrder)
 
 router.post('/api/details', controllerOrders.createDetail)
+
+//API comentarios
+router.post('/api/comments', controllerComments.createComment)
+
+router.get('/api/comments/:key', controllerComments.findComments)
+
+router.get('/api/delete/comments', controllerComments.deleteComment)
 
 module.exports = router;

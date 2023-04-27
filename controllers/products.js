@@ -25,7 +25,7 @@ exports.createProduct = (req, res) => {
         .save(newPorduct)
         .then(data => {
             if (data) {
-                res.redirect('/confirmacion')
+                res.redirect('/productos')
             } else {
                 res.status(500).semd({
                     message: "Error al guardar los datos"
@@ -73,7 +73,7 @@ exports.updateProduct = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: "No se encontro el producto" })
             } else {
-                res.redirect('/actualizacion')
+                res.redirect('/productos')
             }
         })
         .catch(err => {
@@ -88,7 +88,7 @@ exports.deleteProduct = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: 'Producto no encontrado' })
             } else {
-                res.redirect('/eliminacion')
+                res.redirect('/productos')
             }
         })
         .catch(err => {
