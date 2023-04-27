@@ -128,8 +128,8 @@
                             </div>
                             <div class="modal-body">
                                 <form action="/api/brands" method="post">
-                                    Nombre Categoria: <br>
-                                    <input type="text" name="brand"><br>
+                                    Nombre marca: <br>
+                                    <input type="text" name="brand" required><br>
                                     Imagen: <br>
                                     <input type="file" name="image"><br><br>
                                     <button type="submit" class="btn btn-primary">Enviar</button>
@@ -199,6 +199,9 @@
                 </div>
                 <% }) %>
         </div>
+        <input type="text" value="<%= confirmation %>" id="confirmation" hidden>
+        <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
+        <input type="text" value="<%= icon %>" id="icon" hidden>
     </main>
 </section>
 <script>

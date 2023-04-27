@@ -56,7 +56,7 @@ exports.findOneUser = (req, res) => {
             } else {
                 bcrypt.compare(req.body.password, user.password, function (err, result) {
                     if (result) {
-                        res.redirect('/categorias')
+                        res.redirect('/principal')
                     } else {
                         res.status(500).send({ message: "Contraseña incorrecta" })
                     }

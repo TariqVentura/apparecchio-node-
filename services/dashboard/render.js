@@ -3,7 +3,7 @@ const axios = require('axios')
 exports.categorias = (req, res) => {
     axios.get('http://localhost:80/api/categories')
         .then(function (response) {
-            res.render('categorias', { categories: response.data })
+            res.render('categorias', { categories: response.data,  mensaje: ". ", confirmation: false, icon:" ." })
         })
         .catch(err => {
             res.send(err)
@@ -23,7 +23,7 @@ exports.searchCategory = (req, res) => {
 exports.marcas = (req, res) => {
     axios.get('http://localhost:80/api/brands')
         .then(function (response) {
-            res.render('marcas', { branches: response.data })
+            res.render('marcas', { branches: response.data, mensaje: ". ", confirmation: false, icon:" ." })
         })
         .catch(err => {
             res.send(err)
@@ -244,6 +244,14 @@ exports.confirmacion = (req,res)=> {
 
 exports.principal = (req , res) => {
     res.render('principal')
+}
+
+exports.actualizacion = (req, res) =>{
+    res.render('actualizacion')
+}
+
+exports.eliminacion = (req, res) =>{
+    res.render('eliminacion')
 }
 
 exports.comentarios = (req, res) => {

@@ -1,10 +1,11 @@
 var categories = require('../models/categories')
+const axios = require('axios')
 
 exports.createCategorie = (req, res) => {
     //validar campos vacios
     if (!req.body) {
         res.status(400).send({ message: "El contenido no puede estar vacio" })
-        return
+        return 
     }
 
     //crear categoria
@@ -21,7 +22,13 @@ exports.createCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `Error al insertar los datos` })
             } else {
-                res.redirect('/categorias')
+                axios.get('http://localhost:80/api/categories')
+        .then(function (response) {
+            res.render('categorias', { categories: response.data,  mensaje: "Categoria Creada", confirmation: true, icon:"success" })
+        })
+        .catch(err => {
+            res.send(err)
+        })
             }
         })
         .catch(err => {

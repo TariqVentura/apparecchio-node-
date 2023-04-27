@@ -58,6 +58,10 @@ router.get('/detallesPedidos/:key', services.detallesPedidos)
 
 router.get('/confirmacion', services.confirmacion)
 
+router.get('/actualizacion', services.actualizacion)
+
+router.get('/eliminacion', services.eliminacion)
+
 router.get('/principal', services.principal)
 
 router.get('/comentarios/:key', services.comentarios)

@@ -1,34 +1,47 @@
 var brands = require('../models/brands')
+const axios = require('axios')
 
 exports.craeteBrand = (req, res) => {
     //validar campos vacios
-    if (!req.body) {
-        res.status(400).send({ message: "El contenido no puede estar vacio" })
-        return
-    }
-
-    //crear marca
-    const newBrand = new brands({
-        brand: req.body.brand,
-        image: req.body.image,
-        status: req.body.status
-    })
-
-    //guardar los datos en la base
-    newBrand
-        .save(newBrand)
-        .then(data => {
-            if (!data) {
-                res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
-            } else {
-                res.redirect('/confirmacion')
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Ocurrio un error mientras se ejecutaba el proceso"
+    if (!req.body.brand || !req.body.image) {
+        axios.get('http://localhost:80/api/brands')
+            .then(function (response) {
+                res.render('marcas', { branches: response.data, mensaje: "No se permiten campos vacios", confirmation: true, icon: 'error' })
             })
+            .catch(err => {
+                res.send(err)
+            })
+    } else {
+        const newBrand = new brands({
+            brand: req.body.brand,
+            image: req.body.image,
+            status: req.body.status
         })
+
+        //guardar los datos en la base
+        newBrand
+            .save(newBrand)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
+                } else {
+                    axios.get('http://localhost:80/api/brands')
+                        .then(function (response) {
+                            res.render('marcas', { branches: response.data, mensaje: "Marca Ingresada", confirmation: true, icon: 'success' })
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
+                }
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Ocurrio un error mientras se ejecutaba el proceso"
+                })
+            })
+    }
+//crear marca
+
 }
 
 exports.findBrand = (req, res) => {
@@ -60,23 +73,29 @@ exports.findBrand = (req, res) => {
 
 exports.updateBrand = (req, res) => {
     //validar campos vacios
-    if(!req.body){
+    if (!req.body) {
         return res
             .status(400)
-            .send({ message : "No se puede actualizar si todos los campos estan vacios"})
+            .send({ message: "No se puede actualizar si todos los campos estan vacios" })
     }
 
     const id = req.body.id;
-    brands.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+    brands.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
-            if(!data){
-                res.status(404).send({ message : `Marca no encontrada`})
-            }else{
-                res.redirect('/marcas')
+            if (!data) {
+                res.status(404).send({ message: `Marca no encontrada` })
+            } else {
+                axios.get('http://localhost:80/api/brands')
+                    .then(function (response) {
+                        res.render('marcas', { branches: response.data, mensaje: "Actualizacion Completada", confirmation: true, icon: "success" })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
             }
         })
-        .catch(err =>{
-            res.status(500).send({ message : "Ocurrio un error al intentar actualizar la informacion"})
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar actualizar la informacion" })
         })
 }
 
@@ -84,7 +103,13 @@ exports.deleteBrand = (req, res) => {
     const id = req.query.id
     brands.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
-            res.redirect('/marcas')
+            axios.get('http://localhost:80/api/brands')
+                .then(function (response) {
+                    res.render('marcas', { branches: response.data, mensaje: "Marca eliminada", confirmation: true, icon: "success" })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
         })
         .catch(err => {
             res.status(500).send({ message: "Ocurrio un error al intentar eliminar la informacion" })
@@ -100,15 +125,15 @@ exports.searchBrands = async (req, res) => {
             ]
         }
     )
-    .then(data => {
-        if (!data) {
-            res.status(404).send({ message: `Sin datos` })
-        } else {
-            res.send(data)
-        }
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Sin datos` })
+            } else {
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
 
 }
