@@ -21,7 +21,7 @@ exports.createCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `Error al insertar los datos` })
             } else {
-                res.redirect('/categorias')
+                res.redirect('/confirmacion')
             }
         })
         .catch(err => {
@@ -73,7 +73,7 @@ exports.updateCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `Categoria no encontrada` })
             } else {
-                res.redirect('/categorias')
+                res.redirect('/actualizacion')
             }
         })
         .catch(err => {
@@ -88,7 +88,7 @@ exports.deleteCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar esta categoria, es posible que no exista` })
             } else {
-                
+                res.redirect('/eliminacion')
             }
         })
         .catch(err => {

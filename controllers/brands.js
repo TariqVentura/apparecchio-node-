@@ -72,7 +72,7 @@ exports.updateBrand = (req, res) => {
             if(!data){
                 res.status(404).send({ message : `Marca no encontrada`})
             }else{
-                res.redirect('/marcas')
+                res.redirect('/actualizacion')
             }
         })
         .catch(err =>{

@@ -32,7 +32,7 @@ exports.createUser = (req, res) => {
                     if (!data) {
                         res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
                     } else {
-                        res.redirect('/usuarios')
+                        res.redirect('/confirmacion')
                     }
                 })
                 .catch(err => {
@@ -108,7 +108,7 @@ exports.updateUsers = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `usuario no encontrado` })
             } else {
-                res.redirect('/usuarios')
+                res.redirect('/actualizacion')
             }
         })
         .catch(err => {
@@ -123,7 +123,7 @@ exports.deleteUser = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar este usuario, es posible que no exista` })
             } else {
-                res.redirect('/usuarios')
+                res.redirect('/eliminacion')
             }
         })
         .catch(err => {
