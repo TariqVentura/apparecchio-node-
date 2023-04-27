@@ -91,7 +91,7 @@ exports.login = (req, res) => {
 exports.usuarios = (req, res) => {
     axios.get('http://localhost:80/api/users')
         .then(function (response) {
-            res.render('usuarios', { users: response.data })
+            res.render('usuarios', { users: response.data,  mensaje: ". ", confirmation: false, icon:" ."  })
         })
         .catch(err => {
             res.send(err)

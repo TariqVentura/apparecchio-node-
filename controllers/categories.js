@@ -3,39 +3,46 @@ const axios = require('axios')
 
 exports.createCategorie = (req, res) => {
     //validar campos vacios
-    if (!req.body) {
-        res.status(400).send({ message: "El contenido no puede estar vacio" })
-        return 
-    }
-
-    //crear categoria
-    const newCategorie = new categories({
-        categorie: req.body.categorie,
-        image: req.body.image,
-        status: req.body.status
-    })
-
-    //guardar los datos en la base
-    newCategorie
-        .save(newCategorie)
-        .then(data => {
-            if (!data) {
-                res.status(404).send({ message: `Error al insertar los datos` })
-            } else {
-                axios.get('http://localhost:80/api/categories')
-        .then(function (response) {
-            res.render('categorias', { categories: response.data,  mensaje: "Categoria Creada", confirmation: true, icon:"success" })
-        })
-        .catch(err => {
-            res.send(err)
-        })
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Ocurrio un error mientras se ejecutaba el proceso"
+    if (!req.body.categorie || !req.body.image) {
+        axios.get('http://localhost:80/api/categories')
+            .then(function (response) {
+                res.render('categorias', { categories: response.data, mensaje: "No se permiten campos vacios", confirmation: true, icon: "error" })
             })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+    else {
+        const newCategorie = new categories({
+            categorie: req.body.categorie,
+            image: req.body.image,
+            status: req.body.status
         })
+
+        //guardar los datos en la base
+        newCategorie
+            .save(newCategorie)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: `Error al insertar los datos` })
+                } else {
+                    axios.get('http://localhost:80/api/categories')
+                        .then(function (response) {
+                            res.render('categorias', { categories: response.data, mensaje: "Categoria Creada", confirmation: true, icon: "success" })
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
+                }
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Ocurrio un error mientras se ejecutaba el proceso"
+                })
+            })
+    }
+    //crear categoria
+
 }
 
 exports.findCategorie = (req, res) => {
@@ -80,7 +87,13 @@ exports.updateCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `Categoria no encontrada` })
             } else {
-                res.redirect('/categorias')
+                axios.get('http://localhost:80/api/categories')
+                    .then(function (response) {
+                        res.render('categorias', { categories: response.data, mensaje: "Categoria Actualizada", confirmation: true, icon: "success" })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
             }
         })
         .catch(err => {
@@ -95,7 +108,13 @@ exports.deleteCategorie = (req, res) => {
             if (!data) {
                 res.status(404).send({ message: `No se puede eliminar esta categoria, es posible que no exista` })
             } else {
-                
+                axios.get('http://localhost:80/api/categories')
+                    .then(function (response) {
+                        res.render('categorias', { categories: response.data, mensaje: "Categoria Eliminada", confirmation: true, icon: "success" })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
             }
         })
         .catch(err => {
@@ -112,15 +131,15 @@ exports.searchCategories = async (req, res) => {
             ]
         }
     )
-    .then(data => {
-        if (!data) {
-            res.status(404).send({ message: `Sin datos` })
-        } else {
-            res.send(data)
-        }
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Sin datos` })
+            } else {
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
 
 }
