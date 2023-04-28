@@ -149,7 +149,13 @@ exports.finishOrder = (req, res) => {
       if (!data) {
         res.status(404).send({ message: "No se encontro el pedido" });
       } else {
-        res.redirect("/pedidos");
+        axios.get('http://localhost/api/orders')
+          .then(function (response) {
+            res.render('pedidos', { pedidos: response.data, mensaje: "Se cancelo el pedido", confirmation: true, icon: "success" })
+          })
+          .catch(err => {
+            res.send(err)
+          })
       }
     })
     .catch((err) => {

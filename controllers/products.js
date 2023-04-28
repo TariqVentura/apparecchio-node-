@@ -3,26 +3,26 @@ const axios = require('axios')
 
 exports.createProduct = (req, res) => {
     //validar campos vacios
-    if (!req.body.product || !req.body.price || !req.body.description ) {
+    if (!req.body.product || !req.body.price || !req.body.description) {
         axios.get('http://localhost:80/api/products')
-                        .then(function (response) {
-                            axios.get('http://localhost:80/api/categories')
-                                .then(function (categorie) {
-                                    axios.get('http://localhost:80/api/brands')
-                                        .then(function (brand) {
-                                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data, mensaje: "No se permiten campos vacios", confirmation: true, icon: 'error' })
-                                        })
-                                        .catch(err => {
-                                            res.send(err)
-                                        })
-                                })
-                                .catch(err => {
-                                    res.send(err)
-                                })
-                        })
-                        .catch(err => {
-                            res.send(err)
-                        })
+            .then(function (response) {
+                axios.get('http://localhost:80/api/categories')
+                    .then(function (categorie) {
+                        axios.get('http://localhost:80/api/brands')
+                            .then(function (brand) {
+                                res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data, mensaje: "No se permiten campos vacios", confirmation: true, icon: 'error' })
+                            })
+                            .catch(err => {
+                                res.send(err)
+                            })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
+            })
+            .catch(err => {
+                res.send(err)
+            })
     } else {
         //crear marca
         const newPorduct = new products({
