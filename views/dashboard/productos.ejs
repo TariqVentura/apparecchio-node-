@@ -132,12 +132,12 @@
                                     <div class="col">
                                         <form action="/api/products" method="post">
                                             <div class="row">
-                                                Producto: <input type="text" name="product">
-                                                Precio: <input type="text" name="price">
+                                                Producto: <input type="text" name="product" required>
+                                                Precio: <input type="text" name="price" required>
                                             </div>
                                             <div class="row">
                                                 descripcion: <textarea name="description" id="" cols="30"
-                                                    rows="5"></textarea>
+                                                    rows="5" required></textarea>
                                                 categoria:
                                                 <select class="form-select" aria-label="Default select example"
                                                     name="categorie">
@@ -160,8 +160,8 @@
                                                         </option>
                                                         <% }) %>
                                                 </select>
-                                                Cantidad: <input type="number" name="stock">
-                                                imagen: <input type="file" name="image">
+                                                Cantidad: <input type="number" name="stock" required>
+                                                imagen: <input type="file" name="image" required>
                                             </div>
                                             <br>
                                             <button type="submit" class="btn btn-primary">Enviar</button>
@@ -308,8 +308,10 @@
                         </div>
                     </div>
                     <% }) %>
-
             </div>
+            <input type="text" value="<%= confirmation %>" id="confirmation" hidden>
+            <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
+            <input type="text" value="<%= icon %>" id="icon" hidden>
         </div>
     </main>
 </section>

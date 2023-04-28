@@ -1,9 +1,10 @@
 const bcrypt = require('bcrypt')
 let clients = require('../models/clients')
+const axios = require('axios')
 
 exports.createClient = (req, res) => {
-     //validar campos vacios
-     if (!req.body) {
+    //validar campos vacios
+    if (!req.body) {
         res.status(400).send({ message: "El contenido no puede estar vacio" })
         return
     }
@@ -31,7 +32,14 @@ exports.createClient = (req, res) => {
                     if (!data) {
                         res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
                     } else {
-                        res.redirect('/confirmacion')
+                        axios.get('http://localhost/api/clients')
+                            .then(function (response) {
+                                console.log(response.data)
+                                res.render('clientes', { clients: response.data, mensaje: "Cliente Creado", confirmation: true, icon: "success" })
+                            })
+                            .catch(err => {
+                                res.send(err)
+                            })
                         console.log(req.body.name)
                     }
                 })
@@ -73,38 +81,52 @@ exports.findClient = (req, res) => {
 
 exports.updateClient = (req, res) => {
     //validar campos vacios
-    if(!req.body){
+    if (!req.body) {
         return res
             .status(400)
-            .send({ message : "No se puede actualizar si todos los campos estan vacios"})
+            .send({ message: "No se puede actualizar si todos los campos estan vacios" })
     }
 
     const id = req.body.id
-    clients.findByIdAndUpdate(id, req.body, { useFindAndModify: false})
+    clients.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then(data => {
-            if(!data){
-                res.status(404).send({ message : `cliente no encontrado`})
-            }else{
-                res.redirect('/actualizacion')
+            if (!data) {
+                res.status(404).send({ message: `cliente no encontrado` })
+            } else {
+                axios.get('http://localhost/api/clients')
+                            .then(function (response) {
+                                console.log(response.data)
+                                res.render('clientes', { clients: response.data, mensaje: "Cliente Actualizado", confirmation: true, icon: "success" })
+                            })
+                            .catch(err => {
+                                res.send(err)
+                            })
             }
         })
-        .catch(err =>{
-            res.status(500).send({ message : "Ocurrio un error al intentar actualizar la informacion"})
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar actualizar la informacion" })
         })
 }
 
 exports.deleteClient = (req, res) => {
     const id = req.query.id
-    clients.findByIdAndDelete(id, req.body, { useFindAndModify: false})
+    clients.findByIdAndDelete(id, req.body, { useFindAndModify: false })
         .then(data => {
-            if(!data){
-                res.status(404).send({ message : `cliente no encontrado`})
-            }else{
-                res.redirect('/eliminacion')
+            if (!data) {
+                res.status(404).send({ message: `cliente no encontrado` })
+            } else {
+                axios.get('http://localhost/api/clients')
+                .then(function (response) {
+                    console.log(response.data)
+                    res.render('clientes', { clients: response.data, mensaje: "Cliente Elimando", confirmation: true, icon: "success" })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
             }
         })
-        .catch(err =>{
-            res.status(500).send({ message : "Ocurrio un error al intentar actualizar la informacion"})
+        .catch(err => {
+            res.status(500).send({ message: "Ocurrio un error al intentar actualizar la informacion" })
         })
 }
 
@@ -120,15 +142,15 @@ exports.searchClients = async (req, res) => {
             ]
         }
     )
-    .then(data => {
-        if (!data) {
-            res.status(404).send({ message: `Sin datos` })
-        } else {
-            res.send(data)
-        }
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Sin datos` })
+            } else {
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
 
 }

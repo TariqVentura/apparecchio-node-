@@ -47,7 +47,7 @@ exports.productos = (req, res) => {
                 .then(function (categorie) {
                     axios.get('http://localhost:80/api/brands')
                         .then(function (brand) {
-                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data })
+                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data,  mensaje: ". ", confirmation: false, icon:" ." })
                         })
                         .catch(err => {
                             res.send(err)
@@ -112,7 +112,7 @@ exports.clientes = (req, res) => {
     axios.get('http://localhost/api/clients')
         .then(function (response) {
             console.log(response.data)
-            res.render('clientes', { clients: response.data })
+            res.render('clientes', { clients: response.data, mensaje: ". ", confirmation: false, icon:" ." })
         })
         .catch(err => {
             res.send(err)
