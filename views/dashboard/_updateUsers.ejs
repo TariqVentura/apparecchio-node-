@@ -3,7 +3,7 @@
         <div class="row">
             <form action="/api/users/update" method="post" id="formu">
                 <h4>Actualizar Usuario</h4>
-                <input type="text" value="<%= information._id %>" name="id" hidden>
+                <input type="text" value="<%= information._id %>" name="id" hidden req>
                 <div class="row">
                     Nombre: <input type="text" name="name" value="<%= information.name%>" required>
                     Apellido: <input type="text" name="lastname" value="<%= information.lastname %>" required>
