@@ -1,7 +1,15 @@
+/**
+ * Se declaran las constantes para mandar a llamar al controlador y las dependencias de node
+ */
 const bcrypt = require('bcrypt')
-let clients = require('../models/clients')
+const clients = require('../models/clients')
 const axios = require('axios')
 
+/**
+ * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
+ * Haciendo uso ddel metodo SAVE de mongoose se guardan los datos en el servidor de Atlas
+ * Se ocupa la dependencia bcrypt para encriptar las contraseñas mediante una funcion
+ */
 exports.createClient = (req, res) => {
     //validar campos vacios
     if (!req.body.name || !req.body.lastname || !req.body.email || !req.body.identity_card || !req.body.user || !req.body.password) {
@@ -60,6 +68,11 @@ exports.createClient = (req, res) => {
 
 }
 
+/**
+ * Utilizamos un IF para confirmar si en la URL existen parametros
+ * Si existen parametros, capturamos este  parametro y lo utilizamos para con el metodo findById de mongoose hacer una busqueda en la base de datos utilizando el ID
+ * De no existir parametros se utilizar el metodo find de mongoose para obtener todos los registros de la coleccion
+ */
 exports.findClient = (req, res) => {
     //obtener un solo registro por medio del id
     if (req.query.id) {
@@ -87,6 +100,10 @@ exports.findClient = (req, res) => {
     }
 }
 
+/** 
+ * Se valida que no existan campos vacios
+ * Mediante el metodo findByIdAndUpdate actualizamos el documento haciendo uso del ID que se manda como parametro en la URL
+*/
 exports.updateClient = (req, res) => {
     //validar campos vacios
     if (!req.body) {
@@ -116,6 +133,9 @@ exports.updateClient = (req, res) => {
         })
 }
 
+/** 
+ * Mediante el metodo findByIdAndDelete eliminamos el documento haciendo uso del ID que se manda como parametro en la URL
+*/
 exports.deleteClient = (req, res) => {
     const id = req.query.id
     clients.findByIdAndDelete(id, req.body, { useFindAndModify: false })
@@ -138,6 +158,11 @@ exports.deleteClient = (req, res) => {
         })
 }
 
+/**  
+ * obtenemos el parametro de la URL (key) y lo utilizamos para hacer una 
+ * busqueda en la collecion donde se busca una coincidencia entre los 
+ * datos que tienen los campos que se especifica y el parametro que se envia
+*/
 exports.searchClients = async (req, res) => {
     const key = req.params.key
     clients.find(

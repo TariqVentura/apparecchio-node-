@@ -1,5 +1,12 @@
+/**
+ * Se declaran las constantes para mandar a llamar al controlador y las dependencias de node
+ */
 const comments = require('../models/comments')
 
+/**
+ * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
+ * Haciendo uso ddel metodo SAVE de mongoose se guardan los datos en el servidor de Atlas
+ */
 exports.createComment = (req, res) => {
     const newComment = new comments({
         comment: req.body.comment,
@@ -22,6 +29,11 @@ exports.createComment = (req, res) => {
         })
 }
 
+/**  
+ * obtenemos el parametro de la URL (key) y lo utilizamos para hacer una 
+ * busqueda en la collecion donde se busca una coincidencia entre los 
+ * datos que tienen los campos que se especifica y el parametro que se envia
+*/
 exports.findComments = (req, res) => {
     const key = req.params.key
     comments.find(
@@ -43,6 +55,9 @@ exports.findComments = (req, res) => {
         })
 }
 
+/** 
+ * Mediante el metodo findByIdAndDelete eliminamos el documento haciendo uso del ID que se manda como parametro en la URL
+*/
 exports.deleteComment = (req, res) => {
     const id = req.query.id
     comments.findByIdAndDelete(id, req.body, { useFindAndModify: false })

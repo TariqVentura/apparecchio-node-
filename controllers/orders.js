@@ -1,7 +1,14 @@
+/**
+ * Se declaran las constantes para mandar a llamar al controlador y las dependencias de node
+ */
 const orders = require("../models/orders");
 const orderDetails = require("../models/ordersDetails");
 const axios = require('axios')
 
+/**
+ * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
+ * Haciendo uso ddel metodo SAVE de mongoose se guardan los datos en el servidor de Atlas
+ */
 exports.createOrder = (req, res) => {
   //validar campos vacios
   if (!req.body) {
@@ -85,6 +92,11 @@ exports.createDetail = (req, res) => {
     });
 };
 
+/**  
+ * obtenemos el parametro de la URL (key) y lo utilizamos para hacer una 
+ * busqueda en la collecion donde se busca una coincidencia entre los 
+ * datos que tienen los campos que se especifica y el parametro que se envia
+*/
 exports.getOrders = (req, res) => {
   //obtener un solo registro por medio del id
   if (req.params.key) {
@@ -122,6 +134,11 @@ exports.getOrders = (req, res) => {
   }
 };
 
+/**  
+ * obtenemos el parametro de la URL (key) y lo utilizamos para hacer una 
+ * busqueda en la collecion donde se busca una coincidencia entre los 
+ * datos que tienen los campos que se especifica y el parametro que se envia
+*/
 exports.getDetails = (req, res) => {
   const key = req.params.key;
   orderDetails
@@ -140,6 +157,11 @@ exports.getDetails = (req, res) => {
     });
 };
 
+/** 
+ * Se valida que no existan campos vacios
+ * Mediante el metodo findByIdAndUpdate actualizamos el documento haciendo uso del ID que se manda como parametro en la URL
+ * le asignamos al campo status el tipo "cancelado"
+*/
 exports.finishOrder = (req, res) => {
   const id = req.query.id;
   const value = { status: "cancelado" };

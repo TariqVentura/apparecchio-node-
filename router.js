@@ -1,3 +1,7 @@
+/**
+ * Se declaran las constantes de las dependencias de node y de los controladores
+ * 
+ */
 const express = require('express')
 const router = express.Router()
 const services = require('./services/dashboard/render')
@@ -10,6 +14,11 @@ const controllerRecords = require('./controllers/record')
 const controllerOrders = require('./controllers/orders')
 const controllerComments = require('./controllers/comments')
 
+/**
+ * Se ocupa el metodo get para que al momento de que se envie a 
+ * la direccion con una '/' ocupe el service para renderizar 
+ * la informacion
+ */
 router.get('/', services.login)
 
 router.get('/categorias', services.categorias)
@@ -66,6 +75,11 @@ router.get('/principal', services.principal)
 
 router.get('/comentarios/:key', services.comentarios)
 
+/**
+ * Se crean las API de cada CRUD donde se ocupan el metodo POST y GET dependiendo de lo que necesite
+ * El metodo POST se ocupara mayormente para crear registros mientras que el metodo GET se ocupara 
+ * Para obetener informacion u ocupar la API sin necesitamos un proceso que no renderize informacion
+*/
 
 //API categorias
 router.post('/api/categories', controllerCategories.createCategorie)
@@ -149,4 +163,7 @@ router.get('/api/comments/:key', controllerComments.findComments)
 
 router.get('/api/delete/comments', controllerComments.deleteComment)
 
+/**
+ * Exportamos el router para que puedo ser accesido por el servidor
+ */
 module.exports = router;

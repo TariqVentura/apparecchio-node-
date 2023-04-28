@@ -1,6 +1,13 @@
+/**
+ * Se llama a la dependencia de mongoose
+ */
 const mongoose = require('mongoose')
 
-var usersSchema = new mongoose.Schema(
+/**
+ * se crea una variable que fuciona como un modelo de coleccion de mongo
+ * Se definen los documentos que almacenara y su tipo
+ */
+let usersSchema = new mongoose.Schema(
     {
         name: {
             type: String,
@@ -40,6 +47,12 @@ var usersSchema = new mongoose.Schema(
     }
 )
 
+/**
+ * se crea un objeto de tipo modelo de mongo con el que se creara la coleccion dentro del servidor de atlas
+ */
 const users = mongoose.model('users', usersSchema)
 
+/**
+ * Se exporta para que pueda acceder a el
+ */
 module.exports = users

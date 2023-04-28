@@ -1,9 +1,16 @@
+/**
+ * Se declaran las constantes para mandar a llamar al controlador y las dependencias de node
+ */
 const record = require('../models/record')
 const fecha = new Date()
 const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const products = require('../models/products')
 const axios = require('axios')
 
+/**
+ * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
+ * Haciendo uso ddel metodo SAVE de mongoose se guardan los datos en el servidor de Atlas
+ */
 exports.createRecord = (req, res) => {
     //validar campos vacios
     if (!req.body.product || !req.body.stock || !req.body.operation || !req.body.prevStock) {
@@ -82,6 +89,11 @@ exports.createRecord = (req, res) => {
     }
 }
 
+/**  
+ * obtenemos el parametro de la URL (key) y lo utilizamos para hacer una 
+ * busqueda en la collecion donde se busca una coincidencia entre los 
+ * datos que tienen los campos que se especifica y el parametro que se envia
+*/
 exports.findRecord = (req, res) => {
     const key = req.params.key
     record.find(

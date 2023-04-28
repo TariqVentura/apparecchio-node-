@@ -1,7 +1,14 @@
+/**
+ * Se declaran las constantes para mandar a llamar al controlador y las dependencias de node
+ */
 const bcrypt = require('bcrypt')
-var users = require('../models/users')
+const users = require('../models/users')
 const axios = require('axios')
 
+/**
+ * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
+ * Haciendo uso ddel metodo SAVE de mongoose se guardan los datos en el servidor de Atlas
+ */
 exports.createUser = (req, res) => {
     //validar campos vacios
     if (!req.body.name || !req.body.lastname || !req.body.email || !req.body.identity_card || !req.body.user || !req.body.password) {
@@ -53,14 +60,11 @@ exports.createUser = (req, res) => {
             })
         })
     }
-
-    //encriptar contraseña
-
-
-
-
 }
 
+/**
+ * Utilizamos el metodo FindOne de mongoose para encontrar al usuario ingresado y el metodo compare de bcrypt para validar la contraseña
+ */
 exports.findOneUser = (req, res) => {
     const username = req.body.user
     users.findOne({ user: username })
@@ -82,6 +86,11 @@ exports.findOneUser = (req, res) => {
         })
 }
 
+/**
+ * Utilizamos un IF para confirmar si en la URL existen parametros
+ * Si existen parametros, capturamos este  parametro y lo utilizamos para con el metodo findById de mongoose hacer una busqueda en la base de datos utilizando el ID
+ * De no existir parametros se utilizar el metodo find de mongoose para obtener todos los registros de la coleccion
+ */
 exports.findUsers = (req, res) => {
     if (req.query.id) {
         const id = req.query.id
@@ -108,6 +117,10 @@ exports.findUsers = (req, res) => {
     }
 }
 
+/** 
+ * Se valida que no existan campos vacios
+ * Mediante el metodo findByIdAndUpdate actualizamos el documento haciendo uso del ID que se manda como parametro en la URL
+*/
 exports.updateUsers = (req, res) => {
     //validar campos vacios
     if (!req.body) {
@@ -136,6 +149,10 @@ exports.updateUsers = (req, res) => {
         })
 }
 
+/** 
+ * Se valida que no existan campos vacios
+ * Mediante el metodo findByIdAndDelete eliminamos el documento haciendo uso del ID que se manda como parametro en la URL
+*/
 exports.deleteUser = (req, res) => {
     const id = req.query.id
     users.findByIdAndDelete(id, req.body, { useFindAndModify: false })
@@ -157,6 +174,11 @@ exports.deleteUser = (req, res) => {
         })
 }
 
+/**  
+ * obtenemos el parametro de la URL (key) y lo utilizamos para hacer una 
+ * busqueda en la collecion donde se busca una coincidencia entre los 
+ * datos que tienen los campos que se especifica y el parametro que se envia
+*/
 exports.searchUsers = async (req, res) => {
     const key = req.params.key
     users.find(
