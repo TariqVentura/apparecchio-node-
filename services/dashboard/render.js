@@ -211,7 +211,7 @@ exports.historial = (req, res) => {
 exports.pedidos = (req, res) => {
     axios.get('http://localhost/api/orders')
         .then(function (response) {
-            res.render('pedidos', { pedidos: response.data })
+            res.render('pedidos', { pedidos: response.data, mensaje: ". ", confirmation: false, icon:" ." })
         })
         .catch(err => {
             res.send(err)

@@ -4,52 +4,60 @@ const axios = require('axios')
 
 exports.createClient = (req, res) => {
     //validar campos vacios
-    if (!req.body) {
-        res.status(400).send({ message: "El contenido no puede estar vacio" })
-        return
-    }
-    //encriptar contraseña
-    const saltRounds = 10
-    const EncryptedPassword = req.body.password
-
-    bcrypt.genSalt(saltRounds, function (err, salt) {
-        bcrypt.hash(EncryptedPassword, salt, function (err, hash) {
-            //crear usuario
-            const newClient = new clients({
-                name: req.body.name,
-                lastname: req.body.lastname,
-                email: req.body.email,
-                identity_card: req.body.identity_card,
-                user: req.body.user,
-                password: hash,
-                status: true
+    if (!req.body.name || !req.body.lastname || !req.body.email || !req.body.identity_card || !req.body.user || !req.body.password) {
+        axios.get('http://localhost/api/clients')
+            .then(function (response) {
+                console.log(response.data)
+                res.render('clientes', { clients: response.data, mensaje: "No se permiten campos vacios", confirmation: true, icon: "error" })
             })
+            .catch(err => {
+                res.send(err)
+            })
+    } else {
+        //encriptar contraseña
+        const saltRounds = 10
+        const EncryptedPassword = req.body.password
 
-            //guardar datos en la base
-            newClient
-                .save(newClient)
-                .then(data => {
-                    if (!data) {
-                        res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
-                    } else {
-                        axios.get('http://localhost/api/clients')
-                            .then(function (response) {
-                                console.log(response.data)
-                                res.render('clientes', { clients: response.data, mensaje: "Cliente Creado", confirmation: true, icon: "success" })
-                            })
-                            .catch(err => {
-                                res.send(err)
-                            })
-                        console.log(req.body.name)
-                    }
+        bcrypt.genSalt(saltRounds, function (err, salt) {
+            bcrypt.hash(EncryptedPassword, salt, function (err, hash) {
+                //crear usuario
+                const newClient = new clients({
+                    name: req.body.name,
+                    lastname: req.body.lastname,
+                    email: req.body.email,
+                    identity_card: req.body.identity_card,
+                    user: req.body.user,
+                    password: hash,
+                    status: true
                 })
-                .catch(err => {
-                    res.status(500).send({
-                        message: err.message || "Ocurrio un error al intentar ingresar el usuario"
+
+                //guardar datos en la base
+                newClient
+                    .save(newClient)
+                    .then(data => {
+                        if (!data) {
+                            res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
+                        } else {
+                            axios.get('http://localhost/api/clients')
+                                .then(function (response) {
+                                    console.log(response.data)
+                                    res.render('clientes', { clients: response.data, mensaje: "Cliente Creado", confirmation: true, icon: "success" })
+                                })
+                                .catch(err => {
+                                    res.send(err)
+                                })
+                            console.log(req.body.name)
+                        }
                     })
-                })
+                    .catch(err => {
+                        res.status(500).send({
+                            message: err.message || "Ocurrio un error al intentar ingresar el usuario"
+                        })
+                    })
+            })
         })
-    })
+    }
+
 }
 
 exports.findClient = (req, res) => {
@@ -94,13 +102,13 @@ exports.updateClient = (req, res) => {
                 res.status(404).send({ message: `cliente no encontrado` })
             } else {
                 axios.get('http://localhost/api/clients')
-                            .then(function (response) {
-                                console.log(response.data)
-                                res.render('clientes', { clients: response.data, mensaje: "Cliente Actualizado", confirmation: true, icon: "success" })
-                            })
-                            .catch(err => {
-                                res.send(err)
-                            })
+                    .then(function (response) {
+                        console.log(response.data)
+                        res.render('clientes', { clients: response.data, mensaje: "Cliente Actualizado", confirmation: true, icon: "success" })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
             }
         })
         .catch(err => {
@@ -116,13 +124,13 @@ exports.deleteClient = (req, res) => {
                 res.status(404).send({ message: `cliente no encontrado` })
             } else {
                 axios.get('http://localhost/api/clients')
-                .then(function (response) {
-                    console.log(response.data)
-                    res.render('clientes', { clients: response.data, mensaje: "Cliente Elimando", confirmation: true, icon: "success" })
-                })
-                .catch(err => {
-                    res.send(err)
-                })
+                    .then(function (response) {
+                        console.log(response.data)
+                        res.render('clientes', { clients: response.data, mensaje: "Cliente Elimando", confirmation: true, icon: "success" })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
             }
         })
         .catch(err => {
