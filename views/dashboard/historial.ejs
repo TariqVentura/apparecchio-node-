@@ -91,9 +91,16 @@
 <section class="home">
     <div class="container">
         <div class="text">
-            <h2><%= producto %></h2>
+            <h2>
+                <%= producto %>
+            </h2>
         </div>
         <div class="row">
+            <div class="col-4">
+                
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="col-12">
                 <table class="table table-bordered table-hover text-light">
                     <thead>
@@ -109,7 +116,7 @@
                                     <%= data.stock %>
                                 </td>
                                 <td>
-                                    <%= data.createdAt %>
+                                    <%= data.date %>
                                 </td>
                             </tr>
                             <%})%>
@@ -145,3 +152,4 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/dashboard/fechas.js"></script>

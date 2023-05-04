@@ -3,7 +3,7 @@
  */
 const record = require('../models/record')
 const fecha = new Date()
-const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 const products = require('../models/products')
 const axios = require('axios')
 
@@ -13,7 +13,7 @@ const axios = require('axios')
  */
 exports.createRecord = (req, res) => {
     //validar campos vacios
-    if (!req.body.product || !req.body.stock || !req.body.operation || !req.body.prevStock) {
+    if (!req.body.stock) {
         axios.get('http://localhost:80/api/products')
             .then(function (response) {
                 axios.get('http://localhost:80/api/categories')
