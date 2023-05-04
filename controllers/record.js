@@ -3,7 +3,7 @@
  */
 const record = require('../models/record')
 const fecha = new Date()
-const month = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+const month = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
 const products = require('../models/products')
 const axios = require('axios')
 
@@ -38,7 +38,7 @@ exports.createRecord = (req, res) => {
             product: req.body.product,
             stock: req.body.stock,
             operation: req.body.operation,
-            date: fecha.getFullYear() + "-" + month[fecha.getMonth()] + "-" + fecha.getDate()
+            date: fecha.toUTCString()
         })
 
         //guardar datos en la base
