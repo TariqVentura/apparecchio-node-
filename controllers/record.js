@@ -38,7 +38,7 @@ exports.createRecord = (req, res) => {
             product: req.body.product,
             stock: req.body.stock,
             operation: req.body.operation,
-            date: fecha.toUTCString()
+            date: fecha.toISOString()
         })
 
         //guardar datos en la base

@@ -103,7 +103,7 @@ exports.getOrders = (req, res) => {
     const key = req.params.key;
     orders
       .find({
-        $or: [{ client: { $regex: key } }, { status: { $regex: key } }],
+        $or: [{ client: { $regex: key } }, { status: { $regex: key } }, { date: { $regex: key } }],
       })
       .then((data) => {
         if (!data) {

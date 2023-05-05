@@ -16,6 +16,10 @@ let ordersSchema = new mongoose.Schema(
         status: {
             type: ["en proceso", "finalizado", "cancelado"],
             default: "en proceso"
+        },
+        date: {
+            type: String,
+            require: true
         }
     },
     {
