@@ -69,8 +69,9 @@
                                     <form method="post" action="/login/api/clients">
                                         <div class="mb-5">
                                             <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                                            <input type="text" class="form-control text-light bg-dark" id="exampleInputEmail1"
-                                                aria-describedby="emailHelp" name="user" required>
+                                            <input type="text" class="form-control text-light bg-dark"
+                                                id="exampleInputEmail1" aria-describedby="emailHelp" name="user"
+                                                required>
                                         </div>
                                         <div class="mb-5">
                                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
@@ -113,16 +114,19 @@
                             id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img
                                 src="https://img.icons8.com/external-anggara-glyph-anggara-putra/29/584342/external-menu-user-interface-anggara-glyph-anggara-putra-2.png" />
-                            &nbsp; Categorias &nbsp;
+                            &nbsp; Marcas &nbsp;
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
                             <div class="container d-flex flex-nowrap">
                                 <div class="row">
                                     <% branches.forEach((data)=> { %>
-                                    <div class="col">
-                                        <li><a class="dropdown-item text-light" href="http://localhost:3000/productos/<%= data.brand %>"><%= data.brand %></a></li>
-                                    </div>
-                                    <% }) %>
+                                        <div class="col">
+                                            <li><a class="dropdown-item text-light"
+                                                    href="http://localhost:3000/productos/<%= data.brand %>">
+                                                    <%= data.brand %>
+                                                </a></li>
+                                        </div>
+                                        <% }) %>
                                 </div>
                             </div>
                         </ul>
@@ -132,37 +136,19 @@
                             id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img
                                 src="https://img.icons8.com/external-glyph-geotatah/30/584342/external-brand-customer-engagement-glyph-glyph-geotatah-4.png" />
-                            &nbsp; Marcas &nbsp;
+                            &nbsp; Categorias &nbsp;
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
                             <div class="contaier d-flex flex-nowrap">
                                 <div class="row">
-                                    <div class="col">
-                                        <li><a class="dropdown-item text-light"
-                                                href="/productos">Samsung</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">General Eletrics</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Whirlpool</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">AEG</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Fagor</a></li>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <li><a class="dropdown-item text-light" href="#">LG</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Sony</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Mabe</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Frigidaire</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Oster</a></li>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">
-                                        <li><a class="dropdown-item text-light" href="#">Philips</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Balay</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Bosch</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Beko</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Panasonic</a></li>
-                                    </div>
+                                    <% categories.forEach((data)=> { %>
+                                        <div class="col">
+                                            <li><a class="dropdown-item text-light"
+                                                    href="http://localhost:3000/productos/<%= data.categorie %>">
+                                                    <%= data.categorie %>
+                                                </a></li>
+                                        </div>
+                                        <% }) %>
                                 </div>
                             </div>
                         </ul>
