@@ -19,7 +19,25 @@ exports.cuenta = (req, res) => {
 }
 
 exports.producto = (req, res) => {
-    res.render('producto')
+    axios.get('http://localhost:3000/api/brands')
+        .then(function (response) {
+            axios.get('http://localhost:3000/api/categories')
+                .then(function (categorie) {
+                    axios.get('http://localhost:3000/api/products' + '/' + req.params.key)
+                        .then(function (product) {
+                            res.render('producto', { products: product.data, branches: response.data, categories: categorie.data })
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }
 
 exports.productos = (req, res) => {
@@ -28,12 +46,12 @@ exports.productos = (req, res) => {
             axios.get('http://localhost:3000/api/categories')
                 .then(function (categorie) {
                     axios.get('http://localhost:3000/api/products' + '/' + req.params.key)
-                .then(function (product) {
-                    res.render('productos', { products: product.data, branches: response.data, categories: categorie.data})
-                })
-                .catch(err => {
-                    res.send(err)
-                })
+                        .then(function (product) {
+                            res.render('productos', { products: product.data, branches: response.data, categories: categorie.data })
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
                 })
                 .catch(err => {
                     res.send(err)

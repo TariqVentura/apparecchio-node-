@@ -1,8 +1,12 @@
-<%- include('nav.ejs') -%>
+<% if (branches) { %>
+    <%- include('nav.ejs', {branches: branches}) -%>
+        <% } %>
     <!-- espacio para informacion del producto -->
     <div class="container mb-5">
-        <p class="fs-1 text-center">Centro de lavado MCL2040EPDG0 | 44 lb (lavado), 44 lb (secado)</p>
+        <% products.forEach((data)=> { %>
+        <p class="fs-1 text-center"><%= data.product %></p>
         <div class="row mt-3">
+            
             <div class="col-7 mt-3">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -15,7 +19,7 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="/images/not found.jpg" class="d-block w-100" alt="...">
+                            <img src="/images/<%=data.image%>" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
                             <img src="/images/not found.jpg" class="d-block w-100" alt="...">
@@ -38,7 +42,7 @@
             </div>
             <div class="col-5">
                 <div class="row mt-3 ms-3">
-                    <p class="fs-2">$199.99</p>
+                    <p class="fs-2">Precio: $<%= data.price %></p>
                 </div>
                 <div class="row ms-3">
                     <div class="col">
@@ -100,6 +104,7 @@
 
                 </div>
             </div>
+            <% }) %>
         </div>
         <p class="fs-3 mt-3">Comentarios</p>
         <div class="row">

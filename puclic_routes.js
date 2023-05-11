@@ -12,18 +12,23 @@ router.get('/carrito', services.carrito)
 
 router.get('/cuenta', services.cuenta)
 
-router.get('/producto', services.producto)
+router.get('/producto/:key', services.producto)
 
 router.get('/productos/:key', services.productos)
 
 //API marcas
 router.get('/api/brands', controllerBrands.findBrand)
+
+//API categorias
 router.get('/api/categories', controllerCategories.findCategorie)
 
 //API clients
 router.post('/login/api/clients', controllerCLients.logClient)
 
+
+
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)
+
 
 module.exports = router
