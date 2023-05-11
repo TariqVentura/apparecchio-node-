@@ -1,9 +1,9 @@
 const axios = require('axios')
 
 exports.index = (req, res) => {
-    axios.get('http://localhost:80/api/brands')
+    axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
-            res.render('index', { branches: response.data})
+            res.render('index', { branches: response.data })
         })
         .catch(err => {
             res.send(err)
@@ -23,5 +23,17 @@ exports.producto = (req, res) => {
 }
 
 exports.productos = (req, res) => {
-    res.render('productos')
+    axios.get('http://localhost:3000/api/brands')
+        .then(function (response) {
+            axios.get('http://localhost:3000/api/products' + '/' + req.params.key)
+                .then(function (product) {
+                    res.render('productos', { products: product.data, branches: response.data})
+                })
+                .catch(err => {
+                    res.send(err)
+                })
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }
