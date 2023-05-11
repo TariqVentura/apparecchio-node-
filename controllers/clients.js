@@ -187,3 +187,24 @@ exports.searchClients = async (req, res) => {
         })
 
 }
+
+exports.logClient = (req, res) => {
+    const username = req.body.user
+    clients.findOne({ user: username })
+        .then(user => {
+            if (!user) {
+                res.status(500).send({ message: "Usuario inexistente" })
+            } else {
+                bcrypt.compare(req.body.password, user.password, function (err, result) {
+                    if (result) {
+                        res.redirect('/')
+                    } else {
+                        res.status(500).send({ message: "Contraseña incorrecta" })
+                    }
+                })
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
+        })
+}

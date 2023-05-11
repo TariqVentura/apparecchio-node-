@@ -1,5 +1,13 @@
+const axios = require('axios')
+
 exports.index = (req, res) => {
-    res.render('index')
+    axios.get('http://localhost:80/api/brands')
+        .then(function (response) {
+            res.render('index', { branches: response.data})
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }
 
 exports.carrito = (req, res) => {
