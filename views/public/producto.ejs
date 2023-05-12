@@ -1,5 +1,5 @@
 <% if (branches) { %>
-    <%- include('nav.ejs', {branches: branches}) -%>
+    <%- include('nav.ejs', {branches: branches, comments: comments}) -%>
         <% } %>
     <!-- espacio para informacion del producto -->
     <div class="container mb-5">
@@ -107,22 +107,13 @@
             <% }) %>
         </div>
         <p class="fs-3 mt-3">Comentarios</p>
+        <% comments.forEach((data)=> { %>
         <div class="row">
             <div class="col-7 border-bottom">
-                <p class="fs-6">Nombre usuario</p>
-                <p class="fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae veritatis vero,
-                    excepturi, ab debitis accusantium autem laborum minima quo ducimus reiciendis distinctio sunt libero
-                    iure dolore, ad tempore. Unde!</p>
+                <p class="fs-6"><%= data.client %></p>
+                <p class="fs-6"><%= data.comment %></p>
             </div>
-
-        </div>
-        <div class="row mt-3">
-            <div class="col-7 border-bottom">
-                <p class="fs-6">Nombre usuario</p>
-                <p class="fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda vitae veritatis vero,
-                    excepturi, ab debitis accusantium autem laborum minima quo ducimus reiciendis distinctio sunt libero
-                    iure dolore, ad tempore. Unde!</p>
-            </div>
+            <% }) %>
         </div>
     </div>
     <%- include('footer.ejs') -%>

@@ -1,4 +1,5 @@
 const axios = require('axios')
+const comments = require('../../models/comments')
 
 exports.index = (req, res) => {
     axios.get('http://localhost:3000/api/brands')
@@ -25,7 +26,7 @@ exports.producto = (req, res) => {
                 .then(function (categorie) {
                     axios.get('http://localhost:3000/api/products' + '/' + req.params.key)
                         .then(function (product) {
-                            res.render('producto', { products: product.data, branches: response.data, categories: categorie.data })
+                            res.render('producto', { products: product.data, branches: response.data, categories: categorie.data, comments: response.data })
                         })
                         .catch(err => {
                             res.send(err)
