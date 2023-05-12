@@ -3,7 +3,7 @@ const axios = require('axios')
 exports.index = (req, res) => {
     axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
-            res.render('index', { branches: response.data })
+            res.render('index', { branches: response.data, categories: response.data })
         })
         .catch(err => {
             res.send(err)
