@@ -1,83 +1,91 @@
-<%- include('nav.ejs') -%>
-    <!-- registro de compras -->
-    <div class="container my-3">
-        <p class="fs-3">Carrito de Compras</p>
-        <div class="row mb-4">
-            <div class="col-10">
-                <div class="row mb-3">
-                    <div class="col-3">
-                        <img src="/images/not found.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-9">
-                        <p class="fs-5">Centro de lavado MCL2040EPDG0 | 44 lb (lavado), 44 lb (secado)</p>
-                        <p class="fs-6">Mayor capacidad, diseño fácil de usar y panel Touch amigable.</p>
-                        <div class="d-flex flex-row justify-content-between">
-                            <p class="fs-6">$199.99</p>
-                            <p class="fs-6">cantidad: 1</p>
-                            <p class="fs-6">Garantía: 12 meses</p>
-                            <p class="fs-6">Total: $199.99</p>
-                            <a href="">eliminar</a>
+<% if (branches ) { %>
+    <%- include('nav.ejs', {branches: branches, categories: categories}) -%>
+        <% } %>
+            <div class="container">
+                <div class="row my-3">
+                    <% orders.forEach((data)=> { %>
+                        <div class="col-3 my-2">
+                            <div class="card text-center">
+                                <div class="card-header">
+                                    <%= data.status %>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= data.name %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= data.user %>
+                                    </p>
+                                    <a href="#" class="btn btn-primary">Ver detalles</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    <%= data.date %>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-3">
-                        <img src="/images/not found.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-9">
-                        <p class="fs-5">Centro de lavado MCL2040EPDG0 | 44 lb (lavado), 44 lb (secado)</p>
-                        <p class="fs-6">Mayor capacidad, diseño fácil de usar y panel Touch amigable.</p>
-                        <div class="d-flex flex-row justify-content-between">
-                            <p class="fs-6">$199.99</p>
-                            <p class="fs-6">cantidad: 1</p>
-                            <p class="fs-6">Garantía: 12 meses</p>
-                            <p class="fs-6">Total: $199.99</p>
-                            <a href="">eliminar</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-3">
-                        <img src="/images/not found.jpg" alt="" class="img-fluid">
-                    </div>
-                    <div class="col-9">
-                        <p class="fs-5">Centro de lavado MCL2040EPDG0 | 44 lb (lavado), 44 lb (secado)</p>
-                        <p class="fs-6">Mayor capacidad, diseño fácil de usar y panel Touch amigable.</p>
-                        <div class="d-flex flex-row justify-content-between">
-                            <p class="fs-6">$199.99</p>
-                            <p class="fs-6">cantidad: 1</p>
-                            <p class="fs-6">Garantía: 12 meses</p>
-                            <p class="fs-6">Total: $199.99</p>
-                            <a href="">eliminar</a>
-                        </div>
-                    </div>
-                    <div class="col-2 mt-3">
-                        <a class="btn btn-primary text-light" data-bs-toggle="offcanvas" href="#offcanvasExample"
-                            role="button" aria-controls="offcanvasExample">
-                            Confirmar
-                        </a>
-                    </div>
+                        <% }) %>
+                            <div class="col-3 my-2">
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        Crear una nueva lista
+                                    </div>
+                                    <div class="card-body bg-dark">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary border-0" data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal">
+                                            <img width="50" height="50"
+                                                src="https://img.icons8.com/ios-filled/50/FFFFFF/add--v1.png"
+                                                alt="add--v1" />
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade text-dark" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Lista
+                                                        </h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <form action="/api/orders" method="post">
+                                                        <div class="modal-body">
+                                                            <div class="input-group mb-3">
+                                                                <span class="input-group-text"
+                                                                    id="inputGroup-sizing-default">Nombre: </span>
+                                                                <input type="text" class="form-control"
+                                                                    aria-label="Sizing example input"
+                                                                    aria-describedby="inputGroup-sizing-default"
+                                                                    name="name">
+                                                            </div>
+                                                            <div class="input-group mb-3" hidden>
+                                                                <span class="input-group-text"
+                                                                    id="inputGroup-sizing-default">Nombre: </span>
+                                                                <input type="text" class="form-control"
+                                                                    aria-label="Sizing example input"
+                                                                    aria-describedby="inputGroup-sizing-default"
+                                                                    name="user" value="tariqventura99">
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Cerrar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-primary">Guardar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                 </div>
             </div>
-            <div class="col-2 mx-auto">
-                <div class="offcanvas offcanvas-end text-light" tabindex="-1" id="offcanvasExample"
-                    aria-labelledby="offcanvasExampleLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Resumen de compra</h5>
-                        <button type="button" class="btn-close-white text-reset" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div>
-                            <p class="fs-4">Subtotal: $599.97</p>
-                            <p class="fs-4">Cantidad de productos: 3</p>
-                        </div>
-                        <div class="d-grid gap-2 col-10 mx-auto my-3">
-                            <button class="btn btn-primary" type="submit" onclick="confirmacion()">Confirmar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <%- include('footer.ejs') -%>
+            <input type="text" value="<%= confirmation %>" id="confirmation" hidden>
+            <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
+            <input type="text" value="<%= icon %>" id="icon" hidden>
+            
+            <%- include('footer.ejs') -%>
+            <script src="/alert.js"></script>

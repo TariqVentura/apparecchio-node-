@@ -4,65 +4,82 @@
 const orders = require("../models/orders");
 const orderDetails = require("../models/ordersDetails");
 const axios = require('axios')
+const fecha = new Date()
 
 /**
  * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
  * Haciendo uso ddel metodo SAVE de mongoose se guardan los datos en el servidor de Atlas
  */
 exports.createOrder = (req, res) => {
-  //validar campos vacios
-  if (!req.body) {
-    res.status(400).send({ message: "El contenido no puede estar vacio" });
-    return;
-  }
-
-  const newOrder = new orders({
-    client: req.body.user,
-  });
-
-  newOrder
-    .save(newOrder)
-    .then((data) => {
-      if (data) {
-        const newDetail = new orderDetails({
-          product: req.body.product,
-          price: req.body.price,
-          amount: req.body.amount,
-          total: Number(req.body.price) * Number(req.body.amount),
-          order: data._id
-        });
-
-        newDetail
-          .save(newDetail)
-          .then((detail) => {
-            if (detail) {
-              res.send(detail);
-            } else {
-              res.status(500).send({
-                message: "Error al guardar los datos",
-              });
-            }
+  if (!req.body.name) {
+    axios.get('http://localhost:3000/api/brands')
+      .then(function (response) {
+        axios.get('http://localhost:3000/api/categories')
+          .then(function (categorie) {
+            res.render('carrito', { branches: response.data, categories: categorie.data, mensaje: "No se permiten campos vacios", confirmation: true, icon: "error" })
           })
-          .catch((err) => {
-            res.status(500).send({
-              message:
-                err.message ||
-                "Ocurrio un error mientras se ejecutaba el proceso",
-            });
-          });
-      } else {
-        res.status(500).semd({
-          message: "Error al guardar los datos",
-        });
-      }
+          .catch(err => {
+            res.send(err)
+          })
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  } else {
+    let newDate = fecha.toISOString()
+    const newOrder = new orders({
+      name: req.body.name,
+      client: req.body.user,
+      date: newDate.substring(0, 10)
     })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Ocurrio un error mientras se ejecutaba el proceso",
-      });
-    });
-};
+
+    newOrder
+      .save(newOrder)
+      .then((order) => {
+        if (order) {
+          axios.get('http://localhost:3000/api/brands')
+            .then(function (response) {
+              axios.get('http://localhost:3000/api/categories')
+                .then(function (categorie) {
+                  axios.get('http://localhost:3000/api/orders')
+                    .then(function (order) {
+                      res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: "Se creo la Lista Exitosamente", confirmation: true, icon: "success" })
+                    })
+                    .catch(err => {
+                      res.send(err)
+                    })
+                })
+                .catch(err => {
+                  res.send(err)
+                })
+            })
+            .catch(err => {
+              res.send(err)
+            })
+        } else {
+          axios.get('http://localhost:3000/api/brands')
+            .then(function (response) {
+              axios.get('http://localhost:3000/api/categories')
+                .then(function (categorie) {
+                  axios.get('http://localhost:3000/api/orders')
+                    .then(function (order) {
+                      res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: "Ocurrio un error al crear la Lista", confirmation: true, icon: "error" })
+                    })
+                    .catch(err => {
+                      res.send(err)
+                    })
+                })
+                .catch(err => {
+                  res.send(err)
+                })
+            })
+            .catch(err => {
+              res.send(err)
+            })
+        }
+      })
+  }
+}
 
 exports.createDetail = (req, res) => {
   const newDetail = new orderDetails({
@@ -103,7 +120,7 @@ exports.getOrders = (req, res) => {
     const key = req.params.key;
     orders
       .find({
-        $or: [{ client: { $regex: key } }, { status: { $regex: key } }, { date: { $regex: key } }],
+        $or: [{ client: { $regex: key } }, { status: { $regex: key } }, { date: { $regex: key } }, { name: { $regex: key } }],
       })
       .then((data) => {
         if (!data) {
