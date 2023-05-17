@@ -197,7 +197,14 @@ exports.logClient = (req, res) => {
             } else {
                 bcrypt.compare(req.body.password, user.password, function (err, result) {
                     if (result) {
-                        res.redirect('/')
+                        if (req.session.authenticated) {
+                            res.json(req.session)
+                        } else {
+                            req.session.authenticated = true
+                            req.session.user = { username }
+                            req.session.visitas = req.session.visitas ? ++req.session.visitas :1
+                            res.render('')
+                        }
                     } else {
                         res.status(500).send({ message: "Contraseña incorrecta" })
                     }
@@ -207,4 +214,9 @@ exports.logClient = (req, res) => {
         .catch(err => {
             res.status(500).send({ message: err.message || "Ocurrio un error al tratar de obtener la informacion" })
         })
+}
+
+exports.logOutClient = (req, res) => {
+    req.session.authenticated = false
+    res.send('sesion cerrada')
 }

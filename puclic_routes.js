@@ -9,7 +9,7 @@ const controllerOrders = require('./controllers/orders')
 
 router.get('/', services.index)
 
-router.get('/carrito', services.carritoNoUser)
+router.get('/carrito', services.carrito)
 
 router.get('/carrito/:key', services.carrito)
 
@@ -27,10 +27,11 @@ router.get('/api/categories', controllerCategories.findCategorie)
 
 //API clients
 router.post('/login/api/clients', controllerCLients.logClient)
+router.get('/login/api/clients', controllerCLients.logOutClient)
 
 //API ordenes
 router.post('/api/orders', controllerOrders.createOrder)
-router.get('/api/orders/:key', controllerOrders.getOrders)
+router.get('/api/orders', controllerOrders.getOrders)
 
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)

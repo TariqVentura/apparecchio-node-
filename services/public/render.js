@@ -2,6 +2,7 @@ const axios = require('axios')
 const comments = require('../../models/comments')
 
 exports.index = (req, res) => {
+    console.log(req.session)
     axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
             res.render('index', { branches: response.data, categories: response.data, mensaje: ". ", confirmation: false, icon: " ." })
@@ -32,7 +33,7 @@ exports.carrito = (req, res) => {
         .then(function (response) {
             axios.get('http://localhost:3000/api/categories')
                 .then(function (categorie) {
-                    axios.get('http://localhost:3000/api/orders' + '/' + req.params.key)
+                    axios.get('http://localhost:3000/api/orders')
                         .then(function (order) {
                             res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " ." })
                         })

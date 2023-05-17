@@ -116,8 +116,8 @@ exports.createDetail = (req, res) => {
 */
 exports.getOrders = (req, res) => {
   //obtener un solo registro por medio del id
-  if (req.params.key) {
-    const key = req.params.key;
+  if (req.session.user) {
+    const key = req.session.user;
     orders
       .find({
         $or: [{ client: { $regex: key } }, { status: { $regex: key } }, { date: { $regex: key } }, { name: { $regex: key } }],
@@ -134,20 +134,7 @@ exports.getOrders = (req, res) => {
       });
   } else {
     //obetener todos los registros
-    orders
-      .find()
-      .then((product) => {
-        res.send(product);
-      })
-      .catch((err) => {
-        res
-          .status(500)
-          .send({
-            message:
-              err.message ||
-              "Ocurrio un error al tratar de obtener la informacion",
-          });
-      });
+    console.log(req.session)
   }
 };
 
