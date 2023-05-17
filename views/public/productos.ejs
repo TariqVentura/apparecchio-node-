@@ -1,117 +1,111 @@
-<% if (branches) { %>
-    <%- include('nav.ejs', {branches: branches, categories: categories}) -%>
-        <% } %>
-            <!-- espacio para productos -->
-            <div class="container">
-                <div class="row">
-                    <!-- espacio para filtros -->
-                    <div class="col-3 my-5 border-end d-sm-none d-md-block">
-                        <p class="fs-5 fw-bold pb-3">Filtros</p>
-                        <!-- filtro por tipos list group -->
-                        <div class="row">
-                            <p class="fs-6 pe-1">Tipo</p>
-                            <div class="col">
-                                <ul class="list-group mx-2 pb-2">
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1 " type="checkbox" value="" aria-label="...">
-                                        Frio
-                                    </li>
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                        Seco
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- filtro por capacidad list group -->
-                        <div class="row">
-                            <p class="fs-6 pt-3">Capacidad</p>
-                            <div class="col">
-                                <ul class="list-group mx-2 pb-2">
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                        5kg - 10kg
-                                    </li>
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                        11kg - 20kg
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- filtro por marca list group -->
-                        <div class="row">
-                            <p class="fs-6 pt-3">Marca</p>
-                            <div class="col">
-                                <ul class="list-group mx-2 pb-2">
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                        Samsung
-                                    </li>
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                        LG
-                                    </li>
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                        Panasonic
-                                    </li>
-                                    <li class="list-group-item bg-light">
-                                        <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                                        Mabe
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- filtro por precio range -->
-                        <div class="row">
-                            <p class="fs-6 pt-3">Precio</p>
-                            <div class="col">
-                                <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
-                            </div>
-                        </div>
-                        <div class="row d-grid gap-2 mx-auto py-3">
-                            <button type="submit" class="btn btn-outline-dark">Aplicar Filtros</button>
-                        </div>
-                    </div>
-                    <!-- espacio para productos -->
-                    <div class="col-9 mt-5">
-                        <div class="row mb-3">
-                            <div class="row mb-3">
-                                <div class="row d-flex justify-content-around" id="Nuevos-productos">
-                                    <% products.forEach((data)=> { %>
-                                        <div class="col-2 -align-self-start ">
-                                            <div class="card text-dark text-center bg-light border-1"
-                                                style="width: 13rem;">
-                                                <img src="/images/<%= data.image %>" class="card-img-top rounded"
-                                                    alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">
-                                                        <%= data.product %>
-                                                    </h5>
-                                                    <h5 class="card-title">
-                                                        Categoria:
-                                                        <%= data.categorie %>
-                                                    </h5>
-                                                    <h5 class="card-title">
-                                                        Marca:
-                                                        <%= data.brand %>
-                                                    </h5>
-                                                    <h5>
-                                                        Productos Existentes: <%= data.stock %>
-                                                    </h5>
-                                                    
-                                                        <p class="card-text"></p>
-                                                        <a href="/producto/<%= data.product %>"
-                                                            class="btn btn-primary rounded">Ver mas...</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <% }) %>
+<!-- espacio para productos -->
+<div class="container">
+    <div class="row">
+        <!-- espacio para filtros -->
+        <div class="col-3 my-5 border-end d-sm-none d-md-block">
+            <p class="fs-5 fw-bold pb-3">Filtros</p>
+            <!-- filtro por tipos list group -->
+            <div class="row">
+                <p class="fs-6 pe-1">Tipo</p>
+                <div class="col">
+                    <ul class="list-group mx-2 pb-2">
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1 " type="checkbox" value="" aria-label="...">
+                            Frio
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Seco
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- filtro por capacidad list group -->
+            <div class="row">
+                <p class="fs-6 pt-3">Capacidad</p>
+                <div class="col">
+                    <ul class="list-group mx-2 pb-2">
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            5kg - 10kg
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            11kg - 20kg
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- filtro por marca list group -->
+            <div class="row">
+                <p class="fs-6 pt-3">Marca</p>
+                <div class="col">
+                    <ul class="list-group mx-2 pb-2">
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Samsung
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            LG
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Panasonic
+                        </li>
+                        <li class="list-group-item bg-light">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            Mabe
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- filtro por precio range -->
+            <div class="row">
+                <p class="fs-6 pt-3">Precio</p>
+                <div class="col">
+                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                </div>
+            </div>
+            <div class="row d-grid gap-2 mx-auto py-3">
+                <button type="submit" class="btn btn-outline-dark">Aplicar Filtros</button>
+            </div>
+        </div>
+        <!-- espacio para productos -->
+        <div class="col-9 mt-5">
+            <div class="row mb-3">
+                <div class="row mb-3">
+                    <div class="row d-flex justify-content-around" id="Nuevos-productos">
+                        <% products.forEach((data)=> { %>
+                            <div class="col-2 -align-self-start ">
+                                <div class="card text-dark text-center bg-light border-1" style="width: 13rem;">
+                                    <img src="/images/<%= data.image %>" class="card-img-top rounded" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <%= data.product %>
+                                        </h5>
+                                        <h5 class="card-title">
+                                            Categoria:
+                                            <%= data.categorie %>
+                                        </h5>
+                                        <h5 class="card-title">
+                                            Marca:
+                                            <%= data.brand %>
+                                        </h5>
+                                        <h5>
+                                            Productos Existentes: <%= data.stock %>
+                                        </h5>
+
+                                        <p class="card-text"></p>
+                                        <a href="/producto/<%= data.product %>" class="btn btn-primary rounded">Ver
+                                            mas...</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <% }) %>
                     </div>
                 </div>
             </div>
-            <%- include('footer.ejs') -%>
+        </div>
+    </div>
+</div>

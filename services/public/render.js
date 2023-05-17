@@ -11,12 +11,28 @@ exports.index = (req, res) => {
         })
 }
 
+exports.carritoNoUser = (req, res) => {
+    axios.get('http://localhost:3000/api/brands')
+        .then(function (response) {
+            axios.get('http://localhost:3000/api/categories')
+                .then(function (categorie) {
+                    res.render('noUser', { branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " ." })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
 exports.carrito = (req, res) => {
     axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
             axios.get('http://localhost:3000/api/categories')
                 .then(function (categorie) {
-                    axios.get('http://localhost:3000/api/orders')
+                    axios.get('http://localhost:3000/api/orders' + '/' + req.params.key)
                         .then(function (order) {
                             res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " ." })
                         })
