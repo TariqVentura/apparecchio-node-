@@ -61,7 +61,13 @@ exports.producto = (req, res) => {
                 .then(function (categorie) {
                     axios.get('http://localhost:3000/api/products' + '/' + req.params.key)
                         .then(function (product) {
-                            res.render('producto', { products: product.data, branches: response.data, categories: categorie.data, comments: response.data, mensaje: ". ", confirmation: false, icon: " ." })
+                            axios.get('http://localhost:3000/api/comments' + '/' + req.params.key)
+                            .then(function(comments){
+                                res.render('producto', { products: product.data, branches: response.data, categories: categorie.data, comments: comments.data, mensaje: ". ", confirmation: false, icon: " ." })
+                            })
+                            .catch(err => {
+                                res.send(err)
+                            })
                         })
                         .catch(err => {
                             res.send(err)

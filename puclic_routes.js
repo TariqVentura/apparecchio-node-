@@ -6,6 +6,7 @@ const controllerCategories = require('./controllers/categories')
 const controllerCLients = require('./controllers/clients')
 const controllerProducts = require('./controllers/products')
 const controllerOrders = require('./controllers/orders')
+const controllerComments = require('./controllers/comments')
 
 router.get('/', services.index)
 
@@ -18,6 +19,8 @@ router.get('/cuenta', services.cuenta)
 router.get('/producto/:key', services.producto)
 
 router.get('/productos/:key', services.productos)
+
+router.get('/api/comments/:key', controllerComments.findComments )
 
 //API marcas
 router.get('/api/brands', controllerBrands.findBrand)
