@@ -7,7 +7,7 @@ exports.index = (req, res) => {
         .then(function (response) {
             axios.get('http://localhost:3000/api/categories')
                 .then(function (categories) {
-                    res.render('index', { branches: response.data, categories: response.data, mensaje: ". ", confirmation: false, icon: " ." })
+                    res.render('index', { branches: response.data, categories: categories.data, mensaje: ". ", confirmation: false, icon: " ." })
                 })
             
         })
