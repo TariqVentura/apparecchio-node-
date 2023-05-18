@@ -5,7 +5,11 @@ exports.index = (req, res) => {
     console.log(req.session)
     axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
-            res.render('index', { branches: response.data, categories: response.data, mensaje: ". ", confirmation: false, icon: " ." })
+            axios.get('http://localhost:3000/api/categories')
+                .then(function (categories) {
+                    res.render('index', { branches: response.data, categories: response.data, mensaje: ". ", confirmation: false, icon: " ." })
+                })
+            
         })
         .catch(err => {
             res.send(err)
