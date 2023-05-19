@@ -12,8 +12,6 @@ router.get('/', services.index)
 
 router.get('/carrito', services.carrito)
 
-router.get('/carrito/:key', services.carrito)
-
 router.get('/cuenta', services.cuenta)
 
 router.get('/producto/:key', services.producto)
@@ -34,7 +32,7 @@ router.get('/login/api/clients', controllerCLients.logOutClient)
 
 //API ordenes
 router.post('/api/orders', controllerOrders.createOrder)
-router.get('/api/orders', controllerOrders.getOrders)
+router.get('/api/orders/:key', controllerOrders.getOrders)
 
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)

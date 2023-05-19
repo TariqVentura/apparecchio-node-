@@ -29,11 +29,8 @@ connection()
 public.use(session({
     key: 'cookie_usuario',
     secret: 'session_secret',
-    resave: true,
+    resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://Tariq_Ventura:iQ46j4suUaBMre9u@cluster0.galz7rf.mongodb.net/?retryWrites=true&w=majority',
-    }),
     cookie: { maxAge: 180 * 60 * 1000 }
 }))
 

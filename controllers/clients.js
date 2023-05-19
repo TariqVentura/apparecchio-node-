@@ -201,9 +201,9 @@ exports.logClient = (req, res) => {
                             res.json(req.session)
                         } else {
                             req.session.authenticated = true
-                            req.session.user = { username }
+                            req.session.user = username
                             req.session.visitas = req.session.visitas ? ++req.session.visitas :1
-                            res.render('')
+                            res.redirect('/')
                         }
                     } else {
                         res.status(500).send({ message: "Contraseña incorrecta" })
@@ -217,6 +217,6 @@ exports.logClient = (req, res) => {
 }
 
 exports.logOutClient = (req, res) => {
-    req.session.authenticated = false
-    res.send('sesion cerrada')
+    req.session.destroy()
+    return res.redirect('/')
 }

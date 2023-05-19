@@ -2,30 +2,19 @@ const axios = require('axios')
 const comments = require('../../models/comments')
 
 exports.index = (req, res) => {
-    console.log(req.session)
+    let user 
+    if (req.session.user) {
+        user = req.session.user
+    } else {
+        user = 'no user'
+    }
     axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
             axios.get('http://localhost:3000/api/categories')
                 .then(function (categories) {
-                    res.render('index', { branches: response.data, categories: categories.data, mensaje: ". ", confirmation: false, icon: " ." })
+                    res.render('index', { branches: response.data, categories: categories.data, mensaje: ". ", confirmation: false, icon: " .", user : user })
                 })
-            
-        })
-        .catch(err => {
-            res.send(err)
-        })
-}
 
-exports.carritoNoUser = (req, res) => {
-    axios.get('http://localhost:3000/api/brands')
-        .then(function (response) {
-            axios.get('http://localhost:3000/api/categories')
-                .then(function (categorie) {
-                    res.render('noUser', { branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " ." })
-                })
-                .catch(err => {
-                    res.send(err)
-                })
         })
         .catch(err => {
             res.send(err)
@@ -33,25 +22,41 @@ exports.carritoNoUser = (req, res) => {
 }
 
 exports.carrito = (req, res) => {
-    axios.get('http://localhost:3000/api/brands')
-        .then(function (response) {
-            axios.get('http://localhost:3000/api/categories')
-                .then(function (categorie) {
-                    axios.get('http://localhost:3000/api/orders')
-                        .then(function (order) {
-                            res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " ." })
-                        })
-                        .catch(err => {
-                            res.send(err)
-                        })
-                })
-                .catch(err => {
-                    res.send(err)
-                })
-        })
-        .catch(err => {
-            res.send(err)
-        })
+    if (req.session.user) {
+        axios.get('http://localhost:3000/api/brands')
+            .then(function (response) {
+                axios.get('http://localhost:3000/api/categories')
+                    .then(function (categorie) {
+                        axios.get('http://localhost:3000/api/orders' + '/' + req.session.user)
+                            .then(function (order) {
+                                res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " .", user : req.session.user })
+                            })
+                            .catch(err => {
+                                res.send(err)
+                            })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    } else {
+        axios.get('http://localhost:3000/api/brands')
+            .then(function (response) {
+                axios.get('http://localhost:3000/api/categories')
+                    .then(function (categorie) {
+                        res.render('noUser', { branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " .", user : "no user" })
+                    })
+                    .catch(err => {
+                        res.send(err)
+                    })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
 }
 
 exports.cuenta = (req, res) => {
@@ -59,6 +64,12 @@ exports.cuenta = (req, res) => {
 }
 
 exports.producto = (req, res) => {
+    let user 
+    if (req.session.user) {
+        user = req.session.user
+    } else {
+        user = 'no user'
+    }
     axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
             axios.get('http://localhost:3000/api/categories')
@@ -66,12 +77,12 @@ exports.producto = (req, res) => {
                     axios.get('http://localhost:3000/api/products' + '/' + req.params.key)
                         .then(function (product) {
                             axios.get('http://localhost:3000/api/comments' + '/' + req.params.key)
-                            .then(function(comments){
-                                res.render('producto', { products: product.data, branches: response.data, categories: categorie.data, comments: comments.data, mensaje: ". ", confirmation: false, icon: " ." })
-                            })
-                            .catch(err => {
-                                res.send(err)
-                            })
+                                .then(function (comments) {
+                                    res.render('producto', { products: product.data, branches: response.data, categories: categorie.data, comments: comments.data, mensaje: ". ", confirmation: false, icon: " .", user: user })
+                                })
+                                .catch(err => {
+                                    res.send(err)
+                                })
                         })
                         .catch(err => {
                             res.send(err)
@@ -87,13 +98,19 @@ exports.producto = (req, res) => {
 }
 
 exports.productos = (req, res) => {
+    let user 
+    if (req.session.user) {
+        user = req.session.user
+    } else {
+        user = 'no user'
+    }
     axios.get('http://localhost:3000/api/brands')
         .then(function (response) {
             axios.get('http://localhost:3000/api/categories')
                 .then(function (categorie) {
                     axios.get('http://localhost:3000/api/products' + '/' + req.params.key)
                         .then(function (product) {
-                            res.render('productos', { products: product.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " ." })
+                            res.render('productos', { products: product.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " .", user: user })
                         })
                         .catch(err => {
                             res.send(err)
