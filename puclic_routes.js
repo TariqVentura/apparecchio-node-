@@ -34,6 +34,9 @@ router.get('/login/api/clients', controllerCLients.logOutClient)
 router.post('/api/orders', controllerOrders.createOrder)
 router.get('/api/orders/:key', controllerOrders.getOrders)
 
+//API detalles
+router.post('/api/details', controllerOrders.createDetail)
+
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)
 

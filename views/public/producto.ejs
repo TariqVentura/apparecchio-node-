@@ -1,8 +1,8 @@
 <!-- espacio para informacion del producto -->
 <div class="container mb-5">
-    <% products.forEach((data)=> { %>
+    <% products.forEach((product)=> { %>
         <p class="fs-1 text-center">
-            <%= data.product %>
+            <%= product.product %>
         </p>
         <div class="row mt-3">
             <input type="text" value="<%= user %>" disabled class="border-2 bg-light w-100">
@@ -18,105 +18,19 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel slide">
-                            <img src="/images/<%=data.image%>"  alt="Imagen Producto">
-                        </div>                
-                    </div>                    
+                            <img src="/images/<%=product.image%>" alt="Imagen Producto">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-5">
                 <div class="row mt-3 ms-3">
-                    <p class="fs-2">Precio: $<%= data.price %>
-                        <input type="number" max="<%= data.stock %>" min="1">
-                    </p>
+                    <p class="fs-2">Precio: $<%= product.price %></p>
                 </div>
                 <div class="row ms-3">
-                    <div class="col">
-                        <p>
-                            <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Añadir a una lista
-                            </button>
-                        </p>
-                        <div class="collapse" id="collapseExample">
-                            <div class="d-flex flex-row">
-                                <div class="card text-center">
-                                    <div class="card-header">
-                                        aa
-                                    </div>
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            aa
-                                        </h5>
-                                        <p class="card-text">
-                                            aa
-                                        </p>
-                                        <a href="#" class="btn btn-primary">Ver detalles</a>
-                                    </div>
-                                    <div class="card-footer text-muted">
-                                        aa
-                                    </div>
-                                </div>
-                                <div class="card text-center">
-                                    <div class="card-header">
-                                        Crear una nueva lista
-                                    </div>
-                                    <div class="card-body bg-dark">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary border-0" data-bs-toggle="modal"
-                                            data-bs-target="#exampleModal">
-                                            <img width="50" height="50"
-                                                src="https://img.icons8.com/ios-filled/50/FFFFFF/add--v1.png"
-                                                alt="add--v1" />
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade text-dark" id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">
-                                                            Nueva Lista
-                                                        </h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <form action="/api/orders" method="post">
-                                                        <div class="modal-body">
-                                                            <div class="input-group mb-3">
-                                                                <span class="input-group-text"
-                                                                    id="inputGroup-sizing-default">Nombre:
-                                                                </span>
-                                                                <input type="text" class="form-control"
-                                                                    aria-label="Sizing example input"
-                                                                    aria-describedby="inputGroup-sizing-default"
-                                                                    name="name">
-                                                            </div>
-                                                            <div class="input-group mb-3" hidden>
-                                                                <span class="input-group-text"
-                                                                    id="inputGroup-sizing-default">Nombre:
-                                                                </span>
-                                                                <input type="text" class="form-control"
-                                                                    aria-label="Sizing example input"
-                                                                    aria-describedby="inputGroup-sizing-default"
-                                                                    name="user" value="tariqventura99">
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                data-bs-dismiss="modal">Cerrar</button>
-                                                            <button type="submit"
-                                                                class="btn btn-primary">Guardar</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <% if(orders !='null' ) {%>
+                        <%- include('include/listas', {product: product}) %>
+                        <% } %>
                 </div>
                 <div class="row ms-3 mt-3">
                     <div class="col-4">
@@ -124,15 +38,15 @@
                             <a class="list-group-item list-group-item-action active bg-light border-dark"
                                 id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab"
                                 aria-controls="list-home">Descripción:</a>
-                            
+
                         </div>
                     </div>
                     <div class="col-8 bg-dark">
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="list-home" role="tabpanel"
                                 aria-labelledby="list-home-list">
-                                <%= data.description %>
-                            </div>                        
+                                <%= product.description %>
+                            </div>
                         </div>
                     </div>
                 </div>

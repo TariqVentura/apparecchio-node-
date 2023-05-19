@@ -1,5 +1,5 @@
 <% if(user=='no user' ) {%>
-    <%- include('nav/barra') -%>
+    <%- include('include/barra') -%>
         <!-- Barra de busqueda -->
         <div class="container py-3 border-bottom d-none d-lg-block d-print-block">
             <div class="row">
@@ -70,9 +70,9 @@
                 </div>
             </div>
         </div>
-        <%- include('nav/menu') -%>
+        <%- include('include/menu') -%>
             <%} else {%>
-                <%- include('nav/barra') -%>
+                <%- include('include/barra') -%>
                     <!-- Barra de busqueda -->
                     <div class="container py-3 border-bottom d-none d-lg-block d-print-block">
                         <div class="row">
@@ -102,5 +102,5 @@
                         </div>
                     </div>
                     <!-- Barra de navegacion -->
-                    <%- include('nav/menu') -%>
+                    <%- include('include/menu') -%>
                         <% } %>
