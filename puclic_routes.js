@@ -20,6 +20,8 @@ router.get('/productos/:key', services.productos)
 
 router.get('/api/comments/:key', controllerComments.findComments )
 
+router.get('/carrito/:key', services.orderDeatils)
+
 //API marcas
 router.get('/api/brands', controllerBrands.findBrand)
 
@@ -36,6 +38,7 @@ router.get('/api/orders/:key', controllerOrders.getOrders)
 
 //API detalles
 router.post('/api/details', controllerOrders.createDetail)
+router.get('/api/details/:key', controllerOrders.getDetails)
 
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)

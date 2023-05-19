@@ -154,3 +154,25 @@ exports.productos = (req, res) => {
             res.send(err)
         })
 }
+
+exports.orderDeatils = (req, res) => {
+    axios.get('http://localhost:3000/api/brands')
+        .then(function (response) {
+            axios.get('http://localhost:3000/api/categories')
+                .then(function (categorie) {
+                    axios.get('http://localhost:3000/api/details' + '/' + req.params.key)
+                        .then(function (detail) {
+                            res.render('orderDetails', { details: detail.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " .", user: req.session.user })
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
