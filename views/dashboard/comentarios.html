@@ -1,0 +1,143 @@
+<!-- codigo de el dashbard -->
+<nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <!--<img src="logo.png" alt="">-->
+            </span>
+            <div class="text logo-text">
+                <span class="name">Apparecchio</span>
+            </div>
+        </div>
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
+    <!-- Menu de opciones de administracion -->
+    <div class="menu-bar">
+        <div class="menu">
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="/principal">
+                        <i><img src="https://img.icons8.com/sf-black-filled/30/null/home.png" /></i>
+                        <span class="text nav-text">Dashboard</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/pedidos">
+                        <i><img src="https://img.icons8.com/ios-glyphs/30/null/shopping-cart--v1.png" /></i>
+                        <span class="text nav-text">Pedidos</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/clientes">
+                        <i><img src="https://img.icons8.com/sf-black-filled/30/null/conference-call.png" /></i>
+                        <span class="text nav-text">Clientes</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/productos">
+                        <i><img src="https://img.icons8.com/material-sharp/30/null/package.png" /></i>
+                        <span class="text nav-text">Productos</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/usuarios">
+                        <i><img src="https://img.icons8.com/fluency-systems-filled/30/null/user.png" /></i>
+                        <span class="text nav-text">Usuarios</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/categorias">
+                        <i><img
+                                src="https://img.icons8.com/external-others-inmotus-design/30/null/external-Check-List-check-others-inmotus-design.png" /></i>
+                        <span class="text nav-text">Categorias</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/marcas">
+                        <i><img
+                                src="https://img.icons8.com/external-sbts2018-outline-sbts2018/30/null/external-brand-basic-ui-elements-2.2-sbts2018-outline-sbts2018.png" /></i>
+                        <span class="text nav-text">Marcas</span>
+                    </a>
+                </li>
+
+                <li class="nav-link">
+                    <a href="/comentarios">
+                        <i><img src="https://img.icons8.com/ios-glyphs/30/null/messaging-.png" /></i>
+                        <span class="text nav-text">Comentarios</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <div class="bottom-content">
+            <li class="">
+                <a href="/">
+                    <i><img
+                            src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/30/null/external-exit-essentials-tanah-basah-glyph-tanah-basah.png" /></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+            <li class="mode">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<!-- es esta parte sale todo el contenido de los clientes (osea sus datos) -->
+<section class="home">
+    <div class="container">
+        <div class="text">
+            <h2>Comentarios</h2>
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-5">
+                <form method="post" id="search-form">
+                    <div class="input-field  flex-nowrap col-12">
+                        <img src="https://img.icons8.com/ios-filled/32/null/search--v1.png" />
+                        <input id="search" type="text" name="Buscar " required>
+                        <button type="submit" class="btn waves-effect green tooltipped" data-tooltip="Buscar">
+                            <img src="https://img.icons8.com/glyph-neue/40/null/ok--v1.png" />
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3">
+
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Imagen Producto</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Comentario</th>
+                        <th scope="col">.</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2">Larry the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
