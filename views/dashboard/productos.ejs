@@ -132,12 +132,12 @@
                                     <div class="col">
                                         <form action="/api/products" method="post">
                                             <div class="row">
-                                                Producto: <input type="text" name="product">
-                                                Precio: <input type="text" name="price">
+                                                Producto: <input type="text" name="product" required>
+                                                Precio: <input type="text" name="price" required>
                                             </div>
                                             <div class="row">
                                                 descripcion: <textarea name="description" id="" cols="30"
-                                                    rows="5"></textarea>
+                                                    rows="5" required></textarea>
                                                 categoria:
                                                 <select class="form-select" aria-label="Default select example"
                                                     name="categorie">
@@ -160,8 +160,8 @@
                                                         </option>
                                                         <% }) %>
                                                 </select>
-                                                Cantidad: <input type="number" name="stock">
-                                                imagen: <input type="file" name="image">
+                                                Cantidad: <input type="number" name="stock" onKeyDown="return false" required>
+                                                imagen: <input type="file" name="image" required>
                                             </div>
                                             <br>
                                             <button type="submit" class="btn btn-primary">Enviar</button>
@@ -273,7 +273,7 @@
                                                                     </div>
                                                                     <div class="col">
                                                                         <input type="number" name="stock" id=""
-                                                                            onKeyDown="return false">
+                                                                            onKeyDown="return false" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -299,13 +299,19 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <br><br>
+                                    <button type="button" class="btn btn-success"><a
+                                            href="/comentarios/<%= data.product %>"
+                                            class="text-light text-decoration-none">Comentarios</a> </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <% }) %>
-
             </div>
+            <input type="text" value="<%= confirmation %>" id="confirmation" hidden>
+            <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
+            <input type="text" value="<%= icon %>" id="icon" hidden>
         </div>
     </main>
 </section>

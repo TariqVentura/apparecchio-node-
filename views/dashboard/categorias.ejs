@@ -130,8 +130,8 @@
                                 </div>
                                 <div class="modal-body">
                                     <form action="/api/categories" method="post">
-                                        <input type="text" name="categorie">
-                                        <input type="file" name="image"><br><br>
+                                        <input type="text" name="categorie" required>
+                                        <input type="file" name="image" required><br><br>
                                         <button type="submit" class="btn btn-primary">Enviar</button>
                                         <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Cerrar</button>
@@ -204,6 +204,9 @@
                     <% }) %>
             </div>
         </div>
+        <input type="text" value="<%= confirmation %>" id="confirmation" hidden>
+        <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
+        <input type="text" value="<%= icon %>" id="icon" hidden>
     </main>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"

@@ -4,12 +4,12 @@
             <form action="/api/products/update" method="post" id="formu">
                 <input type="text" value="<%= information._id %>" name="id" hidden>
                 <div class="row">
-                    Producto: <input type="text" name="product" value="<%= information.product %>">
-                    Precio: <input type="text" name="price" value="<%= information.price %>">
+                    Producto: <input type="text" name="product" value="<%= information.product %>" required>
+                    Precio: <input type="text" name="price" value="<%= information.price %>" required>
                 </div>
                 <div class="row">
                     descripcion: <textarea name="description" id="" cols="30"
-                        rows="5"><%= information.description %></textarea>
+                        rows="5" required><%= information.description %></textarea>
                     categoria:
                     <select class="form-select" aria-label="Default select example" name="categorie">
                         <option selected>

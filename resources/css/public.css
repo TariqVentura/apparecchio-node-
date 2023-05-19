@@ -43,9 +43,9 @@ a{
     content: none;
 }
 
-.card-title{
+/* .card-title{
     margin-bottom: 15vh !important;
-}
+} */
 
 .text-dark{
     color: var(--dark) !important;

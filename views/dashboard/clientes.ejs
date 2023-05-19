@@ -123,16 +123,16 @@
                                     <div class="col">
                                         <form action="/api/clients" method="post">
                                             <div class="row">
-                                                Nombre: <input type="text" name="name">
-                                                Apellido: <input type="text" name="lastname">
+                                                Nombre: <input type="text" name="name" required>
+                                                Apellido: <input type="text" name="lastname" required>
                                             </div>
                                             <div class="row">
-                                                Correo: <input type="email" name="email">
-                                                Carnet: <input type="text" name="identity_card">
+                                                Correo: <input type="email" name="email" required>
+                                                Carnet: <input type="text" name="identity_card" required>
                                             </div>
                                             <div class="row">
-                                                Usuario: <input type="text" name="user">
-                                                Contraseña: <input type="text" name="password">
+                                                Usuario: <input type="text" name="user" required>
+                                                Contraseña: <input type="text" name="password" required>
                                             </div>
                                             <button type="submit">Enviar</button>
                                         </form>
@@ -229,6 +229,9 @@
                 </tbody>
             </table>
         </div>
+        <input type="text" value="<%= confirmation %>" id="confirmation" hidden>
+        <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
+        <input type="text" value="<%= icon %>" id="icon" hidden>
     </div>
 </section>
 <script>
