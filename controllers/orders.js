@@ -41,9 +41,9 @@ exports.createOrder = (req, res) => {
             .then(function (response) {
               axios.get('http://localhost:3000/api/categories')
                 .then(function (categorie) {
-                  axios.get('http://localhost:3000/api/orders')
+                  axios.get('http://localhost:3000/api/orders' + '/' + req.body.user)
                     .then(function (order) {
-                      res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: "Se creo la Lista Exitosamente", confirmation: true, icon: "success" })
+                      res.render('carrito', { orders: order.data, branches: response.data, categories: categorie.data, mensaje: "Lista creada exitosamente", confirmation: true, icon: "success", user: req.body.user })
                     })
                     .catch(err => {
                       res.send(err)

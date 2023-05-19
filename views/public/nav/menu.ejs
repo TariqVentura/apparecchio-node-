@@ -1,0 +1,73 @@
+<!-- Barra de navegacion -->
+<div class="container py-3 fs-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
+        <div class="container-fluid ">
+            <a class="navbar-brand fw-light fS-5 d-flex align-self-center" href="/"> <img
+                    src="https://img.icons8.com/ios-glyphs/30/584342/home-page--v1.png" /> &nbsp; Home &nbsp;
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-self-center" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img
+                                src="https://img.icons8.com/external-anggara-glyph-anggara-putra/29/584342/external-menu-user-interface-anggara-glyph-anggara-putra-2.png" />
+                            &nbsp; Marcas &nbsp;
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="container d-flex flex-nowrap">
+                                <div class="row">
+                                    <% branches.forEach((data)=> { %>
+                                        <div class="col">
+                                            <li><a class="dropdown-item text-light"
+                                                    href="http://localhost:3000/productos/<%= data.brand %>">
+                                                    <%= data.brand %>
+                                                </a></li>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-self-center" href="#"
+                            id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img
+                                src="https://img.icons8.com/external-glyph-geotatah/30/584342/external-brand-customer-engagement-glyph-glyph-geotatah-4.png" />
+                            &nbsp; Categorias &nbsp;
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+                            <div class="contaier d-flex flex-nowrap">
+                                <div class="row">
+                                    <% categories.forEach((data)=> { %>
+                                        <div class="col">
+                                            <li><a class="dropdown-item text-light"
+                                                    href="http://localhost:3000/productos/<%= data.categorie %>">
+                                                    <%= data.categorie %>
+                                                </a></li>
+                                        </div>
+                                        <% }) %>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-self-center" href="#ofertas"><img
+                                src="https://img.icons8.com/ios-glyphs/30/584342/discount--v1.png" /> &nbsp;
+                            Ofertas
+                            &nbsp;</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex align-self-center" href="#nuevo"><img
+                                src="https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/30/584342/external-new-sales-vitaliy-gorbachev-fill-vitaly-gorbachev.png" />
+                            &nbsp; Nuevos Productos &nbsp;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
