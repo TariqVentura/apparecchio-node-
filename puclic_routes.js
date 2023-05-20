@@ -35,10 +35,12 @@ router.get('/login/api/clients', controllerCLients.logOutClient)
 //API ordenes
 router.post('/api/orders', controllerOrders.createOrder)
 router.get('/api/orders/:key', controllerOrders.getOrders)
+router.post('/api/finishOrder', controllerOrders.finishOrder)
 
 //API detalles
 router.post('/api/details', controllerOrders.createDetail)
 router.get('/api/details/:key', controllerOrders.getDetails)
+router.get('/api/deleteDetail/:key', controllerOrders.deleteDetail)
 
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)

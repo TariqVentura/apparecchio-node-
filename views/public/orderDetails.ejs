@@ -7,6 +7,7 @@
                     <th scope="col">Precio</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Total</th>
+                    <th scope="col">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,15 +22,53 @@
                         <td>
                             <%= data.amount %>
                         </td>
-                        <td>
+                        <td class="total">
                             <%= data.total %>
+                        </td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#staticBackdrop<%= data._id %>delete">
+                                Eliminar producto
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade text-dark" id="staticBackdrop<%= data._id %>delete"
+                                data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Eliminar
+                                                Pedido
+                                            </h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Esta seguro que desea eliminar el producto <%= data.product %> (<%= data.amount %>)?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancelar</button>
+                                            <button class="btn btn-danger"><a
+                                                    href="/api/deleteDetail/<%= data._id %>"
+                                                    class="text-light text-decoration-none">Eliminar</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <% }) %>
             </tbody>
         </table>
     </div>
-    <div class="row">
-        
+    <div class="row w-25 my-3 ">
+        <form action="/api/finishOrder" method="post">
+            <input type="text" value="<%= order %>" name="id" hidden>
+            <button class="btn btn-success" type="submit">Comprar</button>
+        </form>
     </div>
 </div>
+<script src="/public/detalles.js"></script>

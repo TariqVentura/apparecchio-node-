@@ -174,27 +174,93 @@ exports.getDetails = (req, res) => {
  * le asignamos al campo status el tipo "cancelado"
 */
 exports.finishOrder = (req, res) => {
-  const id = req.query.id;
-  const value = { status: "cancelado" };
-  orders
-    .findByIdAndUpdate(id, value, { useFindAndModify: false })
-    .then((data) => {
+  let id = null
+  if (req.query.id) {
+    id = req.query.id;
+    const value = { status: "cancelado" };
+    orders
+      .findByIdAndUpdate(id, value, { useFindAndModify: false })
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({ message: "No se encontro el pedido" });
+        } else {
+          axios.get('http://localhost/api/orders')
+            .then(function (response) {
+              res.render('pedidos', { pedidos: response.data, mensaje: "Se cancelo el pedido", confirmation: true, icon: "success" })
+            })
+            .catch(err => {
+              res.send(err)
+            })
+        }
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .send({ message: "Ocurrio un error al intentar actualizar" });
+      });
+  } else if (req.body.id) {
+    id = req.body.id
+    const value = { status: "finalizado" };
+    orders
+      .findByIdAndUpdate(id, value, { useFindAndModify: false })
+      .then((data) => {
+        if (!data) {
+          res.status(404).send({ message: "No se encontro el pedido" });
+        } else {
+          let user
+          if (req.session.user) {
+            user = req.session.user
+          } else {
+            user = 'no user'
+          }
+          axios.get('http://localhost:3000/api/brands')
+            .then(function (response) {
+              axios.get('http://localhost:3000/api/categories')
+                .then(function (categories) {
+                  res.render('index', { branches: response.data, categories: categories.data, mensaje: "Compra completada", confirmation: true, icon: "success", user: user })
+                })
+
+            })
+            .catch(err => {
+              res.send(err)
+            })
+        }
+      })
+      .catch((err) => {
+        res
+          .status(500)
+          .send({ message: "Ocurrio un error al intentar actualizar" });
+      });
+  }
+
+};
+
+exports.deleteDetail = (req, res) => {
+  const key = req.params.key
+  orderDetails.findByIdAndDelete(key, req.body, { useFindAndModify: false })
+    .then(data => {
       if (!data) {
-        res.status(404).send({ message: "No se encontro el pedido" });
+        res.send('error')
       } else {
-        axios.get('http://localhost/api/orders')
+        let user
+        if (req.session.user) {
+          user = req.session.user
+        } else {
+          user = 'no user'
+        }
+        axios.get('http://localhost:3000/api/brands')
           .then(function (response) {
-            res.render('pedidos', { pedidos: response.data, mensaje: "Se cancelo el pedido", confirmation: true, icon: "success" })
+            axios.get('http://localhost:3000/api/categories')
+              .then(function (categories) {
+                res.render('index', { branches: response.data, categories: categories.data, mensaje: "Se elimino el producto", confirmation: true, icon: "success", user: user })
+              })
           })
           .catch(err => {
             res.send(err)
           })
       }
     })
-    .catch((err) => {
-      res
-        .status(500)
-        .send({ message: "Ocurrio un error al intentar actualizar" });
-    });
-};
-
+    .catch(err => {
+      res.send(err)
+    })
+}
