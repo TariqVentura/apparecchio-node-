@@ -60,7 +60,17 @@ exports.carrito = (req, res) => {
 }
 
 exports.cuenta = (req, res) => {
-    res.render('cuenta')
+    axios.get('http://localhost:3000/api/brands')
+    .then(function (response) {
+        axios.get('http://localhost:3000/api/categories')
+            .then(function (categories) {
+                res.render('cuenta', { branches: response.data, categories: categories.data, mensaje: ". ", confirmation: false, icon: " .", user: 'no user' })
+            })
+
+    })
+    .catch(err => {
+        res.send(err)
+    })
 }
 
 exports.producto = (req, res) => {

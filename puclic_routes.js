@@ -31,6 +31,7 @@ router.get('/api/categories', controllerCategories.findCategorie)
 //API clients
 router.post('/login/api/clients', controllerCLients.logClient)
 router.get('/login/api/clients', controllerCLients.logOutClient)
+router.post('/api/clients', controllerCLients.createClient)
 
 //API ordenes
 router.post('/api/orders', controllerOrders.createOrder)

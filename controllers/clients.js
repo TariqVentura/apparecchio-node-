@@ -46,15 +46,32 @@ exports.createClient = (req, res) => {
                         if (!data) {
                             res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
                         } else {
-                            axios.get('http://localhost/api/clients')
-                                .then(function (response) {
-                                    console.log(response.data)
-                                    res.render('clientes', { clients: response.data, mensaje: "Cliente Creado", confirmation: true, icon: "success" })
-                                })
-                                .catch(err => {
-                                    res.send(err)
-                                })
-                            console.log(req.body.name)
+                            if (req.body.public) {
+                                req.session.authenticated = true
+                                req.session.user = req.body.user
+                                axios.get('http://localhost:3000/api/brands')
+                                    .then(function (response) {
+                                        axios.get('http://localhost:3000/api/categories')
+                                            .then(function (categories) {
+                                                res.render('index', { branches: response.data, categories: categories.data, mensaje: "Cuenta creada", confirmation: true, icon: "success", user: req.body.user })
+                                            })
+
+                                    })
+                                    .catch(err => {
+                                        res.send(err)
+                                    })
+                            } else {
+                                axios.get('http://localhost/api/clients')
+                                    .then(function (response) {
+                                        console.log(response.data)
+                                        res.render('clientes', { clients: response.data, mensaje: "Cliente Creado", confirmation: true, icon: "success" })
+                                    })
+                                    .catch(err => {
+                                        res.send(err)
+                                    })
+                                console.log(req.body.name)
+                            }
+
                         }
                     })
                     .catch(err => {
@@ -202,7 +219,7 @@ exports.logClient = (req, res) => {
                         } else {
                             req.session.authenticated = true
                             req.session.user = username
-                            req.session.visitas = req.session.visitas ? ++req.session.visitas :1
+                            req.session.visitas = req.session.visitas ? ++req.session.visitas : 1
                             res.redirect('/')
                         }
                     } else {
