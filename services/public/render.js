@@ -12,7 +12,11 @@ exports.index = (req, res) => {
         .then(function (response) {
             axios.get('http://localhost:3000/api/categories')
                 .then(function (categories) {
-                    res.render('index', { branches: response.data, categories: categories.data, mensaje: ". ", confirmation: false, icon: " .", user: user })
+                    axios.get('http://localhost:3000/api/products')
+                        .then(function (product) {
+                            res.render('index', { branches: response.data, categories: categories.data, products: product.data, mensaje: ". ", confirmation: false, icon: " .", user: user })
+                        })
+                    
                 })
 
         })
@@ -61,16 +65,16 @@ exports.carrito = (req, res) => {
 
 exports.cuenta = (req, res) => {
     axios.get('http://localhost:3000/api/brands')
-    .then(function (response) {
-        axios.get('http://localhost:3000/api/categories')
-            .then(function (categories) {
-                res.render('cuenta', { branches: response.data, categories: categories.data, mensaje: ". ", confirmation: false, icon: " .", user: 'no user' })
-            })
+        .then(function (response) {
+            axios.get('http://localhost:3000/api/categories')
+                .then(function (categories) {
+                    res.render('cuenta', { branches: response.data, categories: categories.data, mensaje: ". ", confirmation: false, icon: " .", user: 'no user' })
+                })
 
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }
 
 exports.producto = (req, res) => {

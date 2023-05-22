@@ -46,5 +46,7 @@ router.get('/api/deleteDetail/:key', controllerOrders.deleteDetail)
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)
 
+router.get('/api/products', controllerProducts.findProduct)
+
 
 module.exports = router
