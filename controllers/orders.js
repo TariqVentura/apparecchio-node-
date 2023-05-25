@@ -83,57 +83,76 @@ exports.createOrder = (req, res) => {
 }
 
 exports.createDetail = (req, res) => {
-  const newDetail = new orderDetails({
-    product: req.body.product,
-    price: req.body.price,
-    amount: req.body.amount,
-    total: Number(req.body.price) * Number(req.body.amount),
-    order: req.body.order
-  });
+  if (!req.body.amount) {
+    axios.get('http://localhost:3000/api/brands')
+      .then(function (response) {
+        axios.get('http://localhost:3000/api/categories')
+          .then(function (categories) {
+            axios.get('http://localhost:3000/api/products')
+              .then(function (product) {
+                res.render('index', { branches: response.data, categories: categories.data, products: product.data, mensaje: "No se permiten campos vacios", confirmation: true, icon: "errorr", user: req.session.user })
+              })
 
-  newDetail
-    .save(newDetail)
-    .then((detail) => {
-      if (detail) {
-        const id = req.body.id
-        const value = { stock: Number(req.body.stock) - Number(req.body.amount) }
-        products.findByIdAndUpdate(id, value, { useFindAndModify: false })
-          .then(data => {
-            if (!data) {
-              res.send('error')
-            } else {
-              axios.get('http://localhost:3000/api/brands')
-                .then(function (response) {
-                  axios.get('http://localhost:3000/api/categories')
-                    .then(function (categories) {
-                      axios.get('http://localhost:3000/api/products')
-                        .then(function (product) {
-                          res.render('index', { branches: response.data, categories: categories.data, products: product.data, mensaje: "producto agregado", confirmation: true, icon: "success", user: req.session.user })
-                        })
-
-                    })
-
-                })
-                .catch(err => {
-                  res.send(err)
-                })
-            }
           })
-          .catch(err => {
-            res.send(err)
-          })
-      } else {
-        res.status(500).send({
-          message: "Error al guardar los datos",
-        });
-      }
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Ocurrio un error mientras se ejecutaba el proceso",
-      });
+
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  } else {
+    const newDetail = new orderDetails({
+      product: req.body.product,
+      price: req.body.price,
+      amount: req.body.amount,
+      total: Number(req.body.price) * Number(req.body.amount),
+      order: req.body.order
     });
+
+    newDetail
+      .save(newDetail)
+      .then((detail) => {
+        if (detail) {
+          const id = req.body.id
+          const value = { stock: Number(req.body.stock) - Number(req.body.amount) }
+          products.findByIdAndUpdate(id, value, { useFindAndModify: false })
+            .then(data => {
+              if (!data) {
+                res.send('error')
+              } else {
+                axios.get('http://localhost:3000/api/brands')
+                  .then(function (response) {
+                    axios.get('http://localhost:3000/api/categories')
+                      .then(function (categories) {
+                        axios.get('http://localhost:3000/api/products')
+                          .then(function (product) {
+                            res.render('index', { branches: response.data, categories: categories.data, products: product.data, mensaje: "producto agregado", confirmation: true, icon: "success", user: req.session.user })
+                          })
+
+                      })
+
+                  })
+                  .catch(err => {
+                    res.send(err)
+                  })
+              }
+            })
+            .catch(err => {
+              res.send(err)
+            })
+        } else {
+          res.status(500).send({
+            message: "Error al guardar los datos",
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message:
+            err.message || "Ocurrio un error mientras se ejecutaba el proceso",
+        });
+      });
+  }
+
 };
 
 /**  
