@@ -2,31 +2,52 @@
  * Se declaran las constantes para mandar a llamar al controlador y las dependencias de node
  */
 const comments = require('../models/comments')
+const axios = require('axios')
 
 /**
  * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
  * Haciendo uso ddel metodo SAVE de mongoose se guardan los datos en el servidor de Atlas
  */
 exports.createComment = (req, res) => {
-    const newComment = new comments({
-        comment: req.body.comment,
-        review: req.body.review,
-        product: req.body.product,
-        client: req.body.user
-    })
+    if (!req.body.user || !req.body.comment || !req.body.review || !req.body.product) {
+        res.send('no se permiten campos vacios')
+    } else {
+        const newComment = new comments({
+            comment: req.body.comment,
+            review: Number(req.body.review),
+            client: req.body.user,
+            product: req.body.product
+        })
 
-    newComment
-        .save(newComment)
-        .then(data => {
-            if (data) {
-                res.send(data)
-            } else {
-                res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
-            }
-        })
-        .catch(err => {
-            res.send(err)
-        })
+        newComment
+            .save(newComment)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: `Ocurrio un error al intentar subir los datos` })
+                } else {
+                    axios.get('http://localhost:3000/api/brands')
+                        .then(function (response) {
+                            axios.get('http://localhost:3000/api/categories')
+                                .then(function (categories) {
+                                    axios.get('http://localhost:3000/api/products')
+                                        .then(function (product) {
+                                            res.render('index', { branches: response.data, categories: categories.data, products: product.data, mensaje: "Comentario creado exitosamente", confirmation: true, icon: "success", user: req.body.user })
+                                        })
+
+                                })
+
+                        })
+                        .catch(err => {
+                            res.send(err)
+                        })
+                }
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Ocurrio un error al intentar ingresar el comentario"
+                })
+            })
+    }
 }
 
 /**  

@@ -20,7 +20,7 @@ router.get('/productos/:key', services.productos)
 
 router.get('/api/comments/:key', controllerComments.findComments )
 
-router.get('/carrito/:key', services.orderDeatils)
+router.get('/carrito/:key/:status', services.orderDeatils)
 
 //API marcas
 router.get('/api/brands', controllerBrands.findBrand)
@@ -47,6 +47,9 @@ router.get('/api/deleteDetail/:key', controllerOrders.deleteDetail)
 router.get('/api/products/:key', controllerProducts.searchProducts)
 
 router.get('/api/products', controllerProducts.findProduct)
+
+//API comentarios
+router.post('/api/comments', controllerComments.createComment)
 
 
 module.exports = router

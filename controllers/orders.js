@@ -3,6 +3,7 @@
  */
 const orders = require("../models/orders");
 const orderDetails = require("../models/ordersDetails");
+const products = require('../models/products')
 const axios = require('axios')
 const fecha = new Date()
 
@@ -94,7 +95,33 @@ exports.createDetail = (req, res) => {
     .save(newDetail)
     .then((detail) => {
       if (detail) {
-        res.send(detail);
+        const id = req.body.id
+        const value = { stock: Number(req.body.stock) - Number(req.body.amount) }
+        products.findByIdAndUpdate(id, value, { useFindAndModify: false })
+          .then(data => {
+            if (!data) {
+              res.send('error')
+            } else {
+              axios.get('http://localhost:3000/api/brands')
+                .then(function (response) {
+                  axios.get('http://localhost:3000/api/categories')
+                    .then(function (categories) {
+                      axios.get('http://localhost:3000/api/products')
+                        .then(function (product) {
+                          res.render('index', { branches: response.data, categories: categories.data, products: product.data, mensaje: "producto agregado", confirmation: true, icon: "success", user: req.session.user })
+                        })
+
+                    })
+
+                })
+                .catch(err => {
+                  res.send(err)
+                })
+            }
+          })
+          .catch(err => {
+            res.send(err)
+          })
       } else {
         res.status(500).send({
           message: "Error al guardar los datos",
@@ -242,6 +269,7 @@ exports.deleteDetail = (req, res) => {
       if (!data) {
         res.send('error')
       } else {
+
         let user
         if (req.session.user) {
           user = req.session.user

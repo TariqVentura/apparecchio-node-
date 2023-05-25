@@ -21,6 +21,8 @@
                                 <p class="card-text">
                                     <input type="text" name="product" value="<%= product.product %>" hidden>
                                     <input type="number" name="price" value="<%= product.price %>" hidden>
+                                    <input type="number" name="stock" value="<%= product.stock %>" hidden>
+                                    <input type="text" name="id" value="<%= product._id %>" hidden>
                                     <input type="number" max="<%= data.stock %>" min="1" name="amount" required>
                                     <input type="text" name="order" value="<%= data._id %>" hidden>
                                 </p>

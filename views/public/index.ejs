@@ -32,40 +32,6 @@
         </button>
     </div>
 </div>
-<!-- Cards con productos nuevos -->
-<div class="container bg-light py-3 border-bottom" id="nuevo">
-    <p class="fs-3 pb-3">Nuevos Productos</p>
-    <div class="row d-flex justify-content-around" id="Nuevos-productos">
-        <% products.forEach((data)=> { %>
-            <div class="col-2 -align-self-start">
-                <div class="card text-dark text-center bg-light border-1" style="width: 13rem;">
-                    <img src="/images/<%= data.image %>" class="card-img-top rounded" alt="Imagen del Producto">
-                    <div class="card-body d-grid gap-2">
-                        <h5 class="card-title">
-                            <%= data.product %>
-                        </h5>
-                        <h5 class="card-title">
-                            Categoria:
-                            <%= data.categorie %>
-                        </h5>
-                        <h5 class="card-title">
-                            Marca:
-                            <%= data.brand %>
-                        </h5>
-                        <h5>
-                            Productos Existentes: <%= data.stock %>
-                        </h5>
-
-                        <p class="card-text"></p>
-                        <a href="/producto/<%= data.product %>" class="btn btn-primary rounded">Ver
-                            mas...</a>                        
-                    </div>
-
-                </div>
-            </div>
-            <% }) %>
-    </div>
-</div>
 <input type="text" value="<%= confirmation %>" id="confirmation" hidden>
 <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
 <input type="text" value="<%= icon %>" id="icon" hidden>
