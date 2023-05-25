@@ -45,7 +45,6 @@ router.get('/api/deleteDetail/:key/:product/:amount', controllerOrders.deleteDet
 
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)
-
 router.get('/api/products', controllerProducts.findProduct)
 
 //API comentarios

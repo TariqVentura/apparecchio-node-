@@ -3,6 +3,13 @@ var check = document.getElementById('invalidCheck')
 var loginbutton = document.getElementById('loginbutton')
 var overlay = document.querySelector('.overlay')
 var closelogin = document.getElementById('close-login')
+let btn_buscar = document.getElementById('btn-buscar')
+
+
+btn_buscar.addEventListener('click', function () {
+    let value = document.getElementById('buscador').value
+    location.href = 'http://localhost:3000/productos/' + value
+})
 
 window.onscroll = function () {
     var y = window.scrollY
