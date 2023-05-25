@@ -100,11 +100,12 @@ exports.createDetail = (req, res) => {
         res.send(err)
       })
   } else {
+    let total = Number(req.body.price) * Number(req.body.amount)
     const newDetail = new orderDetails({
       product: req.body.product,
       price: req.body.price,
       amount: req.body.amount,
-      total: Number(req.body.price) * Number(req.body.amount),
+      total: total.toFixed(2),
       order: req.body.order
     });
 
