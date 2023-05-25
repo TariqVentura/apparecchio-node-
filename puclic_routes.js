@@ -41,7 +41,7 @@ router.post('/api/finishOrder', controllerOrders.finishOrder)
 //API detalles
 router.post('/api/details', controllerOrders.createDetail)
 router.get('/api/details/:key', controllerOrders.getDetails)
-router.get('/api/deleteDetail/:key', controllerOrders.deleteDetail)
+router.get('/api/deleteDetail/:key/:product/:amount', controllerOrders.deleteDetail)
 
 //API productos 
 router.get('/api/products/:key', controllerProducts.searchProducts)
