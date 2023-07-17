@@ -216,3 +216,25 @@ exports.searchProducts = async (req, res) => {
         })
 
 }
+
+exports.countProduct = (req, res) => {
+    products.find().count({ status: "true" }).then(count => {
+        if (count) {
+            products.find().count({ status: "false" }).then(countF => {
+                if (countF) {
+                    let data = [count, countF]
+                    res.send(data)
+                } else {
+                    res.send('nada')
+                }
+            }).catch(err => {
+                res.send(err)
+            })
+        } else {
+            res.send('nada')
+        }
+    }).catch(err => {
+        res.send(err)
+    })
+}
+

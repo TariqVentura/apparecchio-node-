@@ -3,7 +3,7 @@ const axios = require('axios')
 exports.categorias = (req, res) => {
     axios.get('http://localhost:80/api/categories')
         .then(function (response) {
-            res.render('categorias', { categories: response.data,  mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('categorias', { categories: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -13,7 +13,7 @@ exports.categorias = (req, res) => {
 exports.searchCategory = (req, res) => {
     axios.get('http://localhost:80/api/categories' + '/' + req.params.key)
         .then(function (response) {
-            res.render('categorias', { categories: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('categorias', { categories: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -23,7 +23,7 @@ exports.searchCategory = (req, res) => {
 exports.marcas = (req, res) => {
     axios.get('http://localhost:80/api/brands')
         .then(function (response) {
-            res.render('marcas', { branches: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('marcas', { branches: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -33,7 +33,7 @@ exports.marcas = (req, res) => {
 exports.searchBrand = (req, res) => {
     axios.get('http://localhost:80/api/brands' + '/' + req.params.key)
         .then(function (response) {
-            res.render('marcas', { branches: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('marcas', { branches: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -47,7 +47,13 @@ exports.productos = (req, res) => {
                 .then(function (categorie) {
                     axios.get('http://localhost:80/api/brands')
                         .then(function (brand) {
-                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data,  mensaje: ". ", confirmation: false, icon:" ." })
+                            axios.get('http://localhost:80/count/products')
+                                .then(function (count) {
+                                    res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data, mensaje: ". ", confirmation: false, icon: " .", count: count })
+                                })
+                                .catch(err => {
+                                    res.send(err)
+                                })
                         })
                         .catch(err => {
                             res.send(err)
@@ -69,7 +75,7 @@ exports.searchProducts = (req, res) => {
                 .then(function (categorie) {
                     axios.get('http://localhost:80/api/brands')
                         .then(function (brand) {
-                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data, mensaje: ". ", confirmation: false, icon:" ." })
+                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data, mensaje: ". ", confirmation: false, icon: " ." })
                         })
                         .catch(err => {
                             res.send(err)
@@ -91,7 +97,7 @@ exports.login = (req, res) => {
 exports.usuarios = (req, res) => {
     axios.get('http://localhost:80/api/users')
         .then(function (response) {
-            res.render('usuarios', { users: response.data,  mensaje: ". ", confirmation: false, icon:" ."  })
+            res.render('usuarios', { users: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -101,7 +107,7 @@ exports.usuarios = (req, res) => {
 exports.searchUsers = (req, res) => {
     axios.get('http://localhost:80/api/users' + '/' + req.params.key)
         .then(function (response) {
-            res.render('usuarios', { users: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('usuarios', { users: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -112,7 +118,7 @@ exports.clientes = (req, res) => {
     axios.get('http://localhost/api/clients')
         .then(function (response) {
             console.log(response.data)
-            res.render('clientes', { clients: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('clientes', { clients: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -123,7 +129,7 @@ exports.searchClientes = (req, res) => {
     axios.get('http://localhost/api/clients' + '/' + req.params.key)
         .then(function (response) {
             console.log(response.data)
-            res.render('clientes', { clients: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('clientes', { clients: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -154,7 +160,7 @@ exports.updateUsers = (req, res) => {
     axios.get('http://localhost:80/api/users', { params: { id: req.query.id } })
         .then(function (userData) {
             console.log(userData.data)
-            res.render('_updateUsers', { information: userData.data, route: 'users', mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('_updateUsers', { information: userData.data, route: 'users', mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -168,7 +174,7 @@ exports.updateProducts = (req, res) => {
                 .then(function (categorie) {
                     axios.get('http://localhost:80/api/brands')
                         .then(function (brand) {
-                            res.render('_updateProducts', { information: productData.data, categories: categorie.data, brands: brand.data, mensaje: ". ", confirmation: false, icon:" ." })
+                            res.render('_updateProducts', { information: productData.data, categories: categorie.data, brands: brand.data, mensaje: ". ", confirmation: false, icon: " ." })
                         })
                         .catch(err => {
                             res.send(err)
@@ -187,7 +193,7 @@ exports.updateClients = (req, res) => {
     axios.get('http://localhost/api/clients', { params: { id: req.query.id } })
         .then(function (response) {
             console.log(response.data)
-            res.render('_updateClients', { clients: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('_updateClients', { clients: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -197,7 +203,7 @@ exports.updateClients = (req, res) => {
 exports.historial = (req, res) => {
     axios.get('http://localhost/api/records' + '/' + req.params.key)
         .then(function (response) {
-            res.render('historial', { historial: response.data, producto: req.params.key, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('historial', { historial: response.data, producto: req.params.key, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -207,7 +213,7 @@ exports.historial = (req, res) => {
 exports.pedidos = (req, res) => {
     axios.get('http://localhost/api/orders')
         .then(function (response) {
-            res.render('pedidos', { pedidos: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('pedidos', { pedidos: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -217,7 +223,7 @@ exports.pedidos = (req, res) => {
 exports.searchOrders = (req, res) => {
     axios.get('http://localhost/api/orders' + '/' + req.params.key)
         .then(function (response) {
-            res.render('pedidos', { pedidos: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('pedidos', { pedidos: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
@@ -227,35 +233,35 @@ exports.searchOrders = (req, res) => {
 exports.detallesPedidos = (req, res) => {
     axios.get('http://localhost/api/details' + '/' + req.params.key)
         .then(function (response) {
-            res.render('detallesPedidos', { detalles: response.data, mensaje: ". ", confirmation: false, icon:" ." })
+            res.render('detallesPedidos', { detalles: response.data, mensaje: ". ", confirmation: false, icon: " ." })
         })
         .catch(err => {
             res.send(err)
         })
 }
 
-exports.confirmacion = (req,res)=> {
+exports.confirmacion = (req, res) => {
     res.render('confirmacion')
 }
 
-exports.principal = (req , res) => {
+exports.principal = (req, res) => {
     res.render('principal')
 }
 
-exports.actualizacion = (req, res) =>{
+exports.actualizacion = (req, res) => {
     res.render('actualizacion')
 }
 
-exports.eliminacion = (req, res) =>{
+exports.eliminacion = (req, res) => {
     res.render('eliminacion')
 }
 
 exports.comentarios = (req, res) => {
     axios.get('http://localhost/api/comments' + '/' + req.params.key)
-    .then(function (response) {
-        res.render('comentarios', { comments: response.data, mensaje: ". ", confirmation: false, icon:" ." })
-    })
-    .catch(err => {
-        res.send(err)
-    })
+        .then(function (response) {
+            res.render('comentarios', { comments: response.data, mensaje: ". ", confirmation: false, icon: " ." })
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }

@@ -136,8 +136,8 @@
                                                 Precio: <input type="text" name="price" required>
                                             </div>
                                             <div class="row">
-                                                descripcion: <textarea name="description" id="" cols="30"
-                                                    rows="5" required></textarea>
+                                                descripcion: <textarea name="description" id="" cols="30" rows="5"
+                                                    required></textarea>
                                                 categoria:
                                                 <select class="form-select" aria-label="Default select example"
                                                     name="categorie">
@@ -160,7 +160,8 @@
                                                         </option>
                                                         <% }) %>
                                                 </select>
-                                                Cantidad: <input type="number" name="stock" onKeyDown="return false" required>
+                                                Cantidad: <input type="number" name="stock" onKeyDown="return false"
+                                                    required>
                                                 imagen: <input type="file" name="image" required>
                                             </div>
                                             <br>
@@ -170,6 +171,44 @@
                                         </form>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Graficos
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Garfico</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row" hidden>
+                                    <input type="text" id="CT" value="<%= count.data[0] %>">
+                                    <input type="text" id="CF" value="<%= count.data[1] %>">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <canvas id="StatusProducts"></canvas>
+                                    </div>
+                                    <div class="col-6">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>
@@ -315,6 +354,7 @@
         </div>
     </main>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const body = document.querySelector('body'),
         sidebar = body.querySelector('nav'),
