@@ -196,14 +196,16 @@
                                 <div class="row" hidden>
                                     <input type="text" id="CT" value="<%= count.data[0] %>">
                                     <input type="text" id="CF" value="<%= count.data[1] %>">
+                                    <% countC.forEach((data) => { %>
+                                        <input type="text" value="<%= data._id %>" class="categorieProduct">
+                                        <input type="text" value="<%= data.count %>" class="categorieProductCount">
+                                    <% }) %>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <canvas id="StatusProducts"></canvas>
-                                    </div>
-                                    <div class="col-6">
-
-                                    </div>
+                                <div class="row my-2">
+                                    <canvas id="categorieProducts"></canvas>
+                                </div>
+                                <div class="row my-2">
+                                    <canvas id="StatusProducts"></canvas>
                                 </div>
                             </div>
                             <div class="modal-footer">

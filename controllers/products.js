@@ -238,3 +238,17 @@ exports.countProduct = (req, res) => {
     })
 }
 
+exports.countCategorie = (req, res) => {
+    products.aggregate()
+        .group({
+            _id: "$categorie",
+            count: { $count: {} }
+        })
+        .then(data => {
+            res.send(data)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+

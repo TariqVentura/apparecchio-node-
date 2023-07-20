@@ -116,31 +116,10 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/dashboard/chart.js"></script>
 <!-- es el codigo de como crer las graficas -->
-<script>
-    const ctx = document.getElementById('myChart');
-
-    new Chart(ctx, {
-        type: 'polarArea',
-        data: {
-            labels: ['Tazas', 'Ropa', 'Accesorios'],
-            datasets: [{
-                label: 'Numero de Ventas',
-
-                data: [12, 19, 15],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
 <script>
     const bar = document.getElementById('mychart');
 

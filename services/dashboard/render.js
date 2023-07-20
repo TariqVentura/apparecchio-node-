@@ -49,7 +49,13 @@ exports.productos = (req, res) => {
                         .then(function (brand) {
                             axios.get('http://localhost:80/count/products')
                                 .then(function (count) {
-                                    res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data, mensaje: ". ", confirmation: false, icon: " .", count: count })
+                                    axios.get('http://localhost:80/count/categorie')
+                                        .then(function (countC) {
+                                            res.render('productos', { products: response.data, categories: categorie.data, brands: brand.data, mensaje: ". ", confirmation: false, icon: " .", count: count, countC: countC.data })
+                                        })
+                                        .catch(err => {
+                                            res.send(err)
+                                        })
                                 })
                                 .catch(err => {
                                     res.send(err)

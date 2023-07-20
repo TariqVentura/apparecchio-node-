@@ -129,6 +129,8 @@ router.get('/api/products/:key', controllerProducts.searchProducts)
 
 router.get('/count/products', controllerProducts.countProduct)
 
+router.get('/count/categorie', controllerProducts.countCategorie)
+
 //API clientes
 router.post('/api/clients', controllerClients.createClient)
 
