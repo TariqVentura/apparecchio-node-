@@ -251,4 +251,3 @@ exports.countCategorie = (req, res) => {
             res.send(err)
         })
 }
-

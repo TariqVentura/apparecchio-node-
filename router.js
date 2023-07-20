@@ -142,6 +142,8 @@ router.get('/api/clients/delete', controllerClients.deleteClient)
 
 router.get('/api/clients/:key', controllerClients.searchClients)
 
+router.get('/count/clients', controllerClients.countClient)
+
 //API records
 router.post('/api/records/', controllerRecords.createRecord)
 

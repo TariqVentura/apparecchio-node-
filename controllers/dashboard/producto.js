@@ -59,7 +59,7 @@ new Chart(PRODUCT_STATUS, {
     data: {
         labels: ['Activo', 'Inactivo'],
         datasets: [{
-            label: 'Productos Activos e Inactivos',
+            label: 'Productos por Estado',
             data: [document.getElementById('CT').value, document.getElementById('CF').value],
             borderWidth: 1
         }]

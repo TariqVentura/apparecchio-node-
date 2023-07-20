@@ -26,7 +26,7 @@
                                     <input type="text" name="order" value="<%= data._id %>" hidden>
                                 </p>
                                 <% if(data.status=='en proceso' ) { %>
-                                    <input type="number" max="<%= data.stock %>" min="1" name="amount" required>
+                                    <input type="number" max="<%= product.stock %>" min="1" name="amount" required>
                                     <button class="btn btn-primary" type="submit">Añadir</button>
                                     <% } else{ %>
                                         <input type="number" max="<%= data.stock %>" min="1" name="amount" required disabled>

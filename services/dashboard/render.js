@@ -123,8 +123,14 @@ exports.searchUsers = (req, res) => {
 exports.clientes = (req, res) => {
     axios.get('http://localhost/api/clients')
         .then(function (response) {
-            console.log(response.data)
-            res.render('clientes', { clients: response.data, mensaje: ". ", confirmation: false, icon: " ." })
+            axios.get('http://localhost/count/clients')
+                .then(function (count) {
+                    console.log(count.data)
+                    res.render('clientes', { clients: response.data, count: count, mensaje: ". ", confirmation: false, icon: " ." })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
         })
         .catch(err => {
             res.send(err)

@@ -237,3 +237,24 @@ exports.logOutClient = (req, res) => {
     req.session.destroy()
     return res.redirect('/')
 }
+
+exports.countClient = (req, res) => {
+    clients.find().count({ status: "true" }).then(count => {
+        if (count) {
+            clients.find().count({ status: "false" }).then(countF => {
+                if (countF || countF == 0) {
+                    let data = [count, countF]
+                    res.send(data)
+                } else {
+                    res.send('inactivo: ' + countF)
+                }
+            }).catch(err => {
+                res.send(err)
+            })
+        } else {
+            res.send('activo: ' + count)
+        }
+    }).catch(err => {
+        res.send(err)
+    })
+}

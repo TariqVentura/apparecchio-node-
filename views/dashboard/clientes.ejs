@@ -148,10 +148,38 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                Reportes
-                <button class="border-0"><img
-                        src="https://img.icons8.com/fluency-systems-filled/40/null/report-card.png" /></button>
+            <div class="col-md-3">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Graficos
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Clientes por estado</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row" hidden>
+                                    <input type="text" id="CT" value="<%= count.data[0] %>">
+                                    <input type="text" id="CF" value="<%= count.data[1] %>">
+                                </div>
+                                <div class="row my-2">
+                                    <canvas id="StatusClients"></canvas>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div><br>
         <!-- tabla donde se mostraran los datos -->
@@ -234,6 +262,7 @@
         <input type="text" value="<%= icon %>" id="icon" hidden>
     </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const body = document.querySelector('body'),
         sidebar = body.querySelector('nav'),
