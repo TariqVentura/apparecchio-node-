@@ -162,7 +162,9 @@ router.get('/api/ordersUpdate/update', controllerOrders.finishOrder)
 
 router.post('/api/details', controllerOrders.createDetail)
 
-router.get('/factura/:id', controllerOrders.getBill)
+// router.get('/factura/:id', controllerOrders.getBill)
+
+router.get('/estado/order', controllerOrders.countOrder)
 
 //API comentarios
 router.post('/api/comments', controllerComments.createComment)

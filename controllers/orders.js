@@ -313,6 +313,16 @@ exports.deleteDetail = (req, res) => {
     })
 }
 
-exports.getBill = (req, res) => {
-  
+exports.countOrder = (req, res) => {
+  orders.aggregate()
+  .group({
+      _id: "$status",
+      count: { $count: {} }
+  })
+  .then(data => {
+      res.send(data)
+  })
+  .catch(err => {
+      res.send(err)
+  })
 }

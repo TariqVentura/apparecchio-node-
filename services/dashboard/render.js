@@ -225,7 +225,13 @@ exports.historial = (req, res) => {
 exports.pedidos = (req, res) => {
     axios.get('http://localhost/api/orders')
         .then(function (response) {
-            res.render('pedidos', { pedidos: response.data, mensaje: ". ", confirmation: false, icon: " ." })
+            axios.get('http://localhost/estado/order')
+                .then(function (count) {
+                    res.render('pedidos', { pedidos: response.data, mensaje: ". ", confirmation: false, icon: " .", count: count.data })
+                })
+                .catch(err => {
+                    res.send(err)
+                })
         })
         .catch(err => {
             res.send(err)
