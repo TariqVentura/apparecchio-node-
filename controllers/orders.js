@@ -312,3 +312,7 @@ exports.deleteDetail = (req, res) => {
       res.send(err)
     })
 }
+
+exports.getBill = (req, res) => {
+  
+}
