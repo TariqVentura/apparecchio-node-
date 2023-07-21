@@ -94,3 +94,21 @@ exports.deleteComment = (req, res) => {
         })
 
 }
+
+exports.getReview = (req, res) => {
+    comments.aggregate()
+        .group({
+            _id: "$product",
+            avg: { $avg: "$review" }
+        })
+        .then(data => {
+            if (data) {
+                res.send(data)
+            } else {
+                res.send('' + 0)
+            }
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}

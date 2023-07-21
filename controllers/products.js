@@ -239,7 +239,7 @@ exports.countProduct = (req, res) => {
 }
 
 exports.countCategorie = (req, res) => {
-    products.aggregate()
+    products.aggregate({ status: true })
         .group({
             _id: "$categorie",
             count: { $count: {} }

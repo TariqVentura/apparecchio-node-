@@ -200,6 +200,10 @@
                                         <input type="text" value="<%= data._id %>" class="categorieProduct">
                                         <input type="text" value="<%= data.count %>" class="categorieProductCount">
                                     <% }) %>
+                                    <% review.forEach((data) => { %>
+                                        <input type="text" value="<%= data._id %>" class="nameProduct">
+                                        <input type="text" value="<%= data.avg %>" class="reviewProduct">
+                                    <% }) %>
                                 </div>
                                 <div class="row my-2">
                                     <p>Productos por Categorias</p>
@@ -208,10 +212,12 @@
                                 <div class="row my-2">
                                     <canvas id="StatusProducts"></canvas>
                                 </div>
+                                <div class="row my-2">
+                                    <canvas id="reviewProducts"></canvas>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
                     </div>

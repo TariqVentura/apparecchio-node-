@@ -173,6 +173,8 @@ router.get('/api/comments/:key', controllerComments.findComments)
 
 router.get('/api/delete/comments', controllerComments.deleteComment)
 
+router.get('/api/review/', controllerComments.getReview)
+
 /**
  * Exportamos el router para que puedo ser accesido por el servidor
  */
