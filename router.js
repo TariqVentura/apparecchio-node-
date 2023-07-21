@@ -162,6 +162,8 @@ router.get('/api/ordersUpdate/update', controllerOrders.finishOrder)
 
 router.post('/api/details', controllerOrders.createDetail)
 
+router.get('/api/bill/:key', controllerOrders.getBill)
+
 // router.get('/factura/:id', controllerOrders.getBill)
 
 router.get('/estado/order', controllerOrders.countOrder)
