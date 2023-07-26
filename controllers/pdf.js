@@ -21,7 +21,7 @@ exports.getInvoice = (req, res) => {
             }
             pdf.create(document, options)
                 .then(res => {
-                    console.log(res)
+                    res.redirect('/carrito')
                 }).catch(error => {
                     console.log(error)
                 })
