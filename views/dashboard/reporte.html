@@ -10,76 +10,67 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="navbar bg-light">
-                    <div class="container">
-                        <h1>
-                            <img src="/resources/images/apparecchio logo.jpg" alt="" width="200">
-                            <span class="navbar-brand mb-0 h1">Reporte: (nombre del repote)</span>
-                        </h1>
-                    </div>
-                    Usuario:
-                    <br>
-                    Fecha:
-                </nav>
+    <div class="container py-3 my-3">
+        <div class="row d-flex justify-content-between border-bottom">
+            <div class="col-1 pb-2">
+                <img src="../../resources/images/logoShort-removebg-preview.png" alt="">
+            </div>
+            <div class="col-4">
+                <p class="fs-6">Apparecchio</p>
+                <p class="fs-6">Apparecchio@gmail.com</p>
+                <p class="fs-6">San Salvador, El Salvador</p>
+                <p class="fs-6" id="date"></p>
             </div>
         </div>
-        <br>
-        <div class="row">
-            <table class="table table-striped table-hover">
+        <div class="row mt-3 d-flex justify-content-between">
+            <div class="col">
+                <p class="fs-5">Cliente: </p>
+            </div>
+            <div class="col">
+                <p class="fs-5 text-end">ID de Factura: </p>
+            </div>
+        </div>
+        <div class="row my-3">
+            <table class="table table-striped table-bordered">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Producto</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Monto</th>
-                        <th scope="col">Total</th>
-                        <th scope="col">Order</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th scope="row">1</th>
+                        <th>1</th>
                         <td>Mark</td>
-                        <td>a</td>
-                        <td>b</td>
-                        <td>c</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th>1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <br>
-    </div>
-    <footer>
-        <div class="container bg-dark">
-            <div class="row">
-                <div class="col-4">
-                    <p class="fs-6 text-light">Contactanos</p>
-                    <p class="fs-6 text-light border-bottom">Contacta con nosotros</p>
-                    <div class="mb-3 text-light">
-                        <label for="exampleFormControlInput1" class="form-label">Correo: apparecchio@gmail.com</label>                                                
-                    </div>            
-                </div>
-                <div class="col-4">
-                    <a href="" class="text-light"><img
-                        src="https://img.icons8.com/material-rounded/29/FFFFFF/facebook.png" />&nbsp; facebook</a>
-                <br>
-                <a href="" class="text-light"><img
-                        src="https://img.icons8.com/windows/32/FFFFFF/instagram-new.png" />&nbsp; instagram</a>
-                <br>
-                <a href="" class="text-light"><img
-                        src="https://img.icons8.com/ios/23/FFFFFF/whatsapp--v1.png" />&nbsp; whatsapp</a>
-                <br>
-                <a href="" class="text-light"><img
-                        src="https://img.icons8.com/ios-filled/23/FFFFFF/twitter.png" />&nbsp; twitter</a>
-                </div>
-                <div class="col-4">
-                    
-                </div>
+        <div class="row d-flex justify-content-end">
+            <div class="col">
+                <p class="fs-5 text-end">Total: </p>
             </div>
         </div>
-    </footer>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="../../controllers/public/detalles.js"></script>
 </body>
 
 </html>
