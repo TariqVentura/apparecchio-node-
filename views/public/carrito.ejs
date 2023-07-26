@@ -13,7 +13,18 @@
                         <p class="card-text">
                             <%= data.user %>
                         </p>
-                        <a href="/carrito/<%= data._id %>/<%= data.status %>" class="btn btn-primary">Ver detalles</a>
+                        <% if(data.status == 'finalizado') { %>
+                            <div class="row">
+                                <div class="col">
+                                    <a href="/carrito/<%= data._id %>/<%= data.status %>" class="btn btn-primary">Ver detalles</a>
+                                </div>
+                                <div class="col">
+                                    <a href="/api/invoice/<%= data._id %>" class="btn btn-primary">Crear factura</a>
+                                </div>
+                            </div>
+                        <% } else { %>
+                            <a href="/carrito/<%= data._id %>/<%= data.status %>" class="btn btn-primary">Ver detalles</a>
+                        <% } %>
                     </div>
                     <div class="card-footer text-muted">
                         <%= data.date %>
@@ -30,3 +41,4 @@
 <input type="text" value="<%= mensaje %>" id="mensaje" hidden>
 <input type="text" value="<%= icon %>" id="icon" hidden>
 <script src="/alert.js"></script>
+<script src="/detalles.js"></script>

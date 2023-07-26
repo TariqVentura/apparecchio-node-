@@ -20,8 +20,8 @@ exports.getInvoice = (req, res) => {
                 type: "",
             }
             pdf.create(document, options)
-                .then(res => {
-                    console.log(res)
+                .then(p => {
+                    res.redirect('/' + req.params.key + '.pdf')
                 }).catch(error => {
                     console.log(error)
                 })
