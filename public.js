@@ -40,6 +40,7 @@ public.use(bodyparser.urlencoded({ extended: true }))
 
 public.use(express.static(__dirname + '/controllers'))
 public.use(express.static(__dirname + '/resources'))
+public.use(express.static(__dirname + '/docs'))
 
 public.use(express.urlencoded({ extended: true }))
 public.use(express(JSON))
