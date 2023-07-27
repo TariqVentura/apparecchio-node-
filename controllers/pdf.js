@@ -11,10 +11,29 @@ exports.getInvoice = (req, res) => {
 
     axios.get('http://localhost:3000/api/details' + '/' + req.params.key)
         .then(function (detail) {
+            const date = new Date()
+            let obj = detail.data
+            let total = 0
+            let order
+            let format = date.toISOString()
+
+            obj.forEach(i => {
+                total += i.total
+                order = i.order
+            });
+
+            const data = {
+                user: req.session.user,
+                details: detail.data,
+                total: total,
+                _id: order,
+                date: format.substring(0, 10)
+            }
+
             let document = {
                 html: html,
                 data: {
-                    details: detail.data,
+                    data: data,
                 },
                 path: "./docs/" + fileName,
                 type: "",
