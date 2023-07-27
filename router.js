@@ -169,7 +169,7 @@ router.get('/api/ordersUpdate/update', controllerOrders.finishOrder)
 
 router.post('/api/details', controllerOrders.createDetail)
 
-router.get('/api/bill/:key', controllerOrders.getBill)
+router.get('/report/order/:key', pdf.getOrdersReport)
 
 // router.get('/factura/:id', controllerOrders.getBill)
 
