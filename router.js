@@ -13,6 +13,7 @@ const controllerClients = require('./controllers/clients')
 const controllerRecords = require('./controllers/record')
 const controllerOrders = require('./controllers/orders')
 const controllerComments = require('./controllers/comments')
+const pdf = require('./controllers/pdf')
 
 /**
  * Se ocupa el metodo get para que al momento de que se envie a 
@@ -148,6 +149,12 @@ router.get('/count/clients', controllerClients.countClient)
 router.post('/api/records/', controllerRecords.createRecord)
 
 router.get('/api/records/:key', controllerRecords.findRecord)
+
+router.get('/api/records', controllerRecords.findRecord)
+
+router.get('/report/record/:key', pdf.getRecord)
+
+router.get('/report/record', pdf.getAllRecord)
 
 //API orders
 router.post('/api/orders/', controllerOrders.createOrder)

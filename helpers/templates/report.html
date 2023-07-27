@@ -19,15 +19,7 @@
                 <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">Apparecchio</p>
                 <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">Apparecchio@gmail.com</p>
                 <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">San Salvador, El Salvador</p>
-                <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">{{data.date}}</p>
-            </div>
-        </div>
-        <div style="margin-top: 2%;">
-            <div style="width: 50%;">
-                <p style="font-size: medium; font-family: Arial, Helvetica, sans-serif;">Cliente: {{data.user}}</p>
-            </div>
-            <div style="width: 50%; text-align: end;">
-                <p style="font-size: medium; font-family: Arial, Helvetica, sans-serif;">ID de Factura: {{data._id}}</p>
+                <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">{{obj.date}}</p>
             </div>
         </div>
         <div class="row my-3">
@@ -35,25 +27,20 @@
                 <thead style="background-color: chocolate; color: azure;">
                     <tr>
                         <th scope="col">Producto</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Subtotal</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each data.details}}
+                    {{#each obj.data}}
                     <tr>
                         <th>{{this.product}}</th>
-                        <td>${{this.price}}</td>
-                        <td>{{this.amount}}</td>
-                        <td>${{this.total}}</td>
+                        <td>{{this.stock}}</td>
+                        <td>{{this.date}}</td>
                     </tr>
                     {{/each}}
                 </tbody>
             </table>
-        </div>
-        <div>
-            <p style="font-size: medium; font-family: Arial, Helvetica, sans-serif; text-align: end;">Total: ${{data.total}}</p>
         </div>
     </div>
 </body>

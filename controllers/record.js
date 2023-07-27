@@ -95,22 +95,36 @@ exports.createRecord = (req, res) => {
  * datos que tienen los campos que se especifica y el parametro que se envia
 */
 exports.findRecord = (req, res) => {
-    const key = req.params.key
-    record.find(
-        {
-            "$or": [
-                { product: { $regex: key } }
-            ]
-        }
-    )
-        .then(data => {
-            if (!data) {
-                res.status(404).send({ message: `Sin datos` })
-            } else {
-                res.send(data)
+    if (req.params.key) {
+        const key = req.params.key
+        record.find(
+            {
+                "$or": [
+                    { product: { $regex: key } }
+                ]
             }
-        })
-        .catch(err => {
-            res.send(err)
-        })
+        )
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: `Sin datos` })
+                } else {
+                    res.send(data)
+                }
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    } else {
+        record.find()
+            .then(data => {
+                if (data) {
+                    res.send(data)
+                } else {
+                    res.send('error')
+                }
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
 }
