@@ -33,6 +33,7 @@ dashboard.use(bodyparser.urlencoded({extended:true}))
 //se crea la ruta para usar los archivos del css, js e imagenes para la pagina
 dashboard.use(express.static(__dirname + '/resources'))
 dashboard.use(express.static(__dirname + '/controllers'))
+dashboard.use(express.static(__dirname + '/docs'))
 
 dashboard.use(express.urlencoded({extended: true}))
 dashboard.use(express(JSON))

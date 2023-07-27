@@ -6,7 +6,6 @@ const orderDetails = require("../models/ordersDetails");
 const products = require('../models/products')
 const axios = require('axios')
 const fecha = new Date()
-const pdf = require('pdfkit-construct')
 
 /**
  * Por medio de la depencia de axios se obtiene la informacion de las API utilizando el metodo GET y se renderizan las paginas con la informacion obetnida
@@ -325,70 +324,5 @@ exports.countOrder = (req, res) => {
     })
     .catch(err => {
       res.send(err)
-    })
-}
-
-exports.getBill = (req, res) => {
-  orderDetails.find({ order: req.params.key })
-    .then(data => {
-      function getData() {
-        return new Promise((resolve, reject) => {
-          resolve(data)
-        })
-      }
-      getData().then(products => {
-        const doc = new pdf({
-          size: 'A4',
-          margins: { top: 20, left: 10, right: 10, bottom: 20 },
-          bufferPages: true,
-        })
-
-        doc.setDocumentHeader({}, () => {
-          doc.lineJoin('miter')
-            .rect(0, 0, doc.page.width, doc.header.options.heightNumber).fill("#ededed");
-
-          doc.fill("#115dc8")
-            .fontSize(20)
-            .text("Hello world header", doc.header.x, doc.header.y);
-        })
-
-        doc.setDocumentFooter({}, () => {
-          doc.lineJoin('miter')
-            .rect(0, doc.footer.y, doc.page.width, doc.footer.options.heightNumber).fill("#c2edbe");
-
-          doc.fill("#7416c8")
-            .fontSize(8)
-            .text("Hello world footer", doc.footer.x, doc.footer.y + 10);
-        })
-
-        doc.addTable(
-          [
-            { key: 'product', label: 'Producto', align: 'left' },
-            { key: 'price', label: 'Precio', align: 'right' },
-            { key: 'amount', label: 'Cantidad' },
-            { key: 'total', label: 'Sub Total', align: 'right' }
-          ],
-          products, {
-          boder: null,
-          width: 'fill-body',
-          striped: true,
-          stripedColors: ["#f6f6f6", "#d6c4dd"],
-          cellsPadding: 10,
-          marginLeft: 45,
-          marginRight: 45,
-          headAlign: 'center'
-        })
-
-        doc.render()
-
-        doc.setPageNumbers((p, c) => `Page ${p} of ${c}`, "bottom right");
-
-        doc.pipe(res)
-
-        doc.end()
-      })
-    })
-    .catch(err => {
-      res.send('err')
     })
 }

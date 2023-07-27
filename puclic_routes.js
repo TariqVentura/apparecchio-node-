@@ -7,6 +7,7 @@ const controllerCLients = require('./controllers/clients')
 const controllerProducts = require('./controllers/products')
 const controllerOrders = require('./controllers/orders')
 const controllerComments = require('./controllers/comments')
+const PDF = require('./controllers/pdf')
 
 router.get('/', services.index)
 
@@ -37,6 +38,7 @@ router.post('/api/clients', controllerCLients.createClient)
 router.post('/api/orders', controllerOrders.createOrder)
 router.get('/api/orders/:key', controllerOrders.getOrders)
 router.post('/api/finishOrder', controllerOrders.finishOrder)
+router.get('/api/invoice/:key', PDF.getInvoice)
 
 //API detalles
 router.post('/api/details', controllerOrders.createDetail)

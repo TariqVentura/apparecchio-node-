@@ -178,6 +178,8 @@ exports.orderDeatils = (req, res) => {
                     .then(function (categorie) {
                         axios.get('http://localhost:3000/api/details' + '/' + req.params.key)
                             .then(function (detail) {
+                                const details = detail.data
+                                console.log(details)
                                 res.render('orderDetails', { details: detail.data, branches: response.data, categories: categorie.data, mensaje: ". ", confirmation: false, icon: " .", user: req.session.user, order: req.params.key, status: req.params.status, user: username})
                             })
                             .catch(err => {
