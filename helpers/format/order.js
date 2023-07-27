@@ -1,7 +1,7 @@
 module.exports = {
-    formate: 'A3',
+    formate: 'Letter',
     orientation: 'portrait',
-    border: '2mm',
+    border: '10mm',
     header: {
         height: '15mm',
         contents: '<h4 style=" color: red;font-size:20;font-weight:800;text-align:center;">REPORTE DE ESTADO DE ORDEN</h4>'

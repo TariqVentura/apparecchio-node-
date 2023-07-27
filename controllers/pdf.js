@@ -71,7 +71,8 @@ exports.getRecord = (req, res) => {
 
             let obj = {
                 data: data,
-                date: format
+                date: format,
+                product: req.params.key
             }
 
             let document = {
@@ -104,10 +105,32 @@ exports.getAllRecord = (req, res) => {
     axios.get('http://localhost/api/records')
         .then(function (record) {
             const data = record.data
+            let product = [], filter = [], objProduct = []
+
+            data.forEach(i => {
+                let newProduct = i.product
+                product.push(newProduct)
+            })
+            
+            for (let i = 0; i < product.length; i++) {
+                const element = product[i];
+
+                if (!filter.includes(product[i])) {
+                    filter.push(element)
+                }
+            }
+
+            for (let i = 0; i < filter.length; i++) {
+                const element = filter[i];
+                objProduct.push({ product: element })
+            }
+            
+            console.log(objProduct)
 
             let obj = {
                 data: data,
-                date: format
+                date: format,
+                product: objProduct
             }
 
             let document = {
@@ -134,8 +157,8 @@ exports.getAllRecord = (req, res) => {
 exports.getOrdersReport = (req, res) => {
     const date = new Date()
     let format = date.toISOString().substring(0, 10)
-    const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/orders.html'), 'utf-8')
     if (req.params.key) {
+        const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/order.html'), 'utf-8')
         const fileName = 'Reporte_Ordenes_' + req.params.key + '_' + format + '.pdf'
 
         axios.get('http://localhost/api/orders/' + req.params.key)
@@ -144,7 +167,8 @@ exports.getOrdersReport = (req, res) => {
 
                 let obj = {
                     data: data,
-                    date: format
+                    date: format,
+                    status: req.params.key
                 }
 
                 let document = {
@@ -167,14 +191,32 @@ exports.getOrdersReport = (req, res) => {
                 res.send(err)
             })
     } else {
-        const fileName = 'Reporte_Ordenes_' + format +  '.pdf'
+        const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/orders.html'), 'utf-8')
+        const fileName = 'Reporte_Ordenes_' + format + '.pdf'
 
         axios.get('http://localhost/api/orders/')
             .then(function (record) {
                 const data = record.data
 
+                let finalizado = [], cancelado = [], proceso = []
+
+                data.forEach(i => {
+                    if (i.status == 'finalizado') {
+                        let newData = { client: i.client, date: i.date, status: i.status }
+                        finalizado.push(newData)
+                    } else if (i.status == 'cancelado') {
+                        let newData = { client: i.client, date: i.date, status: i.status }
+                        cancelado.push(newData)
+                    } else if (i.status == 'en proceso') {
+                        let newData = { client: i.client, date: i.date, status: i.status }
+                        proceso.push(newData)
+                    }
+                })
+
                 let obj = {
-                    data: data,
+                    finalizado: finalizado,
+                    cancelado: cancelado,
+                    proceso: proceso,
                     date: format
                 }
 

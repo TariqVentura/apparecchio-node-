@@ -27,7 +27,7 @@
                                     <p>Apparecchio</p>
                                     <p>Apparecchio@gmail.com</p>
                                     <p>San Salvador, El Salvador</p>
-                                    <p>{{data.date}}</p>
+                                    <p>{{obj.date}}</p>
                                 </div>
                             </td>
                         </tr>
@@ -45,27 +45,9 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="2" style="text-align: center;">Finalizado</td>
+                        <td colspan="2" style="text-align: center;">{{obj.status}}</td>
                     </tr>
-                    {{#each obj.finalizado}}
-                    <tr>
-                        <th>{{this.client}}</th>
-                        <td>{{this.date}}</td>
-                    </tr>
-                    {{/each}}
-                    <tr>
-                        <td colspan="2" style="text-align: center;">Cancelado</td>
-                    </tr>
-                    {{#each obj.cancelado}}
-                    <tr>
-                        <th>{{this.client}}</th>
-                        <td>{{this.date}}</td>
-                    </tr>
-                    {{/each}}
-                    <tr>
-                        <td colspan="2" style="text-align: center;">En proceso</td>
-                    </tr>
-                    {{#each obj.proceso}}
+                    {{#each obj.data}}
                     <tr>
                         <th>{{this.client}}</th>
                         <td>{{this.date}}</td>
