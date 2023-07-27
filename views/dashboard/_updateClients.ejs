@@ -15,6 +15,16 @@
                 <div class="row">
                     Usuario: <input type="text" name="user" value="<%= clients.user %>" required>
                 </div>
+                <div class="row">
+                    <label for="" class="form-label">Nivel</label>
+                    <select class="form-select" id="inputGroupSelect01" name="status" required>
+                        <option selected>
+                            <%= clients.status %>
+                        </option>
+                        <option>true</option>
+                        <option>false</option>
+                    </select>
+                </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
