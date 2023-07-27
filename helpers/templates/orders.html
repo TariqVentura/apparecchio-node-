@@ -12,14 +12,27 @@
 <body>
     <div style="margin-top: 2%; margin-bottom: 3%;">
         <div style="border-bottom: 1px rgb(123, 121, 121) solid;">
-            <div style="width: 25%;">
-                <img src="http://localhost:3000/images/logoShort-removebg-preview.png" alt="A" width="100%">
-            </div>
-            <div style="width: 25%; text-align: end;">
-                <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">Apparecchio</p>
-                <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">Apparecchio@gmail.com</p>
-                <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">San Salvador, El Salvador</p>
-                <p style="font-size: smaller; font-family: Arial, Helvetica, sans-serif;">{{obj.date}}</p>
+            <div style="border-bottom: 1px rgb(123, 121, 121) solid; ">
+                <div style="width: 100%; display: flex; flex-direction: columns; justify-content: space-between; ">
+                    <table style="border: 1; width: 100%;">
+                        <tr>
+                            <td style="width: 50%;">
+                                <div style="margin-left: 35px;">
+                                    <img src="http://localhost:3000/images/logoShort-removebg-preview.png" alt="A"
+                                        width="50%">
+                                </div>
+                            </td>
+                            <td style="width: 50%; text-align: end;">
+                                <div style="margin-right: 35px;">
+                                    <p>Apparecchio</p>
+                                    <p>Apparecchio@gmail.com</p>
+                                    <p>San Salvador, El Salvador</p>
+                                    <p>{{data.date}}</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </Table>
+                </div>
             </div>
         </div>
         <div class="row my-3">
