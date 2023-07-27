@@ -330,12 +330,17 @@ exports.countOrder = (req, res) => {
 
 exports.getBill = (req, res) => {
   orderDetails.find({ order: req.params.key })
-    .then(products => {
-      if (products) {
+    .then(data => {
+      function getData() {
+        return new Promise((resolve, reject) => {
+          resolve(data)
+        })
+      }
+      getData().then(products => {
         const doc = new pdf({
           size: 'A4',
           margins: { top: 20, left: 10, right: 10, bottom: 20 },
-          bufferPages: true
+          bufferPages: true,
         })
 
         doc.setDocumentHeader({}, () => {
@@ -364,24 +369,24 @@ exports.getBill = (req, res) => {
             { key: 'total', label: 'Sub Total', align: 'right' }
           ],
           products, {
-            boder: null,
-            width: 'fill-body',
-            striped: true,
-            stripedColors: ["#f6f6f6", "#d6c4dd"],
-            cellsPadding: 10,
-            marginLeft: 45,
-            marginRight: 45,
-            headAlign: 'center'
+          boder: null,
+          width: 'fill-body',
+          striped: true,
+          stripedColors: ["#f6f6f6", "#d6c4dd"],
+          cellsPadding: 10,
+          marginLeft: 45,
+          marginRight: 45,
+          headAlign: 'center'
         })
 
         doc.render()
 
+        doc.setPageNumbers((p, c) => `Page ${p} of ${c}`, "bottom right");
+
         doc.pipe(res)
 
         doc.end()
-      } else {
-        res.send('error')
-      }
+      })
     })
     .catch(err => {
       res.send('err')
