@@ -26,16 +26,16 @@
             <table class="table table-striped table-bordered">
                 <thead style="background-color: chocolate; color: azure;">
                     <tr>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Stock</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Estado</th>
                         <th scope="col">Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{#each obj.data}}
                     <tr>
-                        <th>{{this.product}}</th>
-                        <td>{{this.stock}}</td>
+                        <th>{{this.client}}</th>
+                        <td>{{this.status}}</td>
                         <td>{{this.date}}</td>
                     </tr>
                     {{/each}}
