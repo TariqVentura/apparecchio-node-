@@ -135,34 +135,68 @@ exports.getOrdersReport = (req, res) => {
     const date = new Date()
     let format = date.toISOString().substring(0, 10)
     const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/orders.html'), 'utf-8')
-    const fileName = 'Reporte_Ordenes_' + req.params.key + '_' + format + '.pdf'
+    if (req.params.key) {
+        const fileName = 'Reporte_Ordenes_' + req.params.key + '_' + format + '.pdf'
 
-    axios.get('http://localhost/api/orders/' + req.params.key)
-        .then(function (record) {
-            const data = record.data
+        axios.get('http://localhost/api/orders/' + req.params.key)
+            .then(function (record) {
+                const data = record.data
 
-            let obj = {
-                data: data,
-                date: format
-            }
+                let obj = {
+                    data: data,
+                    date: format
+                }
 
-            let document = {
-                html: html,
-                data: {
-                    obj: obj,
-                },
-                path: "./docs/" + fileName,
-                type: "",
-            }
+                let document = {
+                    html: html,
+                    data: {
+                        obj: obj,
+                    },
+                    path: "./docs/" + fileName,
+                    type: "",
+                }
 
-            pdf.create(document, formatOrder)
-                .then(p => {
-                    res.redirect('/' + fileName)
-                }).catch(error => {
-                    console.log(error)
-                })
-        })
-        .catch(err => {
-            res.send(err)
-        })
+                pdf.create(document, formatOrder)
+                    .then(p => {
+                        res.redirect('/' + fileName)
+                    }).catch(error => {
+                        console.log(error)
+                    })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    } else {
+        const fileName = 'Reporte_Ordenes_' + format +  '.pdf'
+
+        axios.get('http://localhost/api/orders/')
+            .then(function (record) {
+                const data = record.data
+
+                let obj = {
+                    data: data,
+                    date: format
+                }
+
+                let document = {
+                    html: html,
+                    data: {
+                        obj: obj,
+                    },
+                    path: "./docs/" + fileName,
+                    type: "",
+                }
+
+                pdf.create(document, formatOrder)
+                    .then(p => {
+                        res.redirect('/' + fileName)
+                    }).catch(error => {
+                        console.log(error)
+                    })
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
 }

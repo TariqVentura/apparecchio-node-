@@ -169,6 +169,8 @@ router.get('/api/ordersUpdate/update', controllerOrders.finishOrder)
 
 router.post('/api/details', controllerOrders.createDetail)
 
+router.get('/report/order', pdf.getOrdersReport)
+
 router.get('/report/order/:key', pdf.getOrdersReport)
 
 // router.get('/factura/:id', controllerOrders.getBill)
