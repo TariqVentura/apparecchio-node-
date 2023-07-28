@@ -145,6 +145,8 @@ router.get('/api/clients/:key', controllerClients.searchClients)
 
 router.get('/count/clients', controllerClients.countClient)
 
+router.get('/report/client', pdf.getClientReport)
+
 //API records
 router.post('/api/records/', controllerRecords.createRecord)
 

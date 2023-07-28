@@ -12,6 +12,11 @@ const axios = require('axios')
 const options = require('../helpers/format/options')
 const formatRecord = require('../helpers/format/records')
 const formatOrder = require('../helpers/format/order')
+const formatUser = require('../helpers/format/users')
+
+
+const date = new Date()
+let format = date.toISOString().substring(0, 10)
 
 exports.getInvoice = (req, res) => {
     const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/bill.html'), 'utf-8')
@@ -19,11 +24,9 @@ exports.getInvoice = (req, res) => {
 
     axios.get('http://localhost:3000/api/details' + '/' + req.params.key)
         .then(function (detail) {
-            const date = new Date()
             let obj = detail.data
             let total = 0
             let order
-            let format = date.toISOString()
 
             obj.forEach(i => {
                 total += i.total
@@ -65,9 +68,6 @@ exports.getRecord = (req, res) => {
     axios.get('http://localhost/api/records' + '/' + req.params.key)
         .then(function (record) {
             const data = record.data
-            const date = new Date()
-
-            let format = date.toISOString().substring(0, 10)
 
             let obj = {
                 data: data,
@@ -97,8 +97,6 @@ exports.getRecord = (req, res) => {
 }
 
 exports.getAllRecord = (req, res) => {
-    const date = new Date()
-    let format = date.toISOString().substring(0, 10)
     const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/report.html'), 'utf-8')
     const fileName = 'Reporte_Productos_Stock_' + format + '.pdf'
 
@@ -111,7 +109,7 @@ exports.getAllRecord = (req, res) => {
                 let newProduct = i.product
                 product.push(newProduct)
             })
-            
+
             for (let i = 0; i < product.length; i++) {
                 const element = product[i];
 
@@ -124,7 +122,7 @@ exports.getAllRecord = (req, res) => {
                 const element = filter[i];
                 objProduct.push({ product: element })
             }
-            
+
             console.log(objProduct)
 
             let obj = {
@@ -155,8 +153,6 @@ exports.getAllRecord = (req, res) => {
 }
 
 exports.getOrdersReport = (req, res) => {
-    const date = new Date()
-    let format = date.toISOString().substring(0, 10)
     if (req.params.key) {
         const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/order.html'), 'utf-8')
         const fileName = 'Reporte_Ordenes_' + req.params.key + '_' + format + '.pdf'
@@ -241,4 +237,54 @@ exports.getOrdersReport = (req, res) => {
             })
     }
 
+}
+
+exports.getClientReport = (req, res) => {
+    const html = fs.readFileSync(path.join(__dirname, '../helpers/templates/users.html'), 'utf-8')
+    const fileName = 'Reporte_Clientes_' + format + '.pdf'
+
+    axios.get('http://localhost/api/clients/')
+        .then(function (record) {
+            const data = record.data
+
+            let activo = [], inactivo = []
+            
+            data.forEach(i => {
+                let newData = { name: i.name, lastname: i.lastname, email: i.email, identity_card: i.identity_card, user: i.user }
+
+                if (i.status == true) {
+                    activo.push(newData)
+                } else if (i.status == false) {
+                    inactivo.push(newData)
+                }
+            })
+
+            console.log(activo)
+            console.log(inactivo)
+
+            let obj = {
+                activo: activo,
+                inactivo: inactivo,
+                date: format
+            }
+
+            let document = {
+                html: html,
+                data: {
+                    obj: obj,
+                },
+                path: "./docs/" + fileName,
+                type: "",
+            }
+
+            pdf.create(document, formatUser)
+                .then(p => {
+                    res.redirect('/' + fileName)
+                }).catch(error => {
+                    console.log(error)
+                })
+        })
+        .catch(err => {
+            res.send(err)
+        })
 }
